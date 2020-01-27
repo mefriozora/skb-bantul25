@@ -24,7 +24,7 @@
                 $Data  = mysqli_fetch_array($query);
             ?>
 
-            <form action="proses_siswa_edit.php?id=<?php echo $_GET['id'] ?>" enctype="multipart/form-data" method="post">
+            <form action="siswa_edit_proses.php?id=<?php echo $_GET['id'] ?>" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>No. Pendaftar</label>
                   <div class="input-group">
@@ -71,10 +71,10 @@
               </div>
               <div class="modal-footer">
                 <button class="btn btn-success" type="submit" name="btnedit" value="btnedit">
-                  Update
+                  Ubah
                 </button>
                 <button type="reset" class="btn btn-danger">
-                Batal
+                  Batal
                 </button>
               </div>
             </form>

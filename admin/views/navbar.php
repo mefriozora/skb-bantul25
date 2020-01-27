@@ -48,13 +48,13 @@ include "../config/connection.php";
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-users"></i>Pendaftaran</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="pendaftaran.php" class="dropdown-item ">Pendaftar Masuk</a>
-                      <a href="siswa.php" class="dropdown-item ">Pendaftar Diterima</a>
+                      <a href="siswa_diterima.php" class="dropdown-item ">Pendaftar Diterima</a>
                     </div>
                   </li>
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i>Master Data</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="siswaaktif.php" class="dropdown-item ">Siswa</a>
+                      <a href="siswa.php" class="dropdown-item ">Siswa</a>
                       <a href="kelas.php" class="dropdown-item ">Kelas</a>
                       <a href="paket_kesetaraan.php" class="dropdown-item ">Paket Kesetaraan</a>
                       <a href="tutor.php" class="dropdown-item ">Pamong Belajar</a>
@@ -66,8 +66,8 @@ include "../config/connection.php";
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-user-check"></i>Rombel</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="datarombel.php" class="dropdown-item ">Data Rombel</a>
-                      <a href="pembagianrombel.php" class="dropdown-item ">Pembagian Rombel</a>
+                      <a href="rombel_data.php" class="dropdown-item ">Data Rombel</a>
+                      <a href="rombel_pembagian.php" class="dropdown-item ">Pembagian Rombel</a>
                     </div>
                   </li>
                   <li class="nav-item">
