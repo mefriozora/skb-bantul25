@@ -73,16 +73,12 @@
                 <button class="btn btn-success" type="submit" name="btnedit" value="btnedit">
                   Ubah
                 </button>
-                <button type="reset" class="btn btn-danger">
-                  Batal
-                </button>
+               <a href="siswa.php"class="btn btn-danger">Batal</a>
               </div>
             </form>
-
           </div>
         </div>
       </div>
     </div>  
-    
   </body>
 </html>

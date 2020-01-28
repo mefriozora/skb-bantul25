@@ -1,4 +1,4 @@
-<?php include_once "views/main.php";?>
+<?php include_once "./views/main.php";?>
     <div>
     <div class="my-3 my-md-5">
   <div class="container">

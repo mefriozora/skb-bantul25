@@ -1,4 +1,4 @@
-<?php include_once "views/main.php";?>
+<?php include_once "./views/main.php";?>
 <?php
   include "config/connection.php";
 ?>
@@ -68,23 +68,10 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Pendaftaran Siswa</h4>            
+            <h4 class="modal-title">Pilih Kejar Paket</h4>            
           </div>
           <div class="modal-body">
           <form action="daftar_add.php"  method="POST" id="form1" name="form1" onsubmit="return true" enctype="multipart/form-data" >
-          <div class="form-group" >
-                <label>Pendaftaran Siswa</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user-o"></i>
-                    </div>
-                    <select required id="kesetaraan" name="kesetaraan"  class="form-control">
-                      <option selected value="">-Pilih-</option>
-                      <option value="A">Reguler</option>
-                      <option value="B">Putus Sekolah</option>
-                    </select>
-                  </div>
-              </div>
               <div class="form-group" >
                 <label>Paket Kesetaraan</label>
                   <div class="input-group">
@@ -100,7 +87,7 @@
                   </div>
               </div>
               <div class="form-group">
-                <label>Mendaftar Kelas</label>
+                <label>Setara Kelas</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
@@ -125,7 +112,16 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama" type="text" class="form-control" onkeypress=""/>
+                    <input name="nama" type="text" class="form-control" onkeypress="" placeholder="Nama"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>NISN</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-id-card"></i>
+                    </div>
+                    <input name="nisn" type="text" class="form-control" onkeypress="" placeholder="NISN"/>
                   </div>
               </div>
               <div class="form-group">
@@ -134,7 +130,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" />
+                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" placeholder="Tempat lahir"/>
                   </div>
               </div>
               <div class="form-group">
@@ -143,7 +139,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress=""/>
+                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress="" placeholder="Tanggal lahir"/>
                   </div>
               </div>
               <div class="form-group">
@@ -176,7 +172,7 @@
                   </div>
               </div>
               <div class="form-group">
-                <label>Alamat Domisili</label>
+                <label>Alamat</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
@@ -198,6 +194,7 @@
               </div>
           </div>
         </div>
+
     <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -213,24 +210,7 @@
                     <input name="asal_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
                   </div>
               </div>
-              <div class="form-group">
-                <label>Putus Sekolah Kelas</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-id-card"></i>
-                    </div>
-                    <input name="p_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
-                  </div>
-              </div>
-              <div class="form-group">
-                <label>Putus Sekolah Semester</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-id-card"></i>
-                    </div>
-                    <input name="p_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
-                  </div>
-              </div>
+              
               <div class="form-group">
                 <label>Alamat Sekolah</label>
                   <div class="input-group">
@@ -253,35 +233,13 @@
             <h4 class="modal-title">Data Orang Tua / Wali</h4>            
           </div>
           <div class="modal-body">
-          <div class="form-group" >
-                <label>Bertempat Tinggal Pada</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user-o"></i>
-                    </div>
-                    <select required id="kesetaraan" name="kesetaraan"  class="form-control">
-                      <option selected value="">-Pilih-</option>
-                      <option value="A">Orang Tua</option>
-                      <option value="B">Wali</option>
-                    </select>
-                  </div>
-              </div>
               <div class="form-group">
-                <label>Nama Ayah / Wali</label>
+                <label>Nama Ayah</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
                     <input name="nama_ayah" type="text" class="form-control" onkeypress="" placeholder="Nama Ayah"/>
-                  </div>
-              </div>
-              <div class="form-group">
-                <label>Pekerjaan Ayah / Wali</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-id-card"></i>
-                    </div>
-                    <input name="pekerj_ayah" type="text" class="form-control" onkeypress="" placeholder="Pekerjaan Ayah"/>
                   </div>
               </div>
               <div class="form-group">
@@ -294,6 +252,15 @@
                   </div>
               </div>
               <div class="form-group">
+                <label>Pekerjaan Ayah</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-id-card"></i>
+                    </div>
+                    <input name="pekerj_ayah" type="text" class="form-control" onkeypress="" placeholder="Pekerjaan Ayah"/>
+                  </div>
+              </div>
+              <div class="form-group">
                 <label>Pekerjaan Ibu</label>
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -303,7 +270,7 @@
                   </div>
               </div>
               <div class="form-group">
-                <label>Alamat KK</label>
+                <label>Alamat Orang Tua</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
@@ -312,12 +279,39 @@
                   </div>
               </div>
               <div class="form-group">
+                <label>Nama Wali</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-id-card"></i>
+                    </div>
+                    <input name="nama_wali" type="text" class="form-control" onkeypress="" placeholder="Nama Wali"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Pekerjaan Wali</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-id-card"></i>
+                    </div>
+                    <input name="pekerj_wali" type="text" class="form-control" onkeypress="" placeholder="Pekerjaan"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Alamat Wali</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-id-card"></i>
+                    </div>
+                    <textarea name="alamat_wali" class="form-control"></textarea>
+                  </div>
+              </div>
+              <div class="form-group">
                 <label>No HP Orangtua / Wali</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp_ortuwali" type="text" class="form-control" onkeypress="return isNumber(event)"/>
+                    <input name="no_hp_ortuwali" type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Telp"/>
                   </div>
               </div>
             </div>

@@ -172,7 +172,7 @@ $h=mysqli_fetch_array($sql);
                   Update
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='kelas.php';">
-                Cancel
+                 Batal
                 </button>
               </div>
             </form>
