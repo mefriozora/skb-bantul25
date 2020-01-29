@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../config/connection.php";
+include "config/connection.php";
 
 if(isset($_POST["daftar"])){
     $namapendaftar  = @$_POST['nama'];

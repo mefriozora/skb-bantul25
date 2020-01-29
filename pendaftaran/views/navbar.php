@@ -28,19 +28,19 @@
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="./sekilas.php" class="nav-link"><i class="fe fe-info"></i> Sekilas</a>
+                    <a href="pendaftaran/sekilas.php" class="nav-link"><i class="fe fe-info"></i> Sekilas</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./info.php" class="nav-link"><i class="fe fe-feather"></i>Info Pendaftaran</a>
+                    <a href="info.php" class="nav-link"><i class="fe fe-feather"></i>Info Pendaftaran</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./daftar.php" class="nav-link"><i class="fe fe-check-square"></i>Daftar</a>
+                    <a href="daftar.php" class="nav-link"><i class="fe fe-check-square"></i>Daftar</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./pengumuman.php" class="nav-link"><i class="fe fe-bell"></i>Pengumuman</a>
+                    <a href="pengumuman.php" class="nav-link"><i class="fe fe-bell"></i>Pengumuman</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./kontakkami.php" class="nav-link"><i class="fe fe-phone-call"></i> Kontak Kami</a>
+                    <a href="kontakkami.php" class="nav-link"><i class="fe fe-phone-call"></i> Kontak Kami</a>
                   </li>
                 </ul>
               </div>

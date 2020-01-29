@@ -1,4 +1,4 @@
-<?php include_once "../views/main.php";?>
+<?php include_once "views/main.php";?>
 <div class="my-3 my-md-1">
   <div class="container">
     <ol class="breadcrumb">

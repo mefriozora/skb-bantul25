@@ -1,4 +1,4 @@
-<?php include_once "./views/main.php";?>
+<?php include_once "views/main.php";?>
 <?php 
     include "config/connection.php";
 ?>
