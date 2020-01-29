@@ -15,7 +15,8 @@
     </div>
       <div class="">
         <div class="card">
-          <div class="card-header">
+        <div class="card-header">
+                    <h3 class="card-title">Jadwal Kelas</h3>
           </div>
           <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap datatable">
