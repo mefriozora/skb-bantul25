@@ -135,21 +135,16 @@
       echo "<script>window.location='rombel_pembagian.php';</script>";
     }
 ?>
-
-
-  <div class="container text-center">
-      <h5 class="h4 mb-3">
-        Daftar Siswa Kelas
-      </h5>
-  </div>
       <div class="">
         <div class="card body">
+        <div class="card-header">
+                    <h3 class="card-title">Daftar Rombel</h3>
+          </div>
           <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap datatable">
               <thead>
                 <tr>
                   <th class="w-2">No.</th>
-                  <th>Nama Siswa</th>
                   <th>Kelas</th>
                   <th>Paket</th>
                   <th>Tahun Ajaran</th>

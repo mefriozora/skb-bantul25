@@ -71,7 +71,7 @@ default:
                 <button class="btn btn-success" type="submit" name="tambah" value="Tambah">
                   Tambah
                 </button>
-                <button type="reset" class="btn btn-danger" onClick="window.location.href='datarombel.php';">
+                <button type="reset" class="btn btn-danger" onClick="window.location.href='rombel_data.php';">
                   Batal
                 </button>
               </div>
@@ -151,10 +151,10 @@ case "save";
             if ($sql) {
             
             //echo "masuk";
-            echo "<script>alert('Data berhasil ditambahkan');document.location.href='siswa.php'</script>";
+            echo "<script>alert('Data berhasil ditambahkan');document.location.href='rombel_data.php'</script>";
             } else {
             //echo "gagal";
-            echo "<script>alert('Data gagal ditambahkan');document.location.href='siswa.php'</script>";
+            echo "<script>alert('Data gagal ditambahkan');document.location.href='rombel_data.php'</script>";
             }
           break;
 
