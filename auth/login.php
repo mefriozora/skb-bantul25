@@ -1,4 +1,4 @@
-<?php include_once "../pendaftar/views/main.php";?>
+<?php include_once "../pendaftaran/views/main.php";?>
 
 
     <div>

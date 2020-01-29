@@ -20,7 +20,7 @@
                     <h3 class="card-title">Pilih Kelas Rombel</h3>
                   </div>
                   <div class="card-body">
-                  <form action="" enctype="multipart/form-data" method="post">
+                  <form method="post" enctype="multipart/form-data" >
                   <div class="form-group">
                 <label>Kelas</label>
                   <div class="input-group">
@@ -85,7 +85,7 @@
                     WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif')) AS newp WHERE p.nis=newp.niss)");
                 $cek= mysqli_num_rows($sql);
                 if($cek>0){
-                while ($data= mysqli_fetch_assoc($sql)) {
+                while ($data= mysqli_fetch_array($sql)) {
               ?>
                 <tr>
                   <td><span class="text-muted"><?php echo $no;?></span></td>
@@ -145,6 +145,7 @@
               <thead>
                 <tr>
                   <th class="w-2">No.</th>
+                  <th>Nama</th>
                   <th>Kelas</th>
                   <th>Paket</th>
                   <th>Tahun Ajaran</th>
