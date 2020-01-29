@@ -7,11 +7,6 @@
             </li>
             <li class="breadcrumb-item active">Nilai Siswa Warga Belajar</li>
           </ol>
-    <div class="page-header">
-      <h4 align="center">
-        Daftar Matapelajaran
-      </h4>
-    </div>
     <?php 
 	  $no=1;
 	  $sql1=mysqli_query($connect, "SELECT (SELECT semester FROM tb_semester where semester_status='Aktif') as semester,a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='".$_GET['id']."'");
@@ -19,29 +14,35 @@
 	  if($cek1>0){
 	  while ($data1= mysqli_fetch_array($sql1)) {                 
 	?>
+  <div class="alert alert-info" role="alert">
     <table>
         <tr>
-            <th style="text-align:left;" width="100px">Nama Paket </th>
-            <th style="text-align:left;" width="120px">: <?php echo $data1['paket_nama'] ?></th>
-            <th style="text-align:left;" width="100px">Nama Kelas </th>
-            <th style="text-align:left;" width="200px">: <?php echo $data1['kelas_nama'] ?></th>
+            <th style="text-align:left;" width="100px">Paket </th>
+            <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['paket_nama'] ?></th>
+            <td><b>Tahun Ajaran </b></td>
+          <td><b>: &nbsp&nbsp<?php echo $data1['ta_nama'] ?></b></td>
         </tr>
         <tr>
-          <td><b>Tahun Ajaran </b></td>
-          <td><b>: <?php echo $data1['ta_nama'] ?></b></td>
+        <th style="text-align:left;" width="100px">Kelas </th>
+            <th style="text-align:left;" width="200px">: &nbsp&nbsp<?php echo $data1['kelas_nama'] ?></th>
+         
           <td><b>Semester </b></td>
-          <td><b>: <?php echo $data1['semester'] ?></b></td>
+          <td><b>: &nbsp&nbsp<?php echo $data1['semester'] ?></b></td>
         </tr>
 
         <tr>
-          <td style="text-align:left;"width="150px"><b>Nama Pamong Belajar </b></td>
-          <td><b>: <?php echo $data1['pamong_nama'] ?></b></td>
+          <td style="text-align:left;"width="150px"><b>Pamong Belajar </b></td>
+          <td><b>: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></b></td>
         </tr>
     </table>
+    </div>
     <?php }} ?>
     <form method="post">
      <div class="">
         <div class="card">
+        <div class="card-header">
+                    <h3 class="card-title">Mata Pelajaran</h3>
+          </div>
           <div class="table-responsive">
             <table border="0px" style="border-collapse: collapse;" class="table card-table table-vcenter text-nowrap datatable" >
               <thead>

@@ -46,7 +46,7 @@
                   <td><?php echo $data['ta_nama'];?></td>
                   <td><?php echo $data['pamong_nama'];?></td>
                   <td class="text-right">
-                  <a href="jadwal_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-primary" role="button">Lihat Jadwal</a>
+                  <a href="jadwal_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button">Lihat Jadwal</a>
                   </td>
                 </tr>
               <?php $no++; }} ?>
