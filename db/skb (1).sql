@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2020 at 06:48 PM
--- Server version: 10.1.26-MariaDB
+-- Generation Time: 29 Jan 2020 pada 16.08
+-- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jadwal`
+-- Struktur dari tabel `tb_jadwal`
 --
 
 CREATE TABLE `tb_jadwal` (
@@ -38,7 +38,7 @@ CREATE TABLE `tb_jadwal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_jadwal`
+-- Dumping data untuk tabel `tb_jadwal`
 --
 
 INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `j
 (8, 1, 'Jumat', 6, '09.00', '11.30'),
 (9, 1, 'Senin', 7, '08.00', '10.30'),
 (10, 1, 'Senin', 8, '10.30', '12.00'),
-(11, 1, '-', 9, '-', '-'),
+(11, 1, 'Rabu', 9, '08.00', '09.30'),
 (12, 1, '-', 10, '-', '-'),
 (13, 1, '-', 11, '-', '-'),
 (14, 1, '-', 12, '-', '-'),
@@ -61,22 +61,12 @@ INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `j
 (23, 2, '-', 21, '-', '-'),
 (24, 2, '-', 22, '-', '-'),
 (25, 2, '-', 23, '-', '-'),
-(26, 2, '-', 24, '-', '-'),
-(27, 3, '-', 25, '-', '-'),
-(28, 3, 'Selasa', 26, '07.00', '09.00'),
-(29, 3, '-', 27, '-', '-'),
-(30, 3, '-', 28, '-', '-'),
-(31, 3, '-', 29, '-', '-'),
-(32, 3, '-', 30, '-', '-'),
-(33, 3, '-', 31, '-', '-'),
-(34, 3, 'Kamis', 32, '10.30', '13.00'),
-(35, 3, '-', 33, '-', '-'),
-(36, 3, '-', 34, '-', '-');
+(26, 2, '-', 24, '-', '-');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_kelas`
+-- Struktur dari tabel `tb_kelas`
 --
 
 CREATE TABLE `tb_kelas` (
@@ -86,7 +76,7 @@ CREATE TABLE `tb_kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_kelas`
+-- Dumping data untuk tabel `tb_kelas`
 --
 
 INSERT INTO `tb_kelas` (`kelas_id`, `kelas_nama`, `paket_id`) VALUES
@@ -103,7 +93,7 @@ INSERT INTO `tb_kelas` (`kelas_id`, `kelas_nama`, `paket_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_mapel`
+-- Struktur dari tabel `tb_mapel`
 --
 
 CREATE TABLE `tb_mapel` (
@@ -115,45 +105,45 @@ CREATE TABLE `tb_mapel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_mapel`
+-- Dumping data untuk tabel `tb_mapel`
 --
 
 INSERT INTO `tb_mapel` (`mapel_id`, `mapel_kode`, `mapel_nama`, `mapel_kkm`, `paket_id`) VALUES
-(3, 'MP101', 'Seni Budaya', '70', 1),
-(6, 'MP102', 'Bahasa Jawa', '70', 1),
-(7, 'MP103', 'IPA', '70', 1),
-(8, 'MP104', 'IPS', '70', 1),
-(9, 'MP105', 'Bahasa Indonesia', '70', 1),
-(10, 'MP106', 'Penjaskes', '70', 1),
-(11, 'MP107', 'Bahasa Inggris', '70', 1),
-(12, 'MP108', 'PAI', '70', 1),
-(13, 'MP109', 'PKN', '70', 1),
+(3, 'MP1001', 'Seni Budaya', '70', 1),
+(6, 'MP1002', 'Bahasa Jawa', '70', 1),
+(7, 'MP1003', 'IPA', '70', 1),
+(8, 'MP1004', 'IPS', '70', 1),
+(9, 'MP1005', 'Bahasa Indonesia', '70', 1),
+(10, 'MP1006', 'Penjasorkes', '70', 1),
+(11, 'MP1007', 'Bahasa Inggris', '70', 1),
+(12, 'MP1008', 'PAI', '70', 1),
+(13, 'MP1009', 'PKN', '70', 1),
 (14, 'MP1010', 'Matematika', '70', 1),
-(15, 'MP201', 'Matematika', '70', 2),
-(16, 'MP202', 'Bahasa Indonesia', '70', 2),
-(17, 'MP203', 'Bahasa Inggris', '70', 2),
-(18, 'MP204', 'IPA', '70', 2),
-(19, 'MP205', 'IPS', '70', 2),
-(20, 'MP206', 'PKN', '70', 2),
-(21, 'MP207', 'PJOK', '70', 2),
-(22, 'MP208', 'PAI', '70', 2),
-(23, 'MP209', 'Seni Budaya', '70', 2),
+(15, 'MP2001', 'Matematika', '70', 2),
+(16, 'MP2002', 'Bahasa Indonesia', '70', 2),
+(17, 'MP2003', 'Bahasa Inggris', '70', 2),
+(18, 'MP2004', 'IPA', '70', 2),
+(19, 'MP2005', 'IPS', '70', 2),
+(20, 'MP2006', 'PKN', '70', 2),
+(21, 'MP2007', 'PJOK', '70', 2),
+(22, 'MP2008', 'PAI', '70', 2),
+(23, 'MP2009', 'Seni Budaya', '70', 2),
 (24, 'MP2010', 'Bahasa Jawa', '70', 2),
-(25, 'MP301', 'PAI', '70', 3),
-(26, 'MP302', 'PKN', '70', 3),
-(27, 'MP303', 'Bahasa Indonesia', '70', 3),
-(28, 'MP304', 'Bahasa Inggris', '70', 3),
-(29, 'MP305', 'Bahasa Jawa', '70', 3),
-(30, 'MP306', 'Sejarah', '70', 3),
-(31, 'MP307', 'Matematika', '70', 3),
-(32, 'MP308', 'Sosiologi', '70', 3),
-(33, 'MP309', 'Geografi', '70', 3),
+(25, 'MP3001', 'PAI', '70', 3),
+(26, 'MP3002', 'PKN', '70', 3),
+(27, 'MP3003', 'Bahasa Indonesia', '70', 3),
+(28, 'MP3004', 'Bahasa Inggris', '70', 3),
+(29, 'MP3005', 'Bahasa Jawa', '70', 3),
+(30, 'MP3006', 'Sejarah', '70', 3),
+(31, 'MP3007', 'Matematika', '70', 3),
+(32, 'MP3008', 'Sosiologi', '70', 3),
+(33, 'MP3009', 'Geografi', '70', 3),
 (34, 'MP3010', 'Ekonomi', '70', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_nilai`
+-- Struktur dari tabel `tb_nilai`
 --
 
 CREATE TABLE `tb_nilai` (
@@ -173,7 +163,7 @@ CREATE TABLE `tb_nilai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_paket`
+-- Struktur dari tabel `tb_paket`
 --
 
 CREATE TABLE `tb_paket` (
@@ -182,7 +172,7 @@ CREATE TABLE `tb_paket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_paket`
+-- Dumping data untuk tabel `tb_paket`
 --
 
 INSERT INTO `tb_paket` (`paket_id`, `paket_nama`) VALUES
@@ -193,7 +183,7 @@ INSERT INTO `tb_paket` (`paket_id`, `paket_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pamong_belajar`
+-- Struktur dari tabel `tb_pamong_belajar`
 --
 
 CREATE TABLE `tb_pamong_belajar` (
@@ -209,18 +199,21 @@ CREATE TABLE `tb_pamong_belajar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pamong_belajar`
+-- Dumping data untuk tabel `tb_pamong_belajar`
 --
 
 INSERT INTO `tb_pamong_belajar` (`nik`, `pamong_nama`, `pamong_tempat_lhr`, `pamong_tanggal_lhr`, `pamong_jenkel`, `pamong_agama`, `pamong_alamat`, `pamong_no_hp`, `pamong_jabatan`) VALUES
-('123456', 'Andri', 'Bantul', '1990-02-14', 'Laki-Laki', 'ISLAM', 'bantul', '08562971772', 'Tutor'),
-('55678832', 'kiki', 'madiun', '1992-01-31', 'Perempuan', 'ISLAM', 'jombor', '089679322309', 'Pamong Belajar'),
-('7891011', 'Yanto', 'Sleman', '1998-02-11', 'Laki-Laki', 'KRISTEN', 'Jalan Imogiri', '085732324921', 'Pamong Belajar');
+('3402060102990001', 'Suwardi', 'Bantul', '1980-01-01', 'Laki-Laki', 'ISLAM', 'Ringinharjo  Bantul', '085679871109', 'Pamong Belajar'),
+('3402060109870001', 'Kasmakto', 'Bantul', '1973-07-11', 'Laki-Laki', 'ISLAM', 'Sewon Bantul', '089611094209', 'Pamong Belajar'),
+('3402060302690001', 'Hestri Tias Utami', 'Bantul', '1987-07-10', 'Perempuan', 'ISLAM', 'Umbulharjo Yorgyakarta', '089611094200', 'Tutor'),
+('3402060302990001', 'Bulan Balkis', 'Surabaya', '1985-06-19', 'Perempuan', 'ISLAM', 'Sewon Bantul', '085629807712', 'Pamong Belajar'),
+('3402060607990001', 'Dewi Usmawati', 'Bantul', '1982-10-13', 'Perempuan', 'ISLAM', 'Imogiri Bantul', '089611094208', 'Pamong Belajar'),
+('3402060667890001', 'Erny Isnainy', 'Bantul', '1988-09-29', 'Perempuan', 'ISLAM', 'Sewon Bantul', '089775987278', 'Tutor');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pendaftar`
+-- Struktur dari tabel `tb_pendaftar`
 --
 
 CREATE TABLE `tb_pendaftar` (
@@ -256,18 +249,19 @@ CREATE TABLE `tb_pendaftar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pendaftar`
+-- Dumping data untuk tabel `tb_pendaftar`
 --
 
 INSERT INTO `tb_pendaftar` (`no_pendaftar`, `nama`, `nisn`, `tempat_lhr`, `tanggal_lhr`, `agama`, `jenkel`, `alamat`, `no_hp`, `paket_kesetaraan`, `kelas_kesetaraan`, `tgl_pendaftaran`, `asal_sekolah`, `alamat_sekolah`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_ortu`, `nama_wali`, `pekerjaan_wali`, `alamat_wali`, `no_hp_ortuwali`, `foto`, `status_pendaftar`, `akte`, `kk`, `ijazah_raport`, `sk_pindah_sekolah`) VALUES
-('A202001270001', 'juju', '3163111085', 'Bantul', '2000-10-10', 'ISLAM', 'Perempuan', 'Jalan Parangtritis KM 4,5', '085732324921', 'A', 'Kelas 6', '2020-01-27', 'SDN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Paijo', 'Painem', 'Buruh', 'IRT', 'Jalan Pajangan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Belum Diterima', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
-('B202001270001', 'mefri', '3163111096', 'Bantul', '2005-05-07', 'ISLAM', 'Laki-Laki', 'Jalan Srandakan Bantul', '08562971772', 'B', 'Kelas 9', '2020-01-27', 'SMPN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Damar Prasetyo', 'Yuli', 'Dosen', 'Dosen', 'Jalan Srandakan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
-('C202001270001', 'lala', '3163111048', 'Sleman', '2020-01-10', 'KRISTEN', 'Perempuan', 'Jombor Sleman', '089679322309', 'C', 'Kelas 12', '2020-01-27', 'SMAN 1 sleman', 'Jalan Magelang KM 7', 'Widodo', 'Ning', 'swasta', 'IRT', 'Jombor Sleman', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
+('A202001270001', 'Juwita', '3163111085', 'Bantul', '2000-10-10', 'ISLAM', 'Perempuan', 'Jalan Parangtritis KM 4,5', '085732324921', 'A', 'Kelas 6', '2020-01-27', 'SDN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Paijo', 'Painem', 'Buruh', 'IRT', 'Jalan Pajangan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Belum Diterima', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
+('B202001270001', 'Triana Rosida', '3163111096', 'Bantul', '2005-05-07', 'ISLAM', 'Perempuan', 'Jalan Srandakan Bantul', '08562971772', 'B', 'Kelas 9', '2020-01-27', 'SMPN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Damar Prasetyo', 'Yuli', 'Dosen', 'Dosen', 'Jalan Srandakan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('B202001280002', 'Arumti Bunga Lestari', '2134567891', 'Sleman', '2020-01-08', 'ISLAM', 'Laki-Laki', 'Pandak Bantul', '085629807712', 'B', 'Kelas 8', '2020-01-28', 'SD 1 Pajangan', 'Pajangan Bantul', 'Wriman', 'Siti', 'PNS', 'PNS', 'Pandak Bantul', '-', '-', '-', '089765123456', 'default.jpg', 'Diterima', 'kk.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('C202001270001', 'Lala Kuswara', '3163111048', 'Sleman', '2020-01-10', 'KRISTEN', 'Perempuan', 'Jombor Sleman', '089679322309', 'C', 'Kelas 12', '2020-01-27', 'SMAN 1 sleman', 'Jalan Magelang KM 7', 'Widodo', 'Ning', 'swasta', 'IRT', 'Jombor Sleman', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pengguna`
+-- Struktur dari tabel `tb_pengguna`
 --
 
 CREATE TABLE `tb_pengguna` (
@@ -279,7 +273,7 @@ CREATE TABLE `tb_pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pengguna`
+-- Dumping data untuk tabel `tb_pengguna`
 --
 
 INSERT INTO `tb_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_username`, `pengguna_password`, `pengguna_level`) VALUES
@@ -289,12 +283,22 @@ INSERT INTO `tb_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_username`, 
 (9, 'mefri', '3163111096', '0dcf1a8be38efa8d1093c08b5f22845b', 'Siswa'),
 (11, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
 (12, 'lala', '032001120001', '68845fcf6d4123bdfb8cbbf72b82e42d', 'Siswa'),
-(13, 'mefri', '02200190001', 'd878454076a0fef13915dca002887027', 'Siswa');
+(13, 'mefri', '02200190001', 'd878454076a0fef13915dca002887027', 'Siswa'),
+(14, 'Mefri Andriyanto', '022001120001', '88f0c84ee9f89b514f5ea261f9cda332', 'Siswa'),
+(15, 'Suwardi', '3402060102990001', '05f52baeaded2245277ec9ca1daed0de', 'Pamong'),
+(16, 'Bulan Balkis', '3402060302990001', '61d5614e938035fe5d920b810b332410', 'Pamong'),
+(17, 'Dewi Usmawati', '3402060607990001', '29af09e3ecf907fbc68b350f031a1414', 'Pamong'),
+(18, 'Kasmakto', '3402060109870001', '383c015121f23ee52839310bbf8b2172', 'Pamong'),
+(19, 'Hestri Tias Utami', '3402060302690001', '887cbc64fec8dc60b884069cbb8fea05', 'Pamong'),
+(20, 'Erny Isnainy', '3402060667890001', '77e2e59cb32479953e86f9b2543e0290', 'Pamong'),
+(21, 'Triana Rosida', '022001270001', '6f3a2fd653a50f2602d0924db7d694b8', 'Siswa'),
+(22, 'Arumti Bunga Lestari', '022001280002', '51cfde9e9754fa380cf37cd51d014d6a', 'Siswa'),
+(23, 'Lala Kuswara', '032001270001', 'd502dfaf78a05f934fcc426d663d77d7', 'Siswa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_rombel`
+-- Struktur dari tabel `tb_rombel`
 --
 
 CREATE TABLE `tb_rombel` (
@@ -305,18 +309,22 @@ CREATE TABLE `tb_rombel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_rombel`
+-- Dumping data untuk tabel `tb_rombel`
 --
 
 INSERT INTO `tb_rombel` (`rombel_id`, `ta_id`, `kelas_id`, `nik`) VALUES
-(1, 5, 1, '123456'),
-(2, 5, 6, '7891011'),
-(3, 5, 9, '55678832');
+(1, 5, 1, '3402060302990001'),
+(2, 5, 2, '3402060302990001'),
+(3, 5, 4, '3402060109870001'),
+(4, 5, 5, '3402060109870001'),
+(6, 5, 7, '3402060102990001'),
+(7, 5, 8, '3402060102990001'),
+(8, 5, 9, '3402060102990001');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_rombel_siswa`
+-- Struktur dari tabel `tb_rombel_siswa`
 --
 
 CREATE TABLE `tb_rombel_siswa` (
@@ -325,17 +333,10 @@ CREATE TABLE `tb_rombel_siswa` (
   `nis` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_rombel_siswa`
---
-
-INSERT INTO `tb_rombel_siswa` (`romsiswa_id`, `rombel_id`, `nis`) VALUES
-(2, 3, '032001120001');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_semester`
+-- Struktur dari tabel `tb_semester`
 --
 
 CREATE TABLE `tb_semester` (
@@ -345,7 +346,7 @@ CREATE TABLE `tb_semester` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_semester`
+-- Dumping data untuk tabel `tb_semester`
 --
 
 INSERT INTO `tb_semester` (`semester_id`, `semester`, `semester_status`) VALUES
@@ -355,7 +356,7 @@ INSERT INTO `tb_semester` (`semester_id`, `semester`, `semester_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_siswa`
+-- Struktur dari tabel `tb_siswa`
 --
 
 CREATE TABLE `tb_siswa` (
@@ -366,17 +367,18 @@ CREATE TABLE `tb_siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_siswa`
+-- Dumping data untuk tabel `tb_siswa`
 --
 
 INSERT INTO `tb_siswa` (`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VALUES
-('02200190001', 'B202001270001', 'mefri', 'Aktif'),
-('032001120001', 'C202001270001', 'lala', 'Aktif');
+('022001270001', 'B202001270001', 'Triana Rosida', 'Aktif'),
+('022001280002', 'B202001280002', 'Arumti Bunga Lestari', 'Aktif'),
+('032001270001', 'C202001270001', 'Lala Kuswara', 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_tahunajaran`
+-- Struktur dari tabel `tb_tahunajaran`
 --
 
 CREATE TABLE `tb_tahunajaran` (
@@ -386,7 +388,7 @@ CREATE TABLE `tb_tahunajaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_tahunajaran`
+-- Dumping data untuk tabel `tb_tahunajaran`
 --
 
 INSERT INTO `tb_tahunajaran` (`ta_id`, `ta_nama`, `ta_status`) VALUES
@@ -473,7 +475,9 @@ ALTER TABLE `tb_rombel`
 -- Indexes for table `tb_rombel_siswa`
 --
 ALTER TABLE `tb_rombel_siswa`
-  ADD PRIMARY KEY (`romsiswa_id`);
+  ADD PRIMARY KEY (`romsiswa_id`),
+  ADD KEY `rombel_id` (`rombel_id`),
+  ADD KEY `nis` (`nis`);
 
 --
 -- Indexes for table `tb_semester`
@@ -507,7 +511,7 @@ ALTER TABLE `tb_jadwal`
 -- AUTO_INCREMENT for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
@@ -527,12 +531,12 @@ ALTER TABLE `tb_paket`
 -- AUTO_INCREMENT for table `tb_pengguna`
 --
 ALTER TABLE `tb_pengguna`
-  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `tb_rombel`
 --
 ALTER TABLE `tb_rombel`
-  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_rombel_siswa`
 --
@@ -549,30 +553,53 @@ ALTER TABLE `tb_semester`
 ALTER TABLE `tb_tahunajaran`
   MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tb_jadwal`
+-- Ketidakleluasaan untuk tabel `tb_jadwal`
 --
 ALTER TABLE `tb_jadwal`
   ADD CONSTRAINT `tb_jadwal_ibfk_1` FOREIGN KEY (`rombel_id`) REFERENCES `tb_rombel` (`rombel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_mapel`
+-- Ketidakleluasaan untuk tabel `tb_kelas`
+--
+ALTER TABLE `tb_kelas`
+  ADD CONSTRAINT `tb_kelas_ibfk_1` FOREIGN KEY (`paket_id`) REFERENCES `tb_paket` (`paket_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_mapel`
 --
 ALTER TABLE `tb_mapel`
   ADD CONSTRAINT `tb_mapel_ibfk_1` FOREIGN KEY (`paket_id`) REFERENCES `tb_paket` (`paket_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_nilai`
+-- Ketidakleluasaan untuk tabel `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  ADD CONSTRAINT `tb_nilai_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `tb_kelas` (`kelas_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_nilai_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_nilai_ibfk_1` FOREIGN KEY (`rombel_id`) REFERENCES `tb_rombel` (`rombel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_nilai_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_nilai_ibfk_3` FOREIGN KEY (`semester_id`) REFERENCES `tb_semester` (`semester_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_nilai_ibfk_4` FOREIGN KEY (`mapel_id`) REFERENCES `tb_mapel` (`mapel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_siswa`
+-- Ketidakleluasaan untuk tabel `tb_rombel`
+--
+ALTER TABLE `tb_rombel`
+  ADD CONSTRAINT `tb_rombel_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `tb_kelas` (`kelas_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_rombel_ibfk_2` FOREIGN KEY (`nik`) REFERENCES `tb_pamong_belajar` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_rombel_ibfk_3` FOREIGN KEY (`ta_id`) REFERENCES `tb_tahunajaran` (`ta_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_rombel_siswa`
+--
+ALTER TABLE `tb_rombel_siswa`
+  ADD CONSTRAINT `tb_rombel_siswa_ibfk_1` FOREIGN KEY (`rombel_id`) REFERENCES `tb_rombel` (`rombel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_rombel_siswa_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
   ADD CONSTRAINT `tb_siswa_ibfk_1` FOREIGN KEY (`no_pendaftar`) REFERENCES `tb_pendaftar` (`no_pendaftar`) ON DELETE CASCADE ON UPDATE CASCADE;
