@@ -1,6 +1,9 @@
 <?php include_once "views/main.php";?>
 <?php 
-  include '../config/connection.php';
+$main_view= "<script>window.location.href='siswa.php';</script>";
+switch ($_GET["act"]){
+default:
+//INDEX======================================================================================================
 ?>
 <div class="my-md-1">
           <div class="container">
@@ -16,7 +19,7 @@
               <div class="col-lg-4">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Tambah Data Siswa Aktif</h3>
+                    <h3 class="card-title">Tambah Siswa</h3>
                   </div>
                   <div class="card-body">
                   <?php
@@ -25,7 +28,7 @@
                 $Data  = mysqli_fetch_array($query);
             ?>
 
-            <form action="siswa_simpan.php" enctype="multipart/form-data" method="post">
+            <form action="?&act=save" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>No. Pendaftar</label>
                   <div class="input-group">
@@ -81,7 +84,7 @@
       <div class="col-lg-8">
         <form class="card">
           <div class="card-header">
-            <h3 class="card-title">Data Siswa Aktif</h3>
+            <h3 class="card-title">Data Siswa</h3>
           </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -108,7 +111,7 @@
                         <td><?php echo $h['nama_siswa'];?></td>
                         <td><?php echo $h['siswa_status'];?></td>
                         <td>
-                            <a href="siswa_edit.php?id=<?php echo $h['nis'];?>" class="btn btn-secondary btn-sm"><i class="fe fe-edit"></i>Edit</a>
+                            <a href="siswa_edit.php?id=<?php echo $h['nis'];?>" class="btn btn-info btn-sm"><i class="fe fe-edit"></i>Edit</a>
                         </td>
                       </tr>
                         <?php $no++; } ?>
@@ -126,3 +129,35 @@
       </div>
   </body>
 </html>
+
+<?php
+break;
+
+case "save";
+$nopendaftar    = $_POST['no_pendaftar'];
+$nissiswa       = $_POST['no_induk'];
+$namasiswa      = $_POST['nama'];
+$status    = $_POST['statussiswa'];
+$varUser        = $_POST['no_induk'];
+$varPswd        = md5($_POST['no_induk']);
+
+ $querySiswa = "INSERT INTO `tb_siswa`(`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VALUES ('$nissiswa','$nopendaftar','$namasiswa','$status')";
+//var_dump($querySiswa); exit();
+
+//proses simpan ke user
+$queryUser  = mysqli_query($connect,"INSERT INTO `tb_pengguna`(`pengguna_id`, `pengguna_nama`, `pengguna_username`, `pengguna_password`, `pengguna_level`) VALUES ('','$namasiswa','$varUser','$varPswd','siswa')");
+
+$sql = mysqli_query($connect,$querySiswa);
+//var_dump($sql);
+if ($sql) {
+
+//echo "masuk";
+echo "<script>alert('Data berhasil ditambahkan');document.location.href='siswa.php'</script>";
+} else {
+//echo "gagal";
+echo "<script>alert('Data gagal ditambahkan');document.location.href='siswa.php'</script>";
+}
+break;
+
+}
+?>

@@ -12,7 +12,10 @@ default:
             <li class="breadcrumb-item">
               <a href="../index.php">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Pamong Belajar/Tutor</li>
+            <li class="breadcrumb-item">
+              <a href="../admin/tutor.php">Pamong Belajar/Tutor</a>
+            </li>
+            <li class="breadcrumb-item active">Ubah Pamong Belajar/Tutor</li>
           </ol>
           <div class="my-3 my-md-5">
           <div class="container">
@@ -20,17 +23,23 @@ default:
               <div class="col-lg-4">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Tambah Pamong Belajar/Tutor</h3>
+                    <h3 class="card-title">Ubah Pamong Belajar/Tutor</h3>
                   </div>
                   <div class="card-body">
-                  <form action="?&act=save" enctype="multipart/form-data" method="post">
+                  <?php
+                    $id = $_GET['id'] ?: '0';
+                    $sql=mysqli_query($connect,"SELECT * from tb_pamong_belajar where nik='$id'");
+                    $h=mysqli_fetch_array($sql);
+                 ?>
+                  <form action="?&act=update" enctype="multipart/form-data" method="post">
+                  <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
               <div class="form-group">
                 <label>NIK Pamong Belajar</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nik" type="text" class="form-control" onkeypress="" placeholder="NIK Pamong Belajar" />
+                    <input name="nik" type="text" class="form-control" onkeypress="" value="<?php echo $h['nik'];?>"/>
                   </div>
               </div>
               <div class="form-group">
@@ -39,7 +48,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_pamong" type="text" class="form-control" onkeypress="" placeholder="Nama Pamong Belajar" />
+                    <input name="nama_pamong" type="text" class="form-control" onkeypress="" value="<?php echo $h['pamong_nama'];?>"/>
                   </div>
               </div>
               <div class="form-group">
@@ -48,7 +57,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" placeholder="Tempat lahir"/>
+                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" placeholder="Tempat lahir" value="<?php echo $h['pamong_tempat_lhr'];?>"/>
                   </div>
               </div>
               <div class="form-group">
@@ -57,7 +66,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress="" placeholder="Tgl lahir"/>
+                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress="" placeholder="Tgl lahir" value="<?php echo $h['pamong_tanggal_lhr'];?>"/>
                   </div>
               </div>
               <div class="form-group">
@@ -68,8 +77,8 @@ default:
                     </div>
                     <select name="jenkel" class="form-control">
                       <option selected value="">-Pilih-</option>
-                      <option value="laki-laki">Laki - Laki</option>
-                      <option value="perempuan">Perempuan</option>
+                      <option <?php if ($h['pamong_jenkel']=="Laki-Laki"){ echo "selected"; } ?> value="laki-laki">Laki - Laki</option>
+                      <option <?php if ($h['pamong_jenkel']=="Perempuan"){ echo "selected"; } ?> value="perempuan">Perempuan</option>
                     </select>
                   </div>
               </div>
@@ -81,11 +90,11 @@ default:
                     </div>
                     <select name="agama" class="form-control">
                       <option selected value="">-Pilih-</option>
-                      <option value="ISLAM">ISLAM</option>
-                      <option value="KRISTEN">KRISTEN</option>
-                      <option value="KATOLIK">KATOLIK</option>
-                      <option value="HINDU">HINDU</option>
-                      <option value="BUDHA">BUDHA</option>
+                      <option <?php if ($h['pamong_agama']=="ISLAM"){ echo "selected"; } ?> value="ISLAM">ISLAM</option>
+                      <option <?php if ($h['pamong_agama']=="KRISTEN"){ echo "selected"; } ?> value="KRISTEN">KRISTEN</option>
+                      <option <?php if ($h['pamong_agama']=="KATOLIK"){ echo "selected"; } ?> value="KATOLIK">KATOLIK</option>
+                      <option <?php if ($h['pamong_agama']=="HINDU"){ echo "selected"; } ?> value="HINDU">HINDU</option>
+                      <option <?php if ($h['pamong_agama']=="BUDHA"){ echo "selected"; } ?> value="BUDHA">BUDHA</option>
                     </select>
                   </div>
               </div>
@@ -95,7 +104,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <textarea name="alamat" class="form-control"></textarea>
+                    <textarea name="alamat" class="form-control"><?php echo $h['pamong_alamat'];?></textarea>
                   </div>
               </div>
               
@@ -105,7 +114,8 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Telp"/>
+                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" 
+                    placeholder="Telp" value="<?php echo $h['pamong_no_hp'];?>"/>
                   </div>
               </div>
              <div class="form-group">
@@ -116,14 +126,14 @@ default:
                     </div>
                     <select name="jabatan" class="form-control">
                       <option selected value="">-Pilih-</option>
-                      <option value="Pamong Belajar">Pamong Belajar</option>
-                      <option value="Tutor">Tutor</option>
+                      <option <?php if ($h['pamong_jabatan']=="Pamong Belajar"){ echo "selected"; } ?> value="Pamong Belajar">Pamong Belajar</option>
+                      <option <?php if ($h['pamong_jabatan']=="Tutor"){ echo "selected"; } ?> value="Tutor">Tutor</option>
                     </select>
                   </div>
               </div>
               <div class="modal-footer">
                 <button class="btn btn-success" type="submit">
-                  Tambah
+                  Ubah
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='tutor.php';">
                 Batal
@@ -174,7 +184,7 @@ default:
                         <td><?php echo $h['pamong_jabatan'];?></td>
                   <td class="text-right">
                     <a href="tutor_edit.php?id=<?php echo $h['nik'];?>" class="btn btn-info btn-sm"><i class="fe fe-edit"></i>Edit</a>
-                    <a href='?&act=delete&id=<?php echo $h['nik'];?>' onClick="return confirm('Yakin data akan dihapus ?')"
+                    <a href='tutor.php?&act=delete&id=<?php echo $h['nik'];?>' onClick="return confirm('Yakin data akan dihapus ?')"
                     class="btn btn-danger btn-sm"><i class="fe fe-trash">Hapus</i></a>
                   </td>
                 </tr>
@@ -194,18 +204,17 @@ default:
 <?php
 break;
 
-case "save";
-$nik            = $_POST['nik'];
-$nama_pamong    =$_POST['nama_pamong'];
-$tempat_lhr     =$_POST['tempat_lhr'];
-$tanggal_lhr    =$_POST['tanggal_lhr'];
-$jenkel         =$_POST['jenkel'];
-$alamat         =$_POST['alamat'];
-$agama          =$_POST['agama'];
-$no_hp          =$_POST['no_hp'];
-$jabatan        = $_POST['jabatan'];
-$varUser        = $_POST['nik'];
-$varPswd        = md5($_POST['nik']);
+case "update";
+$id=$_POST['id'];
+$nik = $_POST['nik'];
+$nama_pamong =$_POST['nama_pamong'];
+$tempat_lhr =$_POST['tempat_lhr'];
+$tanggal_lhr =$_POST['tanggal_lhr'];
+$jenkel =$_POST['jenkel'];
+$alamat =$_POST['alamat'];
+$agama =$_POST['agama'];
+$no_hp =$_POST['no_hp'];
+$jabatan = $_POST['jabatan'];
 //validasi 1
 //if (empty($nama_tutor)){ echo"<script>alert('Masukkan data nama');history.back(-1);</script>";  
 //}else if (empty($tempat_lhr)){ echo"<script>alert('Masukkan tempat lahir');history.back(-1);</script>";  
@@ -214,35 +223,23 @@ $varPswd        = md5($_POST['nik']);
 //}else if (empty($alamat)){ echo"<script>alert('Masukkan alamat');history.back(-1);</script>";  
 //}else if (empty($no_hp)){ echo"<script>alert('Masukkan no telp');history.back(-1);</script>";  
 //}
-//else{  
-   $input = "INSERT INTO `tb_pamong_belajar`(`nik`, `pamong_nama`, `pamong_tempat_lhr`, `pamong_tanggal_lhr`, `pamong_jenkel`, `pamong_agama`, `pamong_alamat`, `pamong_no_hp`, `pamong_jabatan`) VALUES ('$nik','$nama_pamong','$tempat_lhr','$tanggal_lhr','$jenkel','$agama', '$alamat', '$no_hp','$jabatan')";
-    //var_dump($input); 
-   $queryUser  = mysqli_query($connect,"INSERT INTO `tb_pengguna`(`pengguna_id`, `pengguna_nama`, `pengguna_username`, `pengguna_password`, `pengguna_level`) VALUES ('','$nama_pamong','$varUser','$varPswd','Pamong')");
-    //var_dump($queryUser); 
-   $sql = mysqli_query($connect,$input);
-      if ($sql){
-
-        //echo "masuk";
+//else{ 
+   $input=mysqli_query($connect,"UPDATE tb_pamong_belajar SET 
+    nik = '$nik',
+    pamong_nama ='$nama_pamong', 
+    pamong_tempat_lhr ='$tempat_lhr', 
+    pamong_tanggal_lhr ='$tanggal_lhr', 
+    pamong_jenkel ='$jenkel', 
+    pamong_alamat ='$alamat', 
+    pamong_agama ='$agama', 
+    pamong_no_hp ='$no_hp',
+    pamong_jabatan = '$jabatan'
+    WHERE nik='$id'"); 
+      if ($input){
       echo $main_view;
       }
       else {
-        //echo " gagal";
-      echo "<script>alert('Proses Gagal');history.back(-1);</script>";  
+      echo"<script>alert('Proses Gagal');history.back(-1);</script>";  
       }
-
-
-break;
-
-case "delete";
-$id=$_GET['id'];
-$hapus=mysqli_query($connect,"DELETE FROM tb_pamong_belajar WHERE nik='$id'");
-if ($hapus) {
-  echo $main_view;
-} else {
-  echo"<script>alert('Gagal hapus data');history.back(-1);</script>"; 
-}
-break;
-
 }
 ?>
-

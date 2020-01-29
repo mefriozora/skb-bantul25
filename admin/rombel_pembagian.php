@@ -47,16 +47,16 @@
                     </select>
                   </div>
               </div>
-              <div class="modal-footer">
+          </div>
+        </div>
+        <div class="modal-footer">
                 <button class="btn btn-success" type="submit" name="tambah" value="Tambah">
                   Simpan
                 </button>
-                <button class="btn btn-danger"  name="reset" value="Refres"">
+                <button class="btn btn-danger"  name="reset" value="Refres" onClick="window.location.href='rombel_pembagian.php';">
                   Batal
                 </button>
               </div>
-          </div>
-        </div>
       </div>
       <div class="col-lg-8">
                 <form class="card">
@@ -127,12 +127,12 @@
     }
         //echo "masuk";
         echo "<script>alert('Data Berhasil Tersimpan')</script>";
-        echo "<script>window.location='pembagianrombel.php';</script>";
+        echo "<script>window.location='rombel_pembagian.php';</script>";
     }
     if(isset($_POST['reset']))
     {                                  
       $_SESSION['idrombel']='0';
-      echo "<script>window.location='pembagianrombel.php';</script>";
+      echo "<script>window.location='rombel_pembagian.php';</script>";
     }
 ?>
 

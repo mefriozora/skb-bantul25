@@ -1,6 +1,6 @@
 <?php include_once "views/main.php";?>
 <?php 
-$main_view= "<script>window.location.href='mapel.php';</script>";
+$main_view= "<script>window.location.href='kelas.php';</script>";
 switch ($_GET["act"]){
 default:
 //INDEX======================================================================================================
@@ -11,7 +11,10 @@ default:
             <li class="breadcrumb-item">
               <a href="../index.php">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Mata Pelajaran</li>
+            <li class="breadcrumb-item">
+              <a href="../admin/kelas.php">Kelas</a>
+            </li>
+            <li class="breadcrumb-item active">Edit Kelas</li>
           </ol>
           <div class="my-3 my-md-5">
           <div class="container">
@@ -19,26 +22,24 @@ default:
               <div class="col-lg-4">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Tambah Mata Pelajaran</h3>
+                    <h3 class="card-title">Edit Kelas</h3>
                   </div>
                   <div class="card-body">
-                  <form action="?&act=save" enctype="multipart/form-data" method="post">
+                  <?php
+
+                    $id = $_GET['id'] ?: '0';
+                    $sql=mysqli_query($connect,"SELECT * from tb_kelas where kelas_id='$id'");
+                    $h=mysqli_fetch_array($sql);
+                ?>
+                  <form action="?&act=update" enctype="multipart/form-data" method="post">
               <div class="form-group">
-                <label>Kode Mata Pelajaran</label>
+                <label>Kelas</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="kodemapel" type="text" class="form-control" onkeypress="" placeholder="Kode Mata pelajaran"/>
-                  </div>
-              </div>
-              <div class="form-group">
-                <label>Mata Pelajaran</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-id-card"></i>
-                    </div>
-                    <input name="mapel" type="text" class="form-control" onkeypress="" placeholder="Mata pelajaran"/>
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+                    <input name="kelas" type="text" class="form-control" onkeypress="" placeholder="Kelas" value="<?php echo $h['kelas_nama'];?>"/>
                   </div>
               </div>
               
@@ -51,12 +52,15 @@ default:
                     <select name="paket_kesetaraan" class="form-control">
                       <option selected value="">-Pilih Paket Kesetaraan-</option>
                         <?php
-                        //include "../config/connection.php"; 
-                            $querypaket = mysqli_query($connect,"SELECT * FROM tb_paket");
-                            while ($datapaket = mysqli_fetch_array($querypaket)){
-                        ?>
-                      <option value="<?php echo $datapaket['paket_id'] ?>"><?php echo $datapaket['paket_nama'] ?>
-                            <?php } ?>
+                        $querypaket = mysqli_query($connect,"SELECT * FROM tb_paket ORDER BY paket_id");
+                        while ($datapaket = mysqli_fetch_array($querypaket)){
+                            if($datapaket['paket_id']==$h['paket_id']){
+                                echo "<option selected value=$datapaket[paket_id]>$datapaket[paket_nama]</option>";
+                            }else{
+                                echo "<option value=$datapaket[paket_id]>$datapaket[paket_nama]</option>"; 
+                            }
+                        }
+                    ?>    
                       </option>
                       
                     </select>
@@ -65,9 +69,9 @@ default:
               
               <div class="modal-footer">
                 <button class="btn btn-success" type="submit">
-                  Tambah
+                  Ubah
                 </button>
-                <button type="reset" class="btn btn-danger" onClick="window.location.href='mapel.php';">
+                <button type="reset" class="btn btn-danger" onClick="window.location.href='kelas.php';">
                   Batal
                 </button>
               </div>
@@ -78,7 +82,7 @@ default:
       <div class="col-lg-8">
                 <form class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mata Pelajaran</h3>
+                    <h3 class="card-title">Kelas</h3>
                   </div>
                   <div class="card-body">
           <div class="table-responsive">
@@ -86,34 +90,29 @@ default:
               <thead>
                 <tr>
                   <th class="w-2">No.</th>
-                  <th>Kode Mapel</th>
-                  <th>Nama Mapel</th>
-                  <th>KMM Mapel</th>
+                  <th>Kelas</th>
                   <th>Paket Kesetaraan</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-              $sql=mysqli_query($connect,"SELECT tb_mapel.mapel_id, tb_mapel.mapel_kode, tb_mapel.mapel_nama, tb_mapel.mapel_kkm, tb_mapel.paket_id, tb_paket.paket_nama FROM tb_mapel LEFT JOIN tb_paket ON tb_paket.paket_id=tb_mapel.paket_id ");
+              $sql=mysqli_query($connect,"SELECT tb_kelas.kelas_id, tb_kelas.kelas_nama, tb_kelas.paket_id, tb_paket.paket_nama FROM tb_kelas LEFT JOIN tb_paket ON tb_paket.paket_id=tb_kelas.paket_id");
               $no=1;
               while($h=mysqli_fetch_array($sql)){ ?>
                 <tr>
                   <td><span class="text-muted"><?php echo $no;?></span></td>
-                  <td><?php echo $h['mapel_kode'];?></td>
-                  <td><?php echo $h['mapel_nama'];?></td>
-                  <td><?php echo $h['mapel_kkm'];?></td>
+                  <td><?php echo $h['kelas_nama'];?></td>
                   <td><?php echo $h['paket_nama'];?></td>
                   <td class="text-left">
-                    <a href="mapel_edit.php?id=<?php echo $h['mapel_id'];?>" class="btn btn-info btn-sm"><i class="fe fe-edit"></i>Edit</a>
-                    <a href='?&act=delete&id=<?php echo $h['mapel_id'];?>' onClick="return confirm('Yakin data akan dihapus ?')"
-                    class="btn btn-danger btn-sm"><i class="fe fe-trash"></i>Hapus</a>
+                    <a href="kelas_edit.php?id=<?php echo $h['kelas_id'];?>" class="btn btn-info btn-sm"><i class="fe fe-edit"></i>Edit</a>
+                    <a href='kelas.php?&act=delete&id=<?php echo $h['kelas_id'];?>' onClick="return confirm('Yakin data akan dihapus ?')"
+                    class="btn btn-danger btn-sm"><i class="fe fe-trash">Hapus</i></a>
                   </td>
                 </tr>
               <?php $no++; } ?>
               </tbody>
-            </table>
-            
+            </table> 
             <script>
               require(['datatables', 'jquery'], function(datatable, $) {
                     $('.datatable').DataTable();
@@ -124,60 +123,43 @@ default:
       </div>
     </div>
   </div>
- 
 <?php
 break;
 
-case "save";
-$kodemapel=$_POST['kodemapel'];
-//var_dump($kodemapel);
-$mapel=$_POST['mapel'];
-
-//var_dump($mapel);
-$paket_kesetaraan =$_POST['paket_kesetaraan'];
-
+case "update";
+$kelas = $_POST['kelas'];
+$paket_kesetaraan = $_POST['paket_kesetaraan'];
+//var_dump($paket_kesetaraan);
+$id = $_POST['id'];
+//var_dump($id);
 //validasi 1
 //if (empty($kodemapel)){ 
   //echo"<script>alert('Masukkan kode mapel');history.back(-1);</script>";  
 //}elseif (empty($mapel)) {
-  //echo"<script>alert('Masukkan nama mapel');history.back(-1);</script>";  
+  //echo"<script>alert('Masukkan nama mapel');history.back(-1);</script>";
 //}elseif (empty($kelas)) {
   //echo"<script>alert('Pilih Kelas');history.back(-1);</script>";  
- 
-//}else{  
+  
+//}else{
   // validasi 2
-  $cek_dulu=mysqli_query($connect,"SELECT * from tb_mapel where mapel_kode='$kodemapel'");
-  $cek=mysqli_num_rows($cek_dulu);
+ // $cek_dulu=mysqli_query($connect,"SELECT * from mapel where kode_mapel='$id'");
+  //$cek=mysqli_num_rows($cek_dulu);
    //if($cek>0) {
    //echo"<script>alert('Data yang di input sudah ada');history.back(-1);</script>";
    //}
    //else {
-   $input=mysqli_query($connect,"INSERT INTO `tb_mapel`(`mapel_id`, `mapel_kode`, `mapel_nama`, `mapel_kkm`, `paket_id`) VALUES ('','$kodemapel', '$mapel' , '70' , '$paket_kesetaraan')");
+    $input=mysqli_query($connect,"UPDATE `tb_kelas` SET `kelas_nama`='$kelas',`paket_id`='$paket_kesetaraan' WHERE kelas_id='$id'"); 
    //var_dump($input); exit();
       if ($input){
-        //$_SESSION[status]    = "sukses";
-        //echo "masuk";
+       // echo "update";
       echo $main_view;
       }
       else {
         //echo "gagal";
-      echo "<script>alert('Proses Gagal');history.back(-1);</script>";  
+      echo"<script>alert('Proses Gagal');history.back(-1);</script>";  
       }
   //}
 //}
-
 break;
-
-case "delete";
-$id=$_GET['id'];
-$hapus=mysqli_query($connect,"DELETE FROM tb_mapel WHERE mapel_id='$id'");
-if ($hapus) {
-  echo $main_view;
-} else {
-  echo"<script>alert('Gagal hapus data');history.back(-1);</script>"; 
-}
-break;
-
 }
 ?>
-

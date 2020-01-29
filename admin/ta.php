@@ -103,7 +103,7 @@ if (isset($_GET['aktifkan']))
                     <?php 
                       if($data['ta_status']=='Tidak Aktif'){
                     ?>
-                    <a href="?page=semester&action=lihat&aktifne=aktif&idthajaran=<?php echo $data['ta_id'] ?>"  onclick="return confirm('Yakin Merubah Status Semester?')" class="btn btn-secondary btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
+                    <a href="?page=semester&action=lihat&aktifne=aktif&idthajaran=<?php echo $data['ta_id'] ?>"  onclick="return confirm('Yakin Merubah Status Semester?')" class="btn btn-info btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
                     <?php } ?> 
                   </td>
                 </tr>
@@ -162,7 +162,7 @@ if (isset($_GET['aktifkan']))
                     <?php 
                       if($data['semester_status']=='Tidak Aktif'){
                     ?>
-                    <a href="?page=semester&action=lihat&aktifkan=aktif&idsem=<?php echo $data['semester_id'] ?>"  onclick="return confirm('Yakin Merubah Status Semester?')" class="btn btn-secondary btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
+                    <a href="?page=semester&action=lihat&aktifkan=aktif&idsem=<?php echo $data['semester_id'] ?>"  onclick="return confirm('Yakin Merubah Status Semester?')" class="btn btn-info btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
                     <?php } ?> 
                   </td>
                 </tr>
