@@ -13,7 +13,7 @@ $idrombelee = $_SESSION['idrombel'];
     </ol>
     <div class="my-3 my-md-5">
       <div class="container">
-      <?php include('rombel.php')?>
+      <?php include('rombel.php') ?>
         <div class="container text-center">
           <h5 class="h4 mb-3">
             Daftar Siswa Kelas
@@ -37,7 +37,7 @@ $idrombelee = $_SESSION['idrombel'];
                   <?php
                   //$nis=$_POST['nis'];
                   $no = 1;
-                  $sql = mysqli_query($connect, "SELECT a.nama_siswa, b.kelas_nama ,d.paket_nama, e.ta_nama FROM tb_rombel_siswa AS f JOIN tb_siswa AS a ON a.`nis` = f.`nis` JOIN `tb_rombel` AS g ON g.`rombel_id` = f.`rombel_id` JOIN `tb_kelas` AS b ON b.`kelas_id`=g.`kelas_id` JOIN `tb_paket` AS d ON d.`paket_id`=b.`paket_id` JOIN `tb_tahunajaran`AS e ON e.`ta_id`= g.`ta_id`");
+                  $sql = mysqli_query($connect, "SELECT a.nama_siswa, b.kelas_nama ,d.paket_nama, e.ta_nama FROM tb_rombel_siswa AS f JOIN tb_siswa AS a ON a.`nis` = f.`nis` JOIN `tb_rombel` AS g ON g.`rombel_id` = f.`rombel_id` JOIN `tb_kelas` AS b ON b.`kelas_id`=g.`kelas_id` JOIN `tb_paket` AS d ON d.`paket_id`=b.`paket_id` JOIN `tb_tahunajaran`AS e ON e.`ta_id`= g.`ta_id` WHERE e.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif')");
                   $cek = mysqli_num_rows($sql);
                   if ($cek > 0) {
                     while ($data = mysqli_fetch_array($sql)) {
