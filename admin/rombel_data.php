@@ -1,9 +1,4 @@
 <?php include_once "views/main.php";?>
-<?php 
-$main_view= "<script>window.location.href='rombel_data.php';</script>";
-switch ($_GET["act"]){
-default:
-//INDEX======================================================================================================
 ?>
 <div class="my-3 my-md-1">
   <div class="container">
@@ -22,7 +17,7 @@ default:
                     <h3 class="card-title">Tambah Rombel</h3>
                   </div>
                   <div class="card-body">
-                  <form action="?&act=save" enctype="multipart/form-data" method="post">
+                  <form action=" " enctype="multipart/form-data" method="post">
                   <div class="form-group">
                 <label>Kelas</label>
                   <div class="input-group">
@@ -71,7 +66,7 @@ default:
                 <button class="btn btn-success" type="submit" name="tambah" value="Tambah">
                   Tambah
                 </button>
-                <button type="reset" class="btn btn-danger" onClick="window.location.href='rombel_data.php';">
+                <button type="reset" class="btn btn-danger" onClick="window.location.href='datarombel.php';">
                   Batal
                 </button>
               </div>
@@ -79,7 +74,19 @@ default:
           </div>
         </div>
       </div>
-   
+      <?php
+        if(isset($_POST['tambah']))
+        {                                  
+          
+          $kelas = @$_POST['kelas'];
+          $pamong = @$_POST['pamong'];
+            
+          mysqli_query($connect, "INSERT INTO tb_rombel(rombel_id,kelas_id,nik,ta_id) 
+          VALUES ('','$kelas','$pamong',(SELECT ta_id from tb_tahunajaran where ta_status='Aktif'))");
+
+            ?><script type="text/javascript">alert("Data Berhasil Tersimpan");</script><?php
+        }
+    ?>
       <div class="col-lg-8">
                 <form class="card">
                 <div class="card-header">
@@ -95,7 +102,6 @@ default:
                   <th>Paket Kesetaraan</th>
                   <th>Tahun Ajaran</th>
                   <th>Pamong Belajar</th>
-                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -113,11 +119,7 @@ default:
                   <td><?php echo $data['paket_nama'];?></td>
                   <td><?php echo $data['ta_nama'];?></td>
                   <td><?php echo $data['pamong_nama'];?></td>
-                  <td class="text-left">
-                    <a href="rombel_data_edit.php?id=<?php echo $h['rombel_id'];?>" class="btn btn-info btn-sm"><i class="fe fe-edit">Edit</i></a>
-                    <a href='?&act=delete&id=<?php echo $h['rombel_id'];?>' onClick="return confirm('Yakin data akan dihapus ?')"
-                    class="btn btn-danger btn-sm"><i class="fe fe-trash">Hapus</i></a>
-                  </td>
+                  
                 </tr>
               <?php $no++; }} ?>
               </tbody>
@@ -133,40 +135,3 @@ default:
       </div>
     </div>
   </div> 
-  <?php
-break;
-
-case "save";
-                              
-          
-          $kelas = @$_POST['kelas'];
-          $pamong = @$_POST['pamong'];
-            
-            //proses simpan ke rombel
-            $queryrombel  = mysqli_query($connect, "INSERT INTO tb_rombel(rombel_id,kelas_id,nik,ta_id) 
-            VALUES ('','$kelas','$pamong',(SELECT ta_id from tb_tahunajaran where ta_status='Aktif'))");
-            
-            $sql = mysqli_query($connect,$queryrombel);
-            //var_dump($sql);
-            if ($sql) {
-            
-            //echo "masuk";
-            echo "<script>alert('Data berhasil ditambahkan');document.location.href='rombel_data.php'</script>";
-            } else {
-            //echo "gagal";
-            echo "<script>alert('Data gagal ditambahkan');document.location.href='rombel_data.php'</script>";
-            }
-          break;
-
-          case "delete";
-          $id=$_GET['id'];
-          $hapus=mysqli_query($connect,"DELETE FROM tb_rombel WHERE rombel_id='$id'");
-          if ($hapus) {
-            echo $main_view;
-          } else {
-            echo"<script>alert('Gagal hapus data');history.back(-1);</script>"; 
-          }
-            break;
-            
-            }
-            ?>
