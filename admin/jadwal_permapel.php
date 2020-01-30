@@ -8,7 +8,7 @@
             <li class="breadcrumb-item">
               <a href="../admin/jadwal.php">Jadwal</a>
             </li>
-            <li class="breadcrumb-item active">Jadwal Per Kelas</li>
+            <li class="breadcrumb-item active">Jadwal Per Matapelajaran</li>
           </ol>
     <?php 
 	  $no=1;
