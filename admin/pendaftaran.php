@@ -25,8 +25,8 @@
 						  <th>Aksi</th>
 						  <th>Status Pendaftar</th>
 						  <th>No. Pendaftaran</th>
+						  <th>Tanggal Pendaftaran</th>
                           <th>Nama</th>
-                          <th>NISN</th>
                           <th>Tempat Lahir</th>
                           <th>Tanggal Lahir</th>
                           <th>Agama</th>
@@ -36,21 +36,22 @@
 						  <th>Asal Sekolah</th>
 						  <th>Paket Kesetaraan</th>
 						  <th>Kelas Kesetaraan</th>
+						  <th>Putus Sekolah Kelas</th>
+						  <th>Putus Sekolah Semester</th>
 						  <th>Alamat Sekolah</th>
+						  <th>Bertempat Tinggal</th>
 						  <th>Nama Ayah</th>
 						  <th>Nama Ibu</th>
 						  <th>Pekerjaan Ayah</th>
 						  <th>Pekerjaan Ibu</th>
 						  <th>Alamat Ortu</th>
-						  <th>Nama Wali</th>
-						  <th>Pekerjaan Wali</th>
 						  <th>No. HP Ortu/Wali</th>
 						  <th>Foto</th>
 						  <th>Akte</th>
 						  <th>KK</th>
 						  <th>Ijazah / Raport </th>
 						  <th>Sk Pindah</th>
-						  
+						  <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -65,34 +66,33 @@
                           </td>
                           <td><?php echo $h['status_pendaftar'];?></td>
 						  <td><?php echo $h['no_pendaftar'];?></td>
+						  <td><?php echo $h['tgl_pendaftaran'];?></td>
 						  <td><?php echo $h['nama'];?></td>
-						  <td><?php echo $h['nisn'];?></td>
 						  <td><?php echo $h['tempat_lhr'];?></td>
 						  <td><?php echo $h['tanggal_lhr'];?></td>
 						  <td><?php echo $h['agama'];?></td>
 						  <td><?php echo $h['jenkel'];?></td>
-						  <td><?php echo $h['alamat'];?></td>
+						  <td><?php echo $h['alamat_domisili'];?></td>
 						  <td><?php echo $h['no_hp'];?></td>
 						  <td><?php echo $h['asal_sekolah'];?></td>
 						  <td><?php echo $h['paket_kesetaraan'];?></td>
 						  <td><?php echo $h['kelas_kesetaraan'];?></td>
+						  <td><?php echo $h['putus_sekolah_kelas'];?></td>
+						  <td><?php echo $h['putus_sekolah_semester'];?></td>
 						  <td><?php echo $h['alamat_sekolah'];?></td>
+						  <td><?php echo $h['bertempat_tinggal'];?></td>
 						  <td><?php echo $h['nama_ayah'];?></td>
 						  <td><?php echo $h['nama_ibu'];?></td>
 						  <td><?php echo $h['pekerjaan_ayah'];?></td>
 						  <td><?php echo $h['pekerjaan_ibu'];?></td>
 						  <td><?php echo $h['alamat_ortu'];?></td>
-						  <td><?php echo $h['nama_wali'];?></td>
-						  <td><?php echo $h['pekerjaan_wali'];?></td>
 						  <td><?php echo $h['no_hp_ortuwali'];?></td>
-						  <td><?php echo $h['foto'];?></td>
-						  <td><?php echo $h['akte'];?></td>
-						  <td><?php echo $h['kk'];?></td>
-						  <td><?php echo $h['ijazah_raport'];?></td>
-						  <td><?php echo $h['sk_pindah_sekolah'];?></td>
-					
-						  
-                          
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['foto'];?>" target="_blank"><?php echo $h['foto'];?></a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['akte'];?>" target="_blank"><?php echo $h['akte'];?></a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['kk'];?>" target="_blank"><?php echo $h['kk'];?></a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['ijazah_raport'];?>" target="_blank"><?php echo $h['ijazah_raport'];?></a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['sk_pindah_sekolah'];?>" target="_blank"><?php echo $h['sk_pindah_sekolah'];?></a></td>
+			
                         </tr>
                         <?php $no++; } ?>
                       </tbody>

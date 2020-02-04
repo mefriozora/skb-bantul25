@@ -39,11 +39,11 @@
                     $('.datatable').DataTable();
                   });
             </script>
-             <script type="text/javascript">
+            <script>
               function tampilkan(){
-              var nama_paket=document.getElementById("form1").kesetaraan.value;
+              var nama_paket=document.getElementById("form1").paket.value;
                 if (nama_paket=="A"){
-                  document.getElementById("tampil").innerHTML="<option value='Kelas 4'>Kelas 4</option><option value='Kelas 5'>Kelas 5</option><option value='Kelas 6'>Kelas 6</option>";
+                 document.getElementById("tampil").innerHTML="<option value='Kelas 4'>Kelas 4</option><option value='Kelas 5'>Kelas 5</option><option value='Kelas 6'>Kelas 6</option>";
                 }
                 else if (nama_paket=="B"){
                   document.getElementById("tampil").innerHTML="<option value='Kelas 7'>Kelas 7</option><option value='Kelas 8'>Kelas 8</option><option value='Kelas 9'>Kelas 9</option>";
@@ -51,7 +51,7 @@
                 else if (nama_paket=="C"){
                   document.getElementById("tampil").innerHTML="<option value='Kelas 10'>Kelas 10</option><option value='Kelas 11'>Kelas 11</option><option value='Kelas 12'>Kelas 12</option>";
                 }
-            }
+              }
             </script>
           </div>
         </div>
@@ -73,29 +73,17 @@
           <div class="modal-body">
           <form action="daftar_add.php"  method="POST" id="form1" name="form1" onsubmit="return true" enctype="multipart/form-data" >
           <div class="form-group" >
-                <label>Pendaftaran Siswa</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user-o"></i>
-                    </div>
-                    <select required id="kesetaraan" name="kesetaraan"  class="form-control">
-                      <option selected value="">-Pilih-</option>
-                      <option value="A">Reguler</option>
-                      <option value="B">Putus Sekolah</option>
-                    </select>
-                  </div>
-              </div>
               <div class="form-group" >
                 <label>Paket Kesetaraan</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select required id="kesetaraan" name="kesetaraan" onchange="tampilkan()" class="form-control">
-                      <option selected value="">-Pilih-</option>
-                      <option value="A">PAKET A</option>
-                      <option value="B">PAKET B</option>
-                      <option value="C">PAKET C</option>
+                    <select id="paket" name="paket" onchange="tampilkan()" class="form-control">
+                        <option value="">Pilih Paket</option>
+                        <option value="A">Paket A</option>
+                        <option value="B">Paket B</option>
+                        <option value="C">Paket C</option>
                     </select>
                   </div>
               </div>
@@ -105,7 +93,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select required name="kelas_setara" id="tampil" class="form-control">
+                    <select id="tampil" name="tampil" class="form-control">
                     </select>
                   </div>
               </div>
@@ -219,7 +207,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="p_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
+                    <input name="putus_sekolah_kelas" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
                   </div>
               </div>
               <div class="form-group">
@@ -228,7 +216,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="p_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
+                    <input name="putus_sekolah_semester" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
                   </div>
               </div>
               <div class="form-group">
@@ -259,10 +247,10 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select required id="kesetaraan" name="kesetaraan"  class="form-control">
+                    <select id="tempat_tinggal" name="tempat_tinggal"  class="form-control">
                       <option selected value="">-Pilih-</option>
-                      <option value="A">Orang Tua</option>
-                      <option value="B">Wali</option>
+                      <option value="Ortu">Orang Tua</option>
+                      <option value="Wali">Wali</option>
                     </select>
                   </div>
               </div>

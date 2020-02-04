@@ -36,7 +36,7 @@
               $counttutor = mysqli_num_rows($querytutor);
 
               //perhitungan jadwal
-              $queryjadwal = mysqli_query($connect,"SELECT *  FROM tb_jadwal");
+              $queryjadwal = mysqli_query($connect,"SELECT *  FROM tb_rombel");
               $countjadwal = mysqli_num_rows($queryjadwal);
 
               //perhitungan nilai
@@ -92,7 +92,7 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     
-                    <div class="h1 m-0">621</div>
+                    <div class="h1 m-0">3</div>
                     <div class="text-muted mb-4"><a href="laporan.php">Laporan</a></div>
                   </div>
                 </div>

@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 29 Jan 2020 pada 16.08
--- Versi Server: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: 04 Feb 2020 pada 05.56
+-- Versi Server: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -52,16 +50,16 @@ INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `j
 (14, 1, '-', 12, '-', '-'),
 (15, 1, '-', 13, '-', '-'),
 (16, 1, '-', 14, '-', '-'),
-(17, 2, 'Selasa', 15, '08.00', '10.30'),
-(18, 2, '-', 16, '-', '-'),
-(19, 2, '-', 17, '-', '-'),
-(20, 2, '-', 18, '-', '-'),
-(21, 2, '-', 19, '-', '-'),
-(22, 2, '-', 20, '-', '-'),
-(23, 2, '-', 21, '-', '-'),
-(24, 2, '-', 22, '-', '-'),
-(25, 2, '-', 23, '-', '-'),
-(26, 2, '-', 24, '-', '-');
+(37, 2, NULL, 3, NULL, NULL),
+(38, 2, NULL, 6, NULL, NULL),
+(39, 2, NULL, 7, NULL, NULL),
+(40, 2, NULL, 8, NULL, NULL),
+(41, 2, NULL, 10, NULL, NULL),
+(42, 2, NULL, 11, NULL, NULL),
+(43, 2, NULL, 12, NULL, NULL),
+(44, 2, NULL, 13, NULL, NULL),
+(45, 2, NULL, 14, NULL, NULL),
+(46, 2, NULL, 9, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,12 +151,20 @@ CREATE TABLE `tb_nilai` (
   `kelas_id` int(11) NOT NULL,
   `semester_id` int(11) NOT NULL,
   `mapel_id` int(11) NOT NULL,
-  `nilai_tugas` varchar(10) NOT NULL,
-  `nilai_pts` varchar(10) NOT NULL,
-  `nilai_pas` varchar(10) NOT NULL,
-  `nilai_pat` varchar(10) NOT NULL,
-  `nilai_akhir` varchar(10) NOT NULL
+  `nilai_tugas` varchar(10) DEFAULT NULL,
+  `nilai_pts` varchar(10) DEFAULT NULL,
+  `nilai_pas` varchar(10) DEFAULT NULL,
+  `nilai_pat` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_nilai`
+--
+
+INSERT INTO `tb_nilai` (`nilai_id`, `nis`, `rombel_id`, `kelas_id`, `semester_id`, `mapel_id`, `nilai_tugas`, `nilai_pts`, `nilai_pas`, `nilai_pat`) VALUES
+(1, '012002040001', 2, 7, 1, 15, '85', '65', '70', '60'),
+(2, '022002040001', 4, 5, 1, 15, '80', '65', '80', '77'),
+(3, '032002040001', 8, 9, 1, 26, '77', '80', '65', '90');
 
 -- --------------------------------------------------------
 
@@ -218,30 +224,29 @@ INSERT INTO `tb_pamong_belajar` (`nik`, `pamong_nama`, `pamong_tempat_lhr`, `pam
 
 CREATE TABLE `tb_pendaftar` (
   `no_pendaftar` varchar(50) NOT NULL,
+  `paket_kesetaraan` enum('A','B','C','') NOT NULL,
+  `kelas_kesetaraan` varchar(15) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `nisn` varchar(12) NOT NULL,
   `tempat_lhr` varchar(30) NOT NULL,
   `tanggal_lhr` date NOT NULL,
   `agama` varchar(12) NOT NULL,
   `jenkel` enum('Laki-Laki','Perempuan') NOT NULL,
-  `alamat` varchar(100) NOT NULL,
+  `alamat_domisili` varchar(100) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
-  `paket_kesetaraan` enum('A','B','C','') NOT NULL,
-  `kelas_kesetaraan` varchar(15) NOT NULL,
   `tgl_pendaftaran` date NOT NULL,
   `asal_sekolah` varchar(30) NOT NULL,
+  `putus_sekolah_kelas` varchar(20) NOT NULL,
+  `putus_sekolah_semester` varchar(20) NOT NULL,
   `alamat_sekolah` varchar(100) NOT NULL,
+  `bertempat_tinggal` varchar(20) NOT NULL,
   `nama_ayah` varchar(50) NOT NULL,
   `nama_ibu` varchar(50) NOT NULL,
   `pekerjaan_ayah` varchar(20) NOT NULL,
   `pekerjaan_ibu` varchar(20) NOT NULL,
   `alamat_ortu` varchar(100) NOT NULL,
-  `nama_wali` varchar(50) NOT NULL,
-  `pekerjaan_wali` varchar(20) NOT NULL,
-  `alamat_wali` varchar(100) NOT NULL,
   `no_hp_ortuwali` varchar(14) NOT NULL,
-  `foto` varchar(50) NOT NULL,
   `status_pendaftar` varchar(15) NOT NULL,
+  `foto` varchar(50) NOT NULL,
   `akte` varchar(40) NOT NULL,
   `kk` varchar(40) NOT NULL,
   `ijazah_raport` varchar(40) NOT NULL,
@@ -252,11 +257,10 @@ CREATE TABLE `tb_pendaftar` (
 -- Dumping data untuk tabel `tb_pendaftar`
 --
 
-INSERT INTO `tb_pendaftar` (`no_pendaftar`, `nama`, `nisn`, `tempat_lhr`, `tanggal_lhr`, `agama`, `jenkel`, `alamat`, `no_hp`, `paket_kesetaraan`, `kelas_kesetaraan`, `tgl_pendaftaran`, `asal_sekolah`, `alamat_sekolah`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_ortu`, `nama_wali`, `pekerjaan_wali`, `alamat_wali`, `no_hp_ortuwali`, `foto`, `status_pendaftar`, `akte`, `kk`, `ijazah_raport`, `sk_pindah_sekolah`) VALUES
-('A202001270001', 'Juwita', '3163111085', 'Bantul', '2000-10-10', 'ISLAM', 'Perempuan', 'Jalan Parangtritis KM 4,5', '085732324921', 'A', 'Kelas 6', '2020-01-27', 'SDN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Paijo', 'Painem', 'Buruh', 'IRT', 'Jalan Pajangan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Belum Diterima', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
-('B202001270001', 'Triana Rosida', '3163111096', 'Bantul', '2005-05-07', 'ISLAM', 'Perempuan', 'Jalan Srandakan Bantul', '08562971772', 'B', 'Kelas 9', '2020-01-27', 'SMPN 1 panjangan bantul', 'Jalan Pajangan Bantul', 'Damar Prasetyo', 'Yuli', 'Dosen', 'Dosen', 'Jalan Srandakan Bantul', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
-('B202001280002', 'Arumti Bunga Lestari', '2134567891', 'Sleman', '2020-01-08', 'ISLAM', 'Laki-Laki', 'Pandak Bantul', '085629807712', 'B', 'Kelas 8', '2020-01-28', 'SD 1 Pajangan', 'Pajangan Bantul', 'Wriman', 'Siti', 'PNS', 'PNS', 'Pandak Bantul', '-', '-', '-', '089765123456', 'default.jpg', 'Diterima', 'kk.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
-('C202001270001', 'Lala Kuswara', '3163111048', 'Sleman', '2020-01-10', 'KRISTEN', 'Perempuan', 'Jombor Sleman', '089679322309', 'C', 'Kelas 12', '2020-01-27', 'SMAN 1 sleman', 'Jalan Magelang KM 7', 'Widodo', 'Ning', 'swasta', 'IRT', 'Jombor Sleman', '-', '-', '-', '08562971772', 'default.jpg', 'Diterima', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
+INSERT INTO `tb_pendaftar` (`no_pendaftar`, `paket_kesetaraan`, `kelas_kesetaraan`, `nama`, `tempat_lhr`, `tanggal_lhr`, `agama`, `jenkel`, `alamat_domisili`, `no_hp`, `tgl_pendaftaran`, `asal_sekolah`, `putus_sekolah_kelas`, `putus_sekolah_semester`, `alamat_sekolah`, `bertempat_tinggal`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_ortu`, `no_hp_ortuwali`, `status_pendaftar`, `foto`, `akte`, `kk`, `ijazah_raport`, `sk_pindah_sekolah`) VALUES
+('A202002040001', 'A', 'Kelas 5', 'Lala Kuswara', 'Sleman', '1995-02-04', 'ISLAM', 'Perempuan', 'Jalan Imogiri Barat KM 9 Bantul', '085678345241', '2020-02-04', 'SD Muhammadiyah 1 Bantul', 'Kelas 5', 'Ganjil', 'Jalan Parangtritis KM 20', 'Ortu', 'Sutrisno', 'Yanita', 'Buruh pabrik', 'Ibu Rumah Tangga', 'Jalan Imogiri Barat KM 9 Bantul', '085289674322', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
+('B202002040001', 'B', 'Kelas 8', 'mefri', 'Sleman', '1995-05-07', 'ISLAM', 'Laki-Laki', 'Gilangharjo,pandak Bantul', '089679562788', '2020-02-04', 'SMPN 1 Pajangan Bantul', 'Kelas 7', 'Genap', 'Jalan Pajangan Bantul', 'Ortu', 'Paijo', 'Painem', 'Buruh', 'Ibu Rumah Tangga', 'Gilangharjo,pandak Bantul', '089679322309', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('C202002040001', 'C', 'Kelas 12', 'Arumti Bunga Lestari', 'Bantul', '1997-03-01', 'KRISTEN', 'Perempuan', 'Jalan Parangtritis KM 5', '081332678432', '2020-02-04', 'SMA Muhammadiyah Bantul', '12', 'Ganjil', 'Jalan Parangtritis KM 10', 'Ortu', 'Sukardi', 'Endang', 'Wiraswasta', 'Ibu Rumah Tangga', 'Jalan Parangtritis KM 5', '085235786901', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
 
 -- --------------------------------------------------------
 
@@ -277,23 +281,16 @@ CREATE TABLE `tb_pengguna` (
 --
 
 INSERT INTO `tb_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_username`, `pengguna_password`, `pengguna_level`) VALUES
-(2, 'juju', '123456', 'e10adc3949ba59abbe56e057f20f883e', 'Siswa'),
-(3, 'Yanto', '7891011', 'a108ee5445b04d7abe10a8daff9e9ba3', 'Pamong'),
-(8, 'kiki', '55678832', '0ecc919bae7167a2657b2ee029bbd98e', 'Pamong'),
-(9, 'mefri', '3163111096', '0dcf1a8be38efa8d1093c08b5f22845b', 'Siswa'),
 (11, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
-(12, 'lala', '032001120001', '68845fcf6d4123bdfb8cbbf72b82e42d', 'Siswa'),
-(13, 'mefri', '02200190001', 'd878454076a0fef13915dca002887027', 'Siswa'),
-(14, 'Mefri Andriyanto', '022001120001', '88f0c84ee9f89b514f5ea261f9cda332', 'Siswa'),
 (15, 'Suwardi', '3402060102990001', '05f52baeaded2245277ec9ca1daed0de', 'Pamong'),
 (16, 'Bulan Balkis', '3402060302990001', '61d5614e938035fe5d920b810b332410', 'Pamong'),
 (17, 'Dewi Usmawati', '3402060607990001', '29af09e3ecf907fbc68b350f031a1414', 'Pamong'),
 (18, 'Kasmakto', '3402060109870001', '383c015121f23ee52839310bbf8b2172', 'Pamong'),
 (19, 'Hestri Tias Utami', '3402060302690001', '887cbc64fec8dc60b884069cbb8fea05', 'Pamong'),
 (20, 'Erny Isnainy', '3402060667890001', '77e2e59cb32479953e86f9b2543e0290', 'Pamong'),
-(21, 'Triana Rosida', '022001270001', '6f3a2fd653a50f2602d0924db7d694b8', 'Siswa'),
-(22, 'Arumti Bunga Lestari', '022001280002', '51cfde9e9754fa380cf37cd51d014d6a', 'Siswa'),
-(23, 'Lala Kuswara', '032001270001', 'd502dfaf78a05f934fcc426d663d77d7', 'Siswa');
+(24, 'Lala Kuswara', '012002040001', 'c8c00142c1d463511caf03f1c6275b63', 'Siswa'),
+(25, 'mefri', '022002040001', 'dcc2a0c1d663b5e04deead06640daad6', 'Siswa'),
+(26, 'Arumti Bunga Lestari', '032002040001', 'db6dd483396bb938ba52665aab03ff16', 'Siswa');
 
 -- --------------------------------------------------------
 
@@ -333,6 +330,15 @@ CREATE TABLE `tb_rombel_siswa` (
   `nis` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tb_rombel_siswa`
+--
+
+INSERT INTO `tb_rombel_siswa` (`romsiswa_id`, `rombel_id`, `nis`) VALUES
+(1, 2, '012002040001'),
+(2, 4, '022002040001'),
+(3, 8, '032002040001');
+
 -- --------------------------------------------------------
 
 --
@@ -371,9 +377,9 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VALUES
-('022001270001', 'B202001270001', 'Triana Rosida', 'Aktif'),
-('022001280002', 'B202001280002', 'Arumti Bunga Lestari', 'Aktif'),
-('032001270001', 'C202001270001', 'Lala Kuswara', 'Aktif');
+('012002040001', 'A202002040001', 'Lala Kuswara', 'Aktif'),
+('022002040001', 'B202002040001', 'mefri', 'Aktif'),
+('032002040001', 'C202002040001', 'Arumti Bunga Lestari', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -506,12 +512,12 @@ ALTER TABLE `tb_tahunajaran`
 -- AUTO_INCREMENT for table `tb_jadwal`
 --
 ALTER TABLE `tb_jadwal`
-  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
@@ -521,7 +527,7 @@ ALTER TABLE `tb_mapel`
 -- AUTO_INCREMENT for table `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
@@ -531,7 +537,7 @@ ALTER TABLE `tb_paket`
 -- AUTO_INCREMENT for table `tb_pengguna`
 --
 ALTER TABLE `tb_pengguna`
-  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tb_rombel`
 --
@@ -541,7 +547,7 @@ ALTER TABLE `tb_rombel`
 -- AUTO_INCREMENT for table `tb_rombel_siswa`
 --
 ALTER TABLE `tb_rombel_siswa`
-  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_semester`
 --
@@ -603,7 +609,6 @@ ALTER TABLE `tb_rombel_siswa`
 --
 ALTER TABLE `tb_siswa`
   ADD CONSTRAINT `tb_siswa_ibfk_1` FOREIGN KEY (`no_pendaftar`) REFERENCES `tb_pendaftar` (`no_pendaftar`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

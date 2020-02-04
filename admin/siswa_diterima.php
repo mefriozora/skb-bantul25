@@ -24,7 +24,6 @@
                           <th class="w-1">No.</th>
                           <th>Status Pendaftar</th>
                           <th>No. Pendaftaran</th>
-                          <th>NISN</th>
                           <th>Nama</th>
                           <th>Paket Kesetaraan</th>
                           <th>Kelas Kesetaraan</th>
@@ -40,7 +39,6 @@
                           <td><?php echo $no;?></td>
                           <td><?php echo $h['status_pendaftar'];?></td>
                           <td><?php echo $h['no_pendaftar'];?></td>
-                          <td><?php echo $h['nisn'];?></td> 
                           <td><?php echo $h['nama'];?></td>
                           <td><?php echo $h['paket_kesetaraan'];?></td>
                           <td><?php echo $h['kelas_kesetaraan'];?></td>
