@@ -99,6 +99,7 @@ if (isset($_GET['aktifkan']))
                 <tr>
                   <td><span class="text-muted"><?php echo $no;?></span></td>
                   <td><?php echo $data['ta_nama'];?></td>
+                  <td><?php echo $data['semester_nama'];?></td>
                   <td><?php echo $data['ta_status'];?></td>
                   <td class="text-left">
                     <?php 
