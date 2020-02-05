@@ -58,7 +58,14 @@
               <tbody>
                 <?php
                 $no = 1;
-                $sql = mysqli_query($connect, "SELECT a.mapel_id,b.mapel_nama,COUNT(a.nis) AS jumlahsiswa FROM tb_nilai a JOIN tb_mapel b ON a.mapel_id=b.mapel_id WHERE a.rombel_id='" . $_GET['id'] . "' AND a.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY a.mapel_id");
+                // $sql = mysqli_query($connect, "SELECT a.mapel_id,b.mapel_nama,COUNT(a.nis) AS jumlahsiswa FROM tb_nilai a JOIN tb_mapel b ON a.mapel_id=b.mapel_id WHERE a.rombel_id='" . $_GET['id'] . "' AND a.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY a.mapel_id");
+                $sql = mysqli_query($connect, "SELECT COUNT(a.nis) AS jumlahsiswa, b.mapel_id, b.mapel_nama FROM `tb_rombel_siswa` AS a
+                JOIN `tb_rombel` AS c ON c.`rombel_id` = a.`rombel_id` 
+                JOIN `tb_kelas` AS d ON d.`kelas_id`=c.`kelas_id`
+                JOIN `tb_paket` AS e ON e.`paket_id`=d.`paket_id`
+                JOIN `tb_mapel` AS b ON b.`paket_id`=d.`kelas_id`
+                JOIN `tb_tahunajaran` AS f ON f.`ta_id`=c.`ta_id`
+                 WHERE a.rombel_id='".$_GET['id']."' AND f.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY b.mapel_id,  b.mapel_nama ");
                 $cek = mysqli_num_rows($sql);
                 if ($cek > 0) {
                   while ($data = mysqli_fetch_assoc($sql)) {

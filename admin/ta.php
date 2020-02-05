@@ -16,7 +16,17 @@ if (isset($_GET['tambahkan']))
         $nextnourut=$lastnourut+1;
         $nextID="$lastID/$nextnourut";
 
-        mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama) VALUES ('$nextID')");
+        for ($i=0 ; $i<2; $i++)
+        {
+          if($i==1)
+          {
+            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','1')");
+          }
+          else
+          {
+            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','2')");
+          }
+        }
                   
         ?>
         <script>
@@ -32,6 +42,10 @@ if (isset($_GET['aktifne']))
     if (@$_GET['aktifne']='aktif') 
     {
         $id=$_GET['idthajaran'];
+        $sid =  mysqli_query($connect, "SELECT semester_id from tb_tahunajaran where ta_id='$id'");
+        $ssid = mysqli_fetch_array($sid);
+        mysqli_query($connect, "UPDATE tb_semester SET semester_status='Tidak Aktif'");
+        mysqli_query($connect, "UPDATE tb_semester SET semester_status='Aktif' where semester_id='".$ssid['semester_id']."'");
         mysqli_query($connect, "UPDATE tb_tahunajaran SET ta_status='Tidak Aktif'");
          mysqli_query($connect, "UPDATE tb_tahunajaran set ta_status='Aktif' where ta_id='$id'");
                   
@@ -91,7 +105,7 @@ if (isset($_GET['aktifkan']))
               <tbody>
               <?php 
                 $no=1;
-                $query=mysqli_query($connect, "SELECT * from tb_tahunajaran");
+                $query=mysqli_query($connect, "SELECT a.* , b.semester from tb_tahunajaran as a join tb_semester as b on b.semester_id = a.semester_id");
                 $cek= mysqli_num_rows($query);
                 if($cek>0){
                   while ($data= mysqli_fetch_array($query)) {                 
@@ -99,7 +113,7 @@ if (isset($_GET['aktifkan']))
                 <tr>
                   <td><span class="text-muted"><?php echo $no;?></span></td>
                   <td><?php echo $data['ta_nama'];?></td>
-                  <td><?php echo $data['semester_nama'];?></td>
+                  <td><?php echo $data['semester'];?></td>
                   <td><?php echo $data['ta_status'];?></td>
                   <td class="text-left">
                     <?php 
