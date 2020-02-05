@@ -1,6 +1,9 @@
 <?php include_once "views/main.php";?>
 <?php 
-  include '../config/connection.php';
+$main_view= "<script>window.location.href='siswa.php';</script>";
+switch ($_GET["act"]){
+default:
+//INDEX======================================================================================================
 ?>
 <div class="my-md-1">
           <div class="container">
@@ -16,15 +19,17 @@
               <div class="col-lg-4">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Tambah Data Siswa Aktif</h3>
+                    <h3 class="card-title">Tambah Data Siswa</h3>
                   </div>
                   <div class="card-body">
                   <?php
-                include "../config/connection.php";
-                $query = mysqli_query($connect,"SELECT tb_siswa.nis, tb_siswa.no_pendaftar, tb_siswa.nama_siswa, tb_siswa.siswa_status FROM tb_siswa LEFT JOIN tb_pendaftar ON tb_siswa.no_pendaftar=tb_pendaftar.no_pendaftar  WHERE tb_siswa.nis='".$_GET['id']."'");
-                $Data  = mysqli_fetch_array($query);
-            ?>
-            <form action="siswa_edit_proses.php" enctype="multipart/form-data" method="post">
+                    include "../config/connection.php";
+                    $id = $_GET['id'] ?: '0';
+                    $query = mysqli_query($connect,"SELECT tb_siswa.nis, tb_siswa.no_pendaftar, tb_siswa.nama_siswa, tb_siswa.siswa_status FROM tb_siswa LEFT JOIN tb_pendaftar ON tb_siswa.no_pendaftar=tb_pendaftar.no_pendaftar  WHERE tb_siswa.nis='$id'");
+                    $Data  = mysqli_fetch_array($query);
+                  ?>
+            <form action="?&act=update" enctype="multipart/form-data" method="post">
+              <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
               <div class="form-group">
                 <label>No. Pendaftar</label>
                   <div class="input-group">
@@ -73,7 +78,7 @@
                 <button class="btn btn-success" type="submit" name="btnedit" value="btnedit">
                   Ubah
                 </button>
-                <a href="siswa.php" class="btn btn-danger">
+                <a href="siswa.php" class="btn btn-danger" onClick="window.location.href='siswa.php';">
                   Batal
                 </a>
               </div>
@@ -127,5 +132,41 @@
           </div>
         </div>
       </div>
+      <?php
+
+break;
+
+case "update";
+$statussiswa = $_POST['statussiswa'];
+$namasiswa   = $_POST['nama_siswa'];
+$id=$_POST['id'];
+//validasi 1
+//if (empty($kodemapel)){ 
+  //echo"<script>alert('Masukkan kode mapel');history.back(-1);</script>";  
+//}elseif (empty($mapel)) {
+  //echo"<script>alert('Masukkan nama mapel');history.back(-1);</script>";
+//}elseif (empty($kelas)) {
+  //echo"<script>alert('Pilih Kelas');history.back(-1);</script>";  
+  
+//}else{
+  // validasi 2
+ // $cek_dulu=mysqli_query($connect,"SELECT * from mapel where kode_mapel='$id'");
+  //$cek=mysqli_num_rows($cek_dulu);
+   //if($cek>0) {
+   //echo"<script>alert('Data yang di input sudah ada');history.back(-1);</script>";
+   //}
+   //else {
+   $input=mysqli_query($connect,"UPDATE `tb_siswa` SET `nama_siswa`='$namasiswa',`siswa_status`='$statussiswa' WHERE nis='$id'"); 
+      if ($input){
+      echo $main_view;
+      }
+      else {
+      echo"<script>alert('Proses Gagal');history.back(-1);</script>";  
+      }
+  //}
+//}
+break;
+}
+?>
   </body>
 </html>

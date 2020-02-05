@@ -53,7 +53,7 @@
 						  <th>Sk Pindah</th>
 						  <th></th>
                         </tr>
-                      </thead>
+                      </th>
                       <tbody>
                       	<?php
               				$sql=mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE status_pendaftar='Belum Diterima'");
@@ -62,7 +62,7 @@
                         <tr>
 						  <td><?php echo $no;?></td>
 						  <td class="text-center">
-                            <a href="verifikasi_pendaftar.php?id=<?php echo $h['no_pendaftar'] ?>" " onclick="return confirm('Yakin Merubah Status Verifikasi Data ?')" class="btn btn-success btn-sm"><i class="fe fe-check-circle">Ubah Status</i></a>
+                            <a href="verifikasi_pendaftar.php?id=<?php echo $h['no_pendaftar'] ?>"  onclick="return confirm('Yakin Merubah Status Verifikasi Data ?')" class="btn btn-success btn-sm"><i class="fe fe-check-circle">Ubah Status</i></a>
                           </td>
                           <td><?php echo $h['status_pendaftar'];?></td>
 						  <td><?php echo $h['no_pendaftar'];?></td>
@@ -92,7 +92,6 @@
 						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['kk'];?>" target="_blank"><?php echo $h['kk'];?></a></td>
 						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['ijazah_raport'];?>" target="_blank"><?php echo $h['ijazah_raport'];?></a></td>
 						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['sk_pindah_sekolah'];?>" target="_blank"><?php echo $h['sk_pindah_sekolah'];?></a></td>
-			
                         </tr>
                         <?php $no++; } ?>
                       </tbody>
@@ -107,7 +106,5 @@
               </div>
             </div>
           </div>
-          <!-- Modal Popup Dosen -->
-		
   </body>
 </html>

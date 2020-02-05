@@ -178,7 +178,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Telp"/>
+                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" />
                   </div>
               </div>
               <div>
@@ -198,7 +198,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="asal_sekolah" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
+                    <input name="asal_sekolah" type="text" class="form-control" onkeypress=""/>
                   </div>
               </div>
               <div class="form-group">
@@ -207,7 +207,16 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="putus_sekolah_kelas" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
+                    <select name="putus_sekolah_kelas" class="form-control">
+                       <?php
+                        include "config/connection.php";
+                        $query = "SELECT * FROM tb_kelas";
+                        $hasil = mysqli_query($connect,$query);
+                          while($data=mysqli_fetch_array($hasil)){
+                            echo "<option value=$data[kelas_id]>$data[kelas_nama]</option>";
+                        }
+                      ?>
+                    </select>
                   </div>
               </div>
               <div class="form-group">
@@ -216,7 +225,16 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="putus_sekolah_semester" type="text" class="form-control" onkeypress="" placeholder="Asal Sekolah"/>
+                    <select name="putus_sekolah_semester" class="form-control">
+                      <?php
+                        include "config/connection.php";
+                        $query = "SELECT * FROM tb_semester";
+                        $hasil = mysqli_query($connect,$query);
+                          while($data=mysqli_fetch_array($hasil)){
+                            echo "<option value=$data[semester_id]>$data[semester]</option>";
+                        }
+                      ?>
+                    </select>
                   </div>
               </div>
               <div class="form-group">
@@ -260,7 +278,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_ayah" type="text" class="form-control" onkeypress="" placeholder="Nama Ayah"/>
+                    <input name="nama_ayah" type="text" class="form-control" onkeypress="" />
                   </div>
               </div>
               <div class="form-group">
@@ -269,7 +287,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="pekerj_ayah" type="text" class="form-control" onkeypress="" placeholder="Pekerjaan Ayah"/>
+                    <input name="pekerj_ayah" type="text" class="form-control" onkeypress="" />
                   </div>
               </div>
               <div class="form-group">
@@ -278,7 +296,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_ibu" type="text" class="form-control" onkeypress="" placeholder="Nama Ibu"/>
+                    <input name="nama_ibu" type="text" class="form-control" onkeypress="" />
                   </div>
               </div>
               <div class="form-group">
@@ -287,7 +305,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="pekerj_ibu" type="text" class="form-control" onkeypress="" placeholder="Pekerjaan Ibu"/>
+                    <input name="pekerj_ibu" type="text" class="form-control" onkeypress="" />
                   </div>
               </div>
               <div class="form-group">

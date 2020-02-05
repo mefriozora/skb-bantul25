@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Feb 2020 pada 05.56
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: 05 Feb 2020 pada 05.36
+-- Versi Server: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -163,7 +165,6 @@ CREATE TABLE `tb_nilai` (
 
 INSERT INTO `tb_nilai` (`nilai_id`, `nis`, `rombel_id`, `kelas_id`, `semester_id`, `mapel_id`, `nilai_tugas`, `nilai_pts`, `nilai_pas`, `nilai_pat`) VALUES
 (1, '012002040001', 2, 7, 1, 15, '85', '65', '70', '60'),
-(2, '022002040001', 4, 5, 1, 15, '80', '65', '80', '77'),
 (3, '032002040001', 8, 9, 1, 26, '77', '80', '65', '90');
 
 -- --------------------------------------------------------
@@ -209,7 +210,7 @@ CREATE TABLE `tb_pamong_belajar` (
 --
 
 INSERT INTO `tb_pamong_belajar` (`nik`, `pamong_nama`, `pamong_tempat_lhr`, `pamong_tanggal_lhr`, `pamong_jenkel`, `pamong_agama`, `pamong_alamat`, `pamong_no_hp`, `pamong_jabatan`) VALUES
-('3402060102990001', 'Suwardi', 'Bantul', '1980-01-01', 'Laki-Laki', 'ISLAM', 'Ringinharjo  Bantul', '085679871109', 'Pamong Belajar'),
+('3402060102990001', 'Suwardi K', 'Bantul', '1980-01-01', 'Laki-Laki', 'ISLAM', 'Ringinharjo  Bantul', '085679871109', 'Pamong Belajar'),
 ('3402060109870001', 'Kasmakto', 'Bantul', '1973-07-11', 'Laki-Laki', 'ISLAM', 'Sewon Bantul', '089611094209', 'Pamong Belajar'),
 ('3402060302690001', 'Hestri Tias Utami', 'Bantul', '1987-07-10', 'Perempuan', 'ISLAM', 'Umbulharjo Yorgyakarta', '089611094200', 'Tutor'),
 ('3402060302990001', 'Bulan Balkis', 'Surabaya', '1985-06-19', 'Perempuan', 'ISLAM', 'Sewon Bantul', '085629807712', 'Pamong Belajar'),
@@ -258,9 +259,18 @@ CREATE TABLE `tb_pendaftar` (
 --
 
 INSERT INTO `tb_pendaftar` (`no_pendaftar`, `paket_kesetaraan`, `kelas_kesetaraan`, `nama`, `tempat_lhr`, `tanggal_lhr`, `agama`, `jenkel`, `alamat_domisili`, `no_hp`, `tgl_pendaftaran`, `asal_sekolah`, `putus_sekolah_kelas`, `putus_sekolah_semester`, `alamat_sekolah`, `bertempat_tinggal`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_ortu`, `no_hp_ortuwali`, `status_pendaftar`, `foto`, `akte`, `kk`, `ijazah_raport`, `sk_pindah_sekolah`) VALUES
-('A202002040001', 'A', 'Kelas 5', 'Lala Kuswara', 'Sleman', '1995-02-04', 'ISLAM', 'Perempuan', 'Jalan Imogiri Barat KM 9 Bantul', '085678345241', '2020-02-04', 'SD Muhammadiyah 1 Bantul', 'Kelas 5', 'Ganjil', 'Jalan Parangtritis KM 20', 'Ortu', 'Sutrisno', 'Yanita', 'Buruh pabrik', 'Ibu Rumah Tangga', 'Jalan Imogiri Barat KM 9 Bantul', '085289674322', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
-('B202002040001', 'B', 'Kelas 8', 'mefri', 'Sleman', '1995-05-07', 'ISLAM', 'Laki-Laki', 'Gilangharjo,pandak Bantul', '089679562788', '2020-02-04', 'SMPN 1 Pajangan Bantul', 'Kelas 7', 'Genap', 'Jalan Pajangan Bantul', 'Ortu', 'Paijo', 'Painem', 'Buruh', 'Ibu Rumah Tangga', 'Gilangharjo,pandak Bantul', '089679322309', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
-('C202002040001', 'C', 'Kelas 12', 'Arumti Bunga Lestari', 'Bantul', '1997-03-01', 'KRISTEN', 'Perempuan', 'Jalan Parangtritis KM 5', '081332678432', '2020-02-04', 'SMA Muhammadiyah Bantul', '12', 'Ganjil', 'Jalan Parangtritis KM 10', 'Ortu', 'Sukardi', 'Endang', 'Wiraswasta', 'Ibu Rumah Tangga', 'Jalan Parangtritis KM 5', '085235786901', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
+('A202002050001', 'A', 'Kelas 6', 'Tegar Arif Pratama', 'Bantul', '1995-05-22', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '089611094208', '2020-02-05', 'SD Negeri 3 Imogiri', '2', '2', 'Imogiri Bantul', 'Ortu', 'Wariman', 'Siti', 'Buruh', 'Buruh', 'Imogiri Bantul', '08675342134', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050002', 'A', 'Kelas 6', 'Abdul Muiz', 'Bantul', '1998-04-27', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '085629807712', '2020-02-05', 'SD Muhammadiyah 1 Sewon', '2', '1', 'Sewon Bantul', 'Ortu', 'Tugiman', 'Tugiyah', 'PNS', 'Swasta', 'Sewon Bantul', '089765123456', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050003', 'A', 'Kelas 6', 'Abdullah Hudzafah', 'Bantul', '1998-10-06', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '089611094208', '2020-02-05', 'SD Negeri 4 Bantul', '2', '2', 'Bantul', 'Ortu', 'Kirno', 'Bandia', 'Buruh', 'Swasta', 'Sewon Bantul', '089765123456', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
+('A202002050004', 'A', 'Kelas 6', 'Azizah Qolbun S', 'Sleman', '1996-08-22', 'ISLAM', 'Perempuan', 'Ringinharjo Bantul', '089611094208', '2020-02-05', 'SD Negeri 1 Ringinharjo', '2', '2', 'Ringinharjo Bantul', 'Ortu', 'Seto Handoyo', 'Rina', 'Buruh', 'Swasta', 'Riginharjo Bantul', '089765123459', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050005', 'A', 'Kelas 6', 'Fahmida', 'Bantul', '2002-04-17', 'ISLAM', 'Perempuan', 'Sewon Bantul', '085679871109', '2020-02-05', 'SD Aisyah Sewon', '2', '2', 'Sewon Bantul', 'Ortu', 'Lilik', 'Lusi', 'Buruh', 'Swasta', 'Sewon Bantul', '089765166788', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'rapot.pdf', 'sk.pdf'),
+('A202002050006', 'A', 'Kelas 6', 'Ghoizatul Z', 'Bantul', '2005-06-16', 'ISLAM', 'Perempuan', 'Imogiri Bantul', '085679871108', '2020-02-05', 'SD Muhammadiyah 3 Imogiri', '2', '2', 'Imogiri Bantul', 'Ortu', 'Tono', 'Tini', 'Buruh', 'Swasta', 'Imogiri Bantul', '0897651234560', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050007', 'A', 'Kelas 6', 'Haidar Fatih', 'Bantul', '2004-05-03', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '085629807718', '2020-02-05', 'SD Muhammadiyah 1 Sewon', '2', '2', 'Sewon Bantul', 'Ortu', 'Riyanto', 'Lusi', 'PNS', 'Swasta', 'Sewon Bantul', '089765123455', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050008', 'A', 'Kelas 6', 'Isnaini Nur A', 'Bantul', '2003-09-22', 'ISLAM', 'Perempuan', 'Sewon Bantul', '085629807712', '2020-02-05', 'SD Aisyah Sewon', '2', '2', 'Sewon Bantul', 'Ortu', 'Tukiman', 'Tini', 'Buruh', 'Buruh', 'Sewon Bantul', '089765123456', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050009', 'A', 'Kelas 6', 'Syamil Umar A', 'Bantul', '2005-02-24', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '089775987211', '2020-02-05', 'SD Negeri 2 Bantul', '2', '2', 'Bantul', 'Ortu', 'Hartono', 'Tia', 'Buruh', 'Buruh', 'Sewon Bantul', '089765123459', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('A202002050010', 'A', 'Kelas 6', 'Sahila Ilyas', 'Surabaya', '2007-06-12', 'ISLAM', 'Perempuan', 'Melikan Bantul', '089775987211', '2020-02-05', 'SD Muhammadiyah 1 Surabaya', '2', '2', 'Surabaya', 'Ortu', 'Rio', 'Ria', 'PNS', 'PNS', 'Melikan Bantul', '089765123456', 'Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('B202002050001', 'B', 'Kelas 9', 'Ahas Kusdiyanto', 'Bantul', '2002-06-04', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '089611094209', '2020-02-05', 'SD Muhammadiyah 1 Sewon', '5', '2', 'Sewon Bantul', 'Ortu', 'Wartoyo', 'Susi', 'Swasta', 'Swasta', 'Sewon Bantul', '0897651234560', 'Belum Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf'),
+('B202002050002', 'B', 'Kelas 9', 'Arwan Febriyanto', 'Bantul', '2011-06-14', 'ISLAM', 'Laki-Laki', 'Sewon Bantul', '089611094209', '2020-02-05', 'SD Muhammadiyah 1 Sewon', '5', '1', 'Sewon Bantul', 'Ortu', 'Rukijo', 'Tuti', 'Buruh', 'Buruh', 'Sewon Bantul', '0897651234560', 'Belum Diterima', 'default.jpg', 'akta.pdf', 'kk.pdf', 'ijazah.pdf', 'sk.pdf');
 
 -- --------------------------------------------------------
 
@@ -290,7 +300,17 @@ INSERT INTO `tb_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_username`, 
 (20, 'Erny Isnainy', '3402060667890001', '77e2e59cb32479953e86f9b2543e0290', 'Pamong'),
 (24, 'Lala Kuswara', '012002040001', 'c8c00142c1d463511caf03f1c6275b63', 'Siswa'),
 (25, 'mefri', '022002040001', 'dcc2a0c1d663b5e04deead06640daad6', 'Siswa'),
-(26, 'Arumti Bunga Lestari', '032002040001', 'db6dd483396bb938ba52665aab03ff16', 'Siswa');
+(26, 'Arumti Bunga Lestari', '032002040001', 'db6dd483396bb938ba52665aab03ff16', 'Siswa'),
+(27, 'Tegar Arif Pratama', '012002060001', '3303cc366ccbeac452b484ba7d5d19f4', 'Siswa'),
+(28, 'Abdul Muiz', '012002060002', '44792b017ac48fc306a4290d9140e867', 'Siswa'),
+(29, 'Abdullah Hudzafah', '012002060003', 'a47ac1df00081bdfb98195aa7889de5a', 'Siswa'),
+(30, 'Azizah Qolbun S', '012002060004', 'c1aac94cffcb760f2c9d85635e89e180', 'Siswa'),
+(31, 'Fahmida', '012002060005', 'a0c6711abf1df564e31bd29ea39c1079', 'Siswa'),
+(32, 'Ghoizatul Z', '012002060006', 'f2d9746be1b12f0f66ca4c6ad81ed39b', 'Siswa'),
+(33, 'Haidar Fatih', '012002060007', 'e454c2cbcb6676af42605b4eaf2c5adf', 'Siswa'),
+(34, 'Isnaini Nur A', '012002060008', 'e2a5083f4be76196b7c2d0e0e1f41f68', 'Siswa'),
+(35, 'Syamil Umar A', '012002060009', 'a733ed18957250ea6c35ac3915d2d6bb', 'Siswa'),
+(36, 'Sahila Ilyas', '012002060010', 'e2887418badb7cd69e9ae43d82ddaccd', 'Siswa');
 
 -- --------------------------------------------------------
 
@@ -316,7 +336,8 @@ INSERT INTO `tb_rombel` (`rombel_id`, `ta_id`, `kelas_id`, `nik`) VALUES
 (4, 5, 5, '3402060109870001'),
 (6, 5, 7, '3402060102990001'),
 (7, 5, 8, '3402060102990001'),
-(8, 5, 9, '3402060102990001');
+(8, 5, 9, '3402060102990001'),
+(9, 5, 3, '3402060302990001');
 
 -- --------------------------------------------------------
 
@@ -336,8 +357,17 @@ CREATE TABLE `tb_rombel_siswa` (
 
 INSERT INTO `tb_rombel_siswa` (`romsiswa_id`, `rombel_id`, `nis`) VALUES
 (1, 2, '012002040001'),
-(2, 4, '022002040001'),
-(3, 8, '032002040001');
+(3, 8, '032002040001'),
+(4, 9, '012002060001'),
+(5, 9, '012002060002'),
+(6, 9, '012002060003'),
+(7, 9, '012002060004'),
+(8, 9, '012002060005'),
+(9, 9, '012002060006'),
+(10, 9, '012002060007'),
+(11, 9, '012002060008'),
+(12, 9, '012002060009'),
+(13, 9, '012002060010');
 
 -- --------------------------------------------------------
 
@@ -377,9 +407,16 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VALUES
-('012002040001', 'A202002040001', 'Lala Kuswara', 'Aktif'),
-('022002040001', 'B202002040001', 'mefri', 'Aktif'),
-('032002040001', 'C202002040001', 'Arumti Bunga Lestari', 'Aktif');
+('012002060001', 'A202002050001', 'Tegar Arif Pratama', 'Aktif'),
+('012002060002', 'A202002050002', 'Abdul Muiz', 'Aktif'),
+('012002060003', 'A202002050003', 'Abdullah Hudzafah', 'Aktif'),
+('012002060004', 'A202002050004', 'Azizah Qolbun S', 'Aktif'),
+('012002060005', 'A202002050005', 'Fahmida', 'Aktif'),
+('012002060006', 'A202002050006', 'Ghoizatul Z ', 'Aktif'),
+('012002060007', 'A202002050007', 'Haidar Fatih', 'Aktif'),
+('012002060008', 'A202002050008', 'Isnaini Nur A', 'Aktif'),
+('012002060009', 'A202002050009', 'Syamil Umar A', 'Aktif'),
+('012002060010', 'A202002050010', 'Sahila Ilyas', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -537,17 +574,17 @@ ALTER TABLE `tb_paket`
 -- AUTO_INCREMENT for table `tb_pengguna`
 --
 ALTER TABLE `tb_pengguna`
-  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `tb_rombel`
 --
 ALTER TABLE `tb_rombel`
-  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tb_rombel_siswa`
 --
 ALTER TABLE `tb_rombel_siswa`
-  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tb_semester`
 --
@@ -609,6 +646,7 @@ ALTER TABLE `tb_rombel_siswa`
 --
 ALTER TABLE `tb_siswa`
   ADD CONSTRAINT `tb_siswa_ibfk_1` FOREIGN KEY (`no_pendaftar`) REFERENCES `tb_pendaftar` (`no_pendaftar`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
