@@ -83,6 +83,7 @@ if (isset($_GET['aktifkan']))
                 <tr>
                   <th class="w-2">No.</th>
                   <th>Tahun Ajaran</th>
+                  <th>Semester</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
