@@ -38,19 +38,53 @@
 	?>
 	<table>
         <tr>
-            <th style="text-align:left;" width="100px">Paket </th>
-            <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['paket_nama'] ?></th>
-            <th style="text-align:left;" width="120px">Tahun Ajaran</th>
-            <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['ta_nama'] ?></th>
+            <td style="text-align:justify;" width="100px">Paket </td>
+            <td style="text-align:justify;" width="120px">: &nbsp; <?php echo $data1['paket_nama'] ?></td>
+            <td style="text-align:justify;" width="120px">&nbsp; &nbsp; &nbsp; Tahun Ajaran</td>
+            <td style="text-align:justify;" width="120px">: &nbsp; <?php echo $data1['ta_nama'] ?></td>
         </tr>
         <tr>
-            <th style="text-align:left;" width="100px">Kelas </th>
-            <th style="text-align:left;" width="200px">: &nbsp&nbsp<?php echo $data1['kelas_nama'] ?></th>
-            <th style="text-align:left;" width="150px"> Pamong Belajar </th>
-            <th style="text-align:left;" width="300px">: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></th>
+            <td style="text-align:left;" width="100px">Kelas </td>
+            <td style="text-align:left;" width="200px">: &nbsp; <?php echo $data1['kelas_nama'] ?></td>
+            <td style="text-align:left;" width="150px">&nbsp; &nbsp; &nbsp; Pamong Belajar </td>
+            <td style="text-align:left;" width="300px">: &nbsp; <?php echo $data1['pamong_nama'] ?></td>
         </tr>
     </table>
-    <?php }} ?>
+    <br><br><br>
+    <table border="1" cellpadding="4" cellspacing="2" align="center">
+
+    	 <tr>
+        	<th  align="center" style="width: 50px;" rowspan="2">No</th>
+            <th  align="center" style="width: 230px;" rowspan="2">Mata Pelajaran</th>
+            <th  align="center" style="width: 230px;" rowspan="2">Hari</th>
+            <th  align="center" style="width: 230px;" colspan="2">Jam Belajar</th>
+        </tr>
+        <tr>
+            <th  align="center" style="width: 230px;">Mulai</th>
+            <th  align="center" style="width: 230px;">Selesai</th>
+        </tr>
+
+     <?php }} ?>
+     <tbody>
+             <?php 
+                $no=1;
+                $sql=mysqli_query($connect, "SELECT a.jadwal_id,b.mapel_nama,a.jadwal_hari,a.jadwal_jammulai,a.jadwal_jamselesai FROM tb_jadwal a JOIN tb_mapel b ON a.mapel_id=b.mapel_id WHERE a.rombel_id='".$_GET['id']."'");
+                $cek= mysqli_num_rows($sql);
+                    if($cek>0){
+                       while ($data= mysqli_fetch_assoc($sql)) {                 
+              ?>
+                <tr>
+                  <td align="center" style="width: 50px;"><span class="text-muted"><?php echo $no;?></span></td>
+                  <td align="center" style="width: 230px;"><?php echo $data['mapel_nama'] ?><input type="hidden" name="idjadwal[]" value="<?php echo $data['jadwal_id'] ?>"></td>
+                  <td align="center" style="width: 230px;"><?php echo $data['jadwal_hari'] ?></td>
+                  <td align="center" style="width: 230px;"><?php echo $data['jadwal_jammulai'] ?></td>
+                  <td align="center" style="width: 230px;"><?php echo $data['jadwal_jamselesai'] ?></td>
+                </tr>
+                 <?php $no++;}} ?>
+              </tbody>
+    </table>
+    
+
 
  <br>&nbsp;
 <br>&nbsp;
@@ -64,8 +98,8 @@ echo '<p>Yogyakarta,'. tanggal_indo($tglcetak).'</p>';
 <br>&nbsp;
 <br>&nbsp;
 <br>&nbsp;
-<br><ins>Mefri Anriyanto</ins>
-<br>(NIK : 316111096)&nbsp;&nbsp;&nbsp;</p>
+<br><ins>Rumini,S.Pd</ins>
+<br>(NIP : 195908251982032005)</p>
 
 </body>
 </html>
@@ -81,7 +115,7 @@ try
 	$pdf->pdf->SetDisplayMode('fullpage');
 	$pdf->setDefaultFont('Arial');
 	$pdf->WriteHTML($html, false);
-	$pdf->Output('Laporan Data Siswa.pdf', 'D');
+	$pdf->Output('Laporan Jadwal Per Mapel.pdf', 'D');
 }
 catch(HTML2PDF_exception $e) {
     echo $e;
