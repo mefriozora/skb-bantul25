@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05 Feb 2020 pada 05.36
+-- Generation Time: 05 Feb 2020 pada 08.43
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -386,8 +386,8 @@ CREATE TABLE `tb_semester` (
 --
 
 INSERT INTO `tb_semester` (`semester_id`, `semester`, `semester_status`) VALUES
-(1, 'Ganjil', 'Aktif'),
-(2, 'Genap', 'Tidak Aktif');
+(1, 'Ganjil', 'Tidak Aktif'),
+(2, 'Genap', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -426,6 +426,7 @@ INSERT INTO `tb_siswa` (`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VAL
 
 CREATE TABLE `tb_tahunajaran` (
   `ta_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL,
   `ta_nama` varchar(12) NOT NULL,
   `ta_status` varchar(12) NOT NULL DEFAULT 'Tidak Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -434,15 +435,15 @@ CREATE TABLE `tb_tahunajaran` (
 -- Dumping data untuk tabel `tb_tahunajaran`
 --
 
-INSERT INTO `tb_tahunajaran` (`ta_id`, `ta_nama`, `ta_status`) VALUES
-(1, '2016/2017', 'Tidak Aktif'),
-(2, '2017/2018', 'Tidak Aktif'),
-(3, '2018/2019', 'Tidak Aktif'),
-(4, '2019/2020', 'Tidak Aktif'),
-(5, '2020/2021', 'Aktif'),
-(6, '2021/2022', 'Tidak Aktif'),
-(8, '2022/2023', 'Tidak Aktif'),
-(9, '2023/2024', 'Tidak Aktif');
+INSERT INTO `tb_tahunajaran` (`ta_id`, `semester_id`, `ta_nama`, `ta_status`) VALUES
+(1, 0, '2016/2017', 'Tidak Aktif'),
+(2, 0, '2017/2018', 'Tidak Aktif'),
+(3, 0, '2018/2019', 'Tidak Aktif'),
+(4, 0, '2019/2020', 'Tidak Aktif'),
+(5, 0, '2020/2021', 'Aktif'),
+(6, 0, '2021/2022', 'Tidak Aktif'),
+(8, 0, '2022/2023', 'Tidak Aktif'),
+(9, 0, '2023/2024', 'Tidak Aktif');
 
 --
 -- Indexes for dumped tables
@@ -539,7 +540,8 @@ ALTER TABLE `tb_siswa`
 -- Indexes for table `tb_tahunajaran`
 --
 ALTER TABLE `tb_tahunajaran`
-  ADD PRIMARY KEY (`ta_id`);
+  ADD PRIMARY KEY (`ta_id`),
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
