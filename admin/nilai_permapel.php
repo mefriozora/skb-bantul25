@@ -63,9 +63,9 @@
                 JOIN `tb_rombel` AS c ON c.`rombel_id` = a.`rombel_id` 
                 JOIN `tb_kelas` AS d ON d.`kelas_id`=c.`kelas_id`
                 JOIN `tb_paket` AS e ON e.`paket_id`=d.`paket_id`
-                JOIN `tb_mapel` AS b ON b.`paket_id`=d.`kelas_id`
+                JOIN `tb_mapel` AS b ON b.`paket_id`=d.`paket_id`
                 JOIN `tb_tahunajaran` AS f ON f.`ta_id`=c.`ta_id`
-                 WHERE a.rombel_id='".$_GET['id']."' AND f.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY b.mapel_id,  b.mapel_nama ");
+                 WHERE a.rombel_id='".$_GET['id']."' AND f.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY b.mapel_id ");
                 $cek = mysqli_num_rows($sql);
                 if ($cek > 0) {
                   while ($data = mysqli_fetch_assoc($sql)) {

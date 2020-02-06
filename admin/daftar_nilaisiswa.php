@@ -71,7 +71,7 @@
           JOIN `tb_rombel` AS c ON c.`rombel_id` = a.`rombel_id` 
           JOIN `tb_kelas` AS d ON d.`kelas_id`=c.`kelas_id`
           JOIN `tb_paket` AS e ON e.`paket_id`=d.`paket_id`
-          JOIN `tb_mapel` AS b ON b.`paket_id`=d.`kelas_id`
+          JOIN `tb_mapel` AS b ON b.`paket_id`=d.`paket_id`
           JOIN `tb_tahunajaran` AS f ON f.`ta_id`=c.`ta_id`
           JOIN `tb_siswa` as g on g.`nis` = a.`nis`
            WHERE a.rombel_id='".$_GET['idrombel']."' AND f.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') and b.mapel_id = '".$_GET['idmapel']."'");
@@ -84,9 +84,9 @@
 		    <td><?php echo $no; ?></td>
 		    <td><?php echo $data['nis'] ?><input type="text" name="nis[]" style="width: 50px;" hidden value="<?= $data['nis']?>" onkeyPress=""></td>
 		    <td><?php echo $data['nama_siswa'] ?></td>
-		    <td><input type="number" required name="tugas[]" style="width: 50px;" onkeyPress=""></td>
-		    <td><input type="number" required name="pts[]"  style="width: 50px;" onKeyPress=""></td>
-		    <td><input type="number" required name="pas[]"  style="width: 50px;" onKeyPress=""></td>
+		    <td><input type="number" required min="0" name="tugas[]" style="width: 50px;" onkeyPress=""></td>
+		    <td><input type="number" required min="0" name="pts[]"  style="width: 50px;" onKeyPress=""></td>
+		    <td><input type="number" required min="0" name="pas[]"  style="width: 50px;" onKeyPress=""></td>
 		   </td>
         <td><?php echo $data['nilaiak'] ?></td>
         <input type="text" name="ta_id" style="width: 50px;" hidden value="<?= $data['ta_id']?>" onkeyPress="">
