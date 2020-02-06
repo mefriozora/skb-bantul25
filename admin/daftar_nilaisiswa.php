@@ -34,7 +34,7 @@
           <td style="text-align:left;"width="150px"><b>Pamong Belajar </b></td>
           <td><b>: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></b></td>
           <td><b>Mata Pelajaran </b></td>
-          <td><b>: <?php echo $data1['mapel_nama'] ?></b></td>
+          <td><b>:  &nbsp&nbsp<?php echo $data1['mapel_nama'] ?></b></td>
         </tr>
     </table>
     </div>
