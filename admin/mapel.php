@@ -88,7 +88,7 @@ default:
                   <th class="w-2">No.</th>
                   <th>Kode Mapel</th>
                   <th>Nama Mapel</th>
-                  <th>KMM Mapel</th>
+                  <th>KKM Mapel</th>
                   <th>Paket Kesetaraan</th>
                   <th>Aksi</th>
                 </tr>

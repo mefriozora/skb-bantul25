@@ -51,7 +51,7 @@
                   <td><?php echo $data['ta_nama'];?></td>
                   <td><?php echo $data['pamong_nama'];?></td>
                   <td align="center">
-                  <a href="nilai_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button">Lihat</a>
+                  <a href="nilai_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button"><i class="fe fe-eye"></i>&nbspLihat</a>
                   </td>
                 </tr>
               <?php $no++; }} ?>

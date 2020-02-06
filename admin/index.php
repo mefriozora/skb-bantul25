@@ -75,7 +75,7 @@
                   <div class="card-body p-3 text-center">
                     
                     <div class="h1 m-0"><?php echo $countjadwal ?></div>
-                    <div class="text-muted mb-4"><a href="jadwal.php">Jadwal Pembelajaran</a></div>
+                    <div class="text-muted mb-4"><a href="jadwal.php">Jadwal KBM</a></div>
                   </div>
                 </div>
               </div>
