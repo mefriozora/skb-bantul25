@@ -1,7 +1,13 @@
 <?php
 session_start();
 include "../config/connection.php";
+
+if ($_SESSION['level']=="Siswa") 
+{
+  $id = $_SESSION['id'];
+
 ?>
+
 <body class="">
     <div class="page">
       <div class="flex-fill">
@@ -13,6 +19,14 @@ include "../config/connection.php";
                <label for="">SKB Bantul</label>
 
               </a>             
+              <?php
+                if ($_SESSION['Siswa']) {
+                  $_SESSION['Siswa'];
+                }
+
+                $sql = mysqli_query($connect,"SELECT * FROM tb_siswa WHERE nis = '$id' ");
+                $data = mysqli_fetch_array($sql);
+              ?>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown d-none d-md-flex">
                 <div class="dropdown">
@@ -20,7 +34,7 @@ include "../config/connection.php";
                   <i class="fe fe-user"></i>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default"></span>
-                      <strong class="text-muted d-block mt-1">Siswa</strong>
+                      <strong class="text-muted d-block mt-1"><?php echo $data['nama_siswa'];?></strong>
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

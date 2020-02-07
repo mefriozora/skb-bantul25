@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(@$_SESSSION['level']=='1'){
+    if(@$_SESSSION['level']=='Admin'){
       echo "<script>
       alert('Login dulu);
       window.location.href='../auth/login.php';

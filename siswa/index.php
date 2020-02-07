@@ -1,8 +1,7 @@
 <?php
-    session_start();
-    if(@$_SESSSION['level']=='2'){
+    include"views/main.php";
 ?>
-<?php include_once "views/main.php";?>
+
 <div class="my-3 my-md-3">
     <div class="row-deck">
         <div class="col-12">
@@ -93,11 +92,3 @@
         </div>
     </div>         
 </div>
-<?php
-    }else{
-      echo "<script>
-			alert('Login Dulu ya');
-			window.location.href='../auth/login.php';
-			</script>";
-    }
-?> 

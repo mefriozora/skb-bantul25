@@ -84,9 +84,9 @@
 		    <td><?php echo $no; ?></td>
 		    <td><?php echo $data['nis'] ?><input type="text" name="nis[]" style="width: 50px;" hidden value="<?= $data['nis']?>" onkeyPress=""></td>
 		    <td><?php echo $data['nama_siswa'] ?></td>
-		    <td><input type="number" required min="0" name="tugas[]" style="width: 50px;" onkeyPress=""></td>
-		    <td><input type="number" required min="0" name="pts[]"  style="width: 50px;" onKeyPress=""></td>
-		    <td><input type="number" required min="0" name="pas[]"  style="width: 50px;" onKeyPress=""></td>
+		    <td><input type="number" required min="0" name="tugas[]" style="width: 50px;" value="<?= $data['nilai_tugas']?>"  onkeyPress=""></td>
+		    <td><input type="number" required min="0" name="pts[]"  style="width: 50px;" value="<?= $data['nilai_pts']?>" onKeyPress=""></td>
+		    <td><input type="number" required min="0" name="pas[]"  style="width: 50px;" value="<?= $data['nilai_pas_pat']?>" onKeyPress=""></td>
 		   </td>
         <td><?php echo $data['nilaiak'] ?></td>
         <input type="text" name="ta_id" style="width: 50px;" hidden value="<?= $data['ta_id']?>" onkeyPress="">
