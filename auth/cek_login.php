@@ -65,7 +65,7 @@
 		 	}else if ($level == 'Siswa') {
 		 		echo "<script>
 				alert('Login Berhasil Sebagai Siswa');
-				window.location.href='../siswa/index.php';
+				window.location.href='../latihan_siswa/index.php';
 				</script>";
 		
 		 }else{

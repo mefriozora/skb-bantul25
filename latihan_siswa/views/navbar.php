@@ -1,12 +1,4 @@
-<?php
-    if ($_SESSION['Siswa']) {
-      $user_login = $_SESSION['Siswa'];
-    }
-      $sql_user = mysqli_query($connect,"SELECT * FROM tb_pengguna WHERE pengguna_username = '$user_login'");
-      $varData_user = mysqli_fetch_array($sql_user);
 
-      include 'main.php';
-?>
 <body class="">
     <div class="page">
       <div class="flex-fill">
