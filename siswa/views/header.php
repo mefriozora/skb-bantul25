@@ -1,4 +1,5 @@
 
+<?php include "../config/connection.php"; ?> 
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -63,5 +64,5 @@ if (txt.value.indexOf('.') === -1) {
 return true;
 }    
 </script>
-<?php include "../config/connection.php"; ?>    
+    
   </head>

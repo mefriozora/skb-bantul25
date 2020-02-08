@@ -55,6 +55,7 @@
 	        $_SESSION['idrombel']		='0';
 		 	
 		 	if ($level =='Admin' ) {
+		 		@$_SESSION["admin"] = $varResult['pengguna_username'];
 		 		echo "<script>
 				alert('Login Berhasil Sebagai Admin');
 				window.location.href='../admin/index.php';
@@ -63,9 +64,10 @@
 		 		//echo "Masuk admin";
 		 		
 		 	}else if ($level == 'Siswa') {
+		 		@$_SESSION["Siswa"] = $varResult['pengguna_username'];
 		 		echo "<script>
 				alert('Login Berhasil Sebagai Siswa');
-				window.location.href='../latihan_siswa/index.php';
+				window.location.href='../siswa/index.php';
 				</script>";
 		
 		 }else{

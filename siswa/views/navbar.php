@@ -1,10 +1,11 @@
 <?php
-    if ($_SESSION['Siswa']) {
+      session_start();
+    if (isset($_SESSION['Siswa'])) {
       $user_login = $_SESSION['Siswa'];
+      // var_dump($user_login); die();
     }
-      $sql_user = mysqli_query($connect,"SELECT * FROM tb_pengguna WHERE pengguna_username = '$user_login'");
+      $sql_user = mysqli_query($connect,"SELECT * FROM tb_pengguna WHERE pengguna_username ='".$user_login."'");
       $varData_user = mysqli_fetch_array($sql_user);
-
       include 'main.php';
 ?>
 <body class="">
