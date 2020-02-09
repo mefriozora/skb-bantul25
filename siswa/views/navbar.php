@@ -1,6 +1,12 @@
 <?php
-session_start();
-include "../config/connection.php";
+      session_start();
+    if (isset($_SESSION['Siswa'])) {
+      $user_login = $_SESSION['Siswa'];
+      // var_dump($user_login); die();
+    }
+      $sql_user = mysqli_query($connect,"SELECT * FROM tb_pengguna WHERE pengguna_username ='".$user_login."'");
+      $varData_user = mysqli_fetch_array($sql_user);
+      include 'main.php';
 ?>
 <body class="">
     <div class="page">
@@ -20,7 +26,7 @@ include "../config/connection.php";
                   <i class="fe fe-user"></i>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default"></span>
-                      <strong class="text-muted d-block mt-1">Siswa</strong>
+                      <strong class="text-muted d-block mt-1"><?php echo $varData_user['pengguna_nama'] ?></strong>
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

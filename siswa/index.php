@@ -1,5 +1,9 @@
 
-<?php include_once "views/main.php";?>
+<?php
+ 
+    include_once "views/main.php";
+?>
+
 <div class="my-3 my-md-3">
     <div class="row-deck">
         <div class="col-12">
