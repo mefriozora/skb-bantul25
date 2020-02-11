@@ -67,8 +67,7 @@
             </div>
         </form>
             
-              <br>
-              
+              <br> 
               <div class="">
                 <div class="card">
                   <div class="table-responsive">
@@ -116,7 +115,7 @@
   }
 
   }else{ // Jika user tidak mengklik tombol tampilkan
-      echo '<b>Semua Laporan Pendaftaran</b><br /><br />';
+      echo '<b>Data Pendaftaran</b><br /><br />';
       echo '<a target="_blank" href="print_pendaftaran.php">Cetak PDF</a><br /><br />';
 
       $VarResult = mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'"); // Tampilkan semua data
