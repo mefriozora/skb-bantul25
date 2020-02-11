@@ -1,12 +1,6 @@
 <?php
-      session_start();
-    if (isset($_SESSION['Siswa'])) {
-      $user_login = $_SESSION['Siswa'];
-      // var_dump($user_login); die();
-    }
-      $sql_user = mysqli_query($connect,"SELECT * FROM tb_pengguna WHERE pengguna_username ='".$user_login."'");
-      $varData_user = mysqli_fetch_array($sql_user);
-      include 'main.php';
+session_start();
+include "../config/connection.php";
 ?>
 <body class="">
     <div class="page">
@@ -17,8 +11,7 @@
               <a class="header-brand" href="./index.php">
               <img src="../assets/image/bantul.png" class="header-brand-img" alt="tabler logo">
                <label for="">SKB Bantul</label>
-
-              </a>             
+              </a>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown d-none d-md-flex">
                 <div class="dropdown">
@@ -26,10 +19,13 @@
                   <i class="fe fe-user"></i>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default"></span>
-                      <strong class="text-muted d-block mt-1"><?php echo $varData_user['pengguna_nama'] ?></strong>
+                      <strong class="text-muted d-block mt-1"><?php echo $_SESSION['nama']; ?></strong>
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                  <a class="dropdown-item" href="./logout.php">
+                      <i class="dropdown-icon fe fe-lock"></i> Ganti Password
+                    </a>
                     <a class="dropdown-item" href="./logout.php">
                       <i class="dropdown-icon fe fe-log-out"></i> Keluar
                     </a>
@@ -40,14 +36,13 @@
                 <span class="header-toggler-icon"></span>
               </a>
             </div>
-            
-        </div>   
+      </div>
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-        <div class="container">
+          <div class="container">
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="./home.php" class="nav-link"><i class="fe fe-home"></i> Dashboard</a>
+                    <a href="./index.php" class="nav-link"><i class="fe fe-home"></i> Dashboard</a>
                   </li>
                   <li class="nav-item">
                     <a href="jadwal.php" class="nav-link"><i class="fe fe-calendar"></i>Jadwal</a>
@@ -60,3 +55,4 @@
             </div>
           </div>
         </div>
+      

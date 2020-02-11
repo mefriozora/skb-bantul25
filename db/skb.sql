@@ -30,9 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_jadwal` (
   `jadwal_id` int(11) NOT NULL,
-  `rombel_id` int(11) NOT NULL,
+  `rombel_id` int(11) DEFAULT NULL,
+  `ta_id` int(11) DEFAULT NULL,
   `jadwal_hari` varchar(40) DEFAULT NULL,
-  `mapel_id` int(11) NOT NULL,
+  `mapel_id` int(11) DEFAULT NULL,
   `jadwal_jammulai` varchar(10) DEFAULT NULL,
   `jadwal_jamselesai` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -40,28 +41,6 @@ CREATE TABLE `tb_jadwal` (
 --
 -- Dumping data for table `tb_jadwal`
 --
-
-INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`) VALUES
-(7, 1, 'Jumat', 3, '07.00', '09.00'),
-(8, 1, 'Jumat', 6, '09.00', '11.30'),
-(9, 1, 'Senin', 7, '08.00', '10.30'),
-(10, 1, 'Senin', 8, '10.30', '12.00'),
-(11, 1, 'Rabu', 9, '08.00', '09.30'),
-(12, 1, '-', 10, '-', '-'),
-(13, 1, '-', 11, '-', '-'),
-(14, 1, '-', 12, '-', '-'),
-(15, 1, '-', 13, '-', '-'),
-(16, 1, '-', 14, '-', '-'),
-(37, 2, NULL, 3, NULL, NULL),
-(38, 2, NULL, 6, NULL, NULL),
-(39, 2, NULL, 7, NULL, NULL),
-(40, 2, NULL, 8, NULL, NULL),
-(41, 2, NULL, 10, NULL, NULL),
-(42, 2, NULL, 11, NULL, NULL),
-(43, 2, NULL, 12, NULL, NULL),
-(44, 2, NULL, 13, NULL, NULL),
-(45, 2, NULL, 14, NULL, NULL),
-(46, 2, NULL, 9, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -152,6 +131,7 @@ CREATE TABLE `tb_nilai` (
   `rombel_id` int(11) NOT NULL,
   `kelas_id` int(11) NOT NULL,
   `ta_id` int(11) DEFAULT NULL,
+  `semester_id` int(11) DEFAULT NULL,
   `mapel_id` int(11) NOT NULL,
   `nilai_tugas` varchar(10) DEFAULT NULL,
   `nilai_pts` varchar(10) DEFAULT NULL,
@@ -544,7 +524,7 @@ ALTER TABLE `tb_tahunajaran`
 -- AUTO_INCREMENT for table `tb_jadwal`
 --
 ALTER TABLE `tb_jadwal`
-  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas`
