@@ -3,11 +3,39 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Pilih Kelas Rombel</h3>
+                    <h3 class="card-title">Pilih Kelas</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Kelas</label>
+                        <label>Kelas Sebelumnya</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user-o"></i>
+                            </div>
+                            <select name="kelas" id="nomer" class="form-control">
+                                <option selected value="">-Pilih Kelas-</option>
+                                <?php
+                                if ($idrombelee == '0') {
+                                    $sql1 = mysqli_query($connect, "SELECT a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif')");
+                                } else {
+                                    $sql1 = mysqli_query($connect, "SELECT a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='$idrombelee'");
+                                }
+                                $cek1 = mysqli_num_rows($sql1);
+                                if ($cek1 > 0) {
+                                    while ($data1 = mysqli_fetch_array($sql1)) {
+                                ?>
+                                        <option value="<?php echo $data1['rombel_id'] ?>">
+                                            <?php echo $data1['kelas_nama'] ?>,&nbsp&nbsp&nbsp&nbsp<?php echo $data1['paket_nama'] ?>,&nbsp&nbsp&nbsp&nbsp<?php echo $data1['ta_nama'] ?>,&nbsp&nbsp&nbsp&nbsp<?php echo $data1['pamong_nama'] ?></option>
+                                <?php }
+                                } ?>
+
+                            </select>
+                        </div>
+                        </div>
+
+
+                        <div class="form-group">
+                        <label>Naik Ke Kelas</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-user-o"></i>

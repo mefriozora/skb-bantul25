@@ -68,6 +68,7 @@ include "../config/connection.php";
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="rombel_data.php" class="dropdown-item ">Data Rombel</a>
                       <a href="rombel_pembagian.php" class="dropdown-item ">Pembagian Rombel</a>
+                      <a href="naik_kelas_proses.php" class="dropdown-item ">Naik Kelas</a>
                     </div>
                   </li>
                   <li class="nav-item">

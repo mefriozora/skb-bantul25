@@ -8,9 +8,11 @@
             <li class="breadcrumb-item">
               <a href="index.php">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Laporan Data Pendaftar</li>
+            <li class="breadcrumb-item active">Laporan Pendaftaran</li>
           </ol>
-            <div class="page-header">
+          <div class="">
+        <div class="card">
+        <div class="card-header">
             	<form action="" method="GET">
             	<div class="form-group" >
                 <label>Filter Berdasarkan</label>

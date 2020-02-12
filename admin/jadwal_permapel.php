@@ -69,7 +69,7 @@
               ?>
                 <tr>
                   <td align="center"><span class="text-muted"><?php echo $no;?></span></td>
-                  <td align="center"><?php echo $data['mapel_nama'] ?><input type="hidden" name="ta_id" value="<?php echo $data['ta_id']; ?>"><input type="hidden" name="mapel[]" value="<?php echo $data['mapel_id'] ?>"><input type="hidden" name="idjadwal[]" value="<?php echo $data_jadwal['jadwal_id'] ?>"></td>
+                  <td><?php echo $data['mapel_nama'] ?><input type="hidden" name="ta_id" value="<?php echo $data['ta_id']; ?>"><input type="hidden" name="mapel[]" value="<?php echo $data['mapel_id'] ?>"><input type="hidden" name="idjadwal[]" value="<?php echo $data_jadwal['jadwal_id'] ?>"></td>
                   <td align="center">
                   	<select name="hari[]">
                             <option value="<?php echo $data_jadwal['jadwal_hari'] ?>" <?php if(empty($data_jadwal['jadwal_hari'])){ echo "selected hidden dissabled"; }else{ echo "selected hidden"; } ?>><?php if(empty($data_jadwal['jadwal_hari'])){ echo "- Pilih -"; }else{ echo $data_jadwal['jadwal_hari']; } ?></option>

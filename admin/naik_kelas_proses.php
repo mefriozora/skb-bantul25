@@ -9,14 +9,14 @@ $idrombelee = $_SESSION['idrombel'];
       <li class="breadcrumb-item">
         <a href="../index.php">Dashboard</a>
       </li>
-      <li class="breadcrumb-item active">Pembagian Rombel</li>
+      <li class="breadcrumb-item active">Naik Kelas</li>
     </ol>
     <div class="my-3 my-md-5">
       <div class="container">
-      <?php include('rombel.php') ?>
+      <?php include('naik_kelas.php') ?>
         <div class="container text-center">
           <h5 class="h4 mb-3">
-            Daftar Siswa Kelas
+            Daftar Siswa
           </h5>
         </div>
         <div class="">

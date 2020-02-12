@@ -75,7 +75,7 @@
                       <td><?php echo $data['mapel_nama'] ?></td>
                       <td><?php echo $data['jumlahsiswa'] ?></td>
                       <td>
-                        <a href="daftar_nilaisiswa.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-success"><i class="fe fe-edit-2"></i></i>&nbspInput Nilai</a>
+                        <a href="nilai_rekap_siswa.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-info"><i class="fe fe-eye"></i></i>&nbspLihat Nilai</a>
                       </td>
                     </tr>
                 <?php $no++;
