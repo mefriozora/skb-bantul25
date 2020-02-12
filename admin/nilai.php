@@ -51,7 +51,7 @@
                   <td><?php echo $data['ta_nama'];?></td>
                   <td><?php echo $data['pamong_nama'];?></td>
                   <td align="center">
-                  <a href="nilai_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button"><i class="fe fe-edit-2"></i>&nbspMasukkan Nilai</a>
+                  <a href="nilai_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-success" role="button"><i class="fe fe-edit-2"></i>&nbspMasukkan Nilai</a>
                   <a href="nilai_rekap.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button"><i class="fe fe-eye"></i>&nbspNilai Rekap</a>
                   </td>
                 </tr>

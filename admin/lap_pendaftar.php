@@ -13,63 +13,79 @@
           <div class="">
         <div class="card">
         <div class="card-header">
-            	<form action="" method="GET">
-            	<div class="form-group" >
-                <label>Filter Berdasarkan</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user-o"></i>
-                    </div>
-                    <select class="form-control" name="filter" id="filter">
-                        <option value="">-Pilih Berdasarkan-</option>
-                     <?php if ($_GET['filter'] == 1) {
-                      ?>
-                      <option value="1" selected="true">Per Tahun</option>
-                      <?php
-                      } else {?>
-                      <option value="1">Per Tahun</option>
-                      <?php }?>
-                    </select>
-                  </div>
-              </div>
-              
-              <label>Tahun</label>
-              <select class="form-control" name="tahun" id="form-tahun">
-                        <option value="">-Pilih Tahun-</option>
-                      <?php
-                          $now=date('Y');
-                            for ($a=$now;$a>=2015;$a--) { 
-                        ?>
-                        <?php if (empty($_GET['tahun'])) {
-                        ?>
-                        <option value="<?php echo $a ?>"><?php echo $a ?> 
-                        <?php
-                          } else {
-                          $thn = $_GET['tahun'];
-                            if ($thn == $a) {
-                              $selected = 'selected';
-                            } else {
-                              $selected = '';
-                            }
-                          ?>          
-                          <option value="<?php echo $a?>"<?php echo $selected?>><?php echo $a ?>
-                          <?php }?>
-                        <?php  } ?>
-                     </option>
-            </select>
-           
-            </div>
-
-            <div class="form-group row text-left">
-                  <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+			<h3 class="card-title">Filter Laporan Pendaftaran</h3>
+		</div>
+		<div class="card-body">
+			<form method="POST">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="form-group" >
+						<label>Tahun</label>
+						  <div class="input-group">
+							<div class="input-group-addon">
+							  <i class="fa fa-user-o"></i>
+							</div>
+							<select class="form-control" name="ta" id="filter">
+								<option value="">-Pilih Tahun-</option>
+							 <?php
+							 $ta = mysqli_query($connect, "SELECT * FROM tb_tahunajaran ORDER BY ta_id ASC");
+							 while($data_ta=mysqli_fetch_array($ta)){
+							 ?>
+							  <option value="<?php echo $data_ta['ta_id']; ?>"><?php echo $data_ta['ta_nama']; ?></option>
+							 <?php } ?>
+							</select>
+						  </div>
+					  </div>
+					 </div>
+           <div class="col-lg-4">
+					<div class="form-group" >
+						<label>Paket</label>
+						  <div class="input-group">
+							<div class="input-group-addon">
+							  <i class="fa fa-user-o"></i>
+							</div>
+							<select class="form-control" name="ta" id="filter">
+								<option value="">-Pilih Paket-</option>
+							 <?php
+							 $ta = mysqli_query($connect, "SELECT * FROM tb_tahunajaran ORDER BY ta_id ASC");
+							 while($data_ta=mysqli_fetch_array($ta)){
+							 ?>
+							  <option value="<?php echo $data_ta['ta_id']; ?>"><?php echo $data_ta['ta_nama']; ?></option>
+							 <?php } ?>
+							</select>
+						  </div>
+					  </div>
+					 </div>
+					 <div class="col-lg-4">
+						<div class="form-group" >
+							<label>Kelas</label>
+							  <div class="input-group">
+								<div class="input-group-addon">
+								  <i class="fa fa-user-o"></i>
+								</div>
+								<select class="form-control" name="kelas" id="filter">
+									<option value="">-Pilih Kelas-</option>
+								 <?php
+								 $kelas = mysqli_query($connect, "SELECT * FROM tb_kelas ORDER BY kelas_id ASC");
+								 while($data_kelas=mysqli_fetch_array($kelas)){
+								 ?>
+								  <option value="<?php echo $data_kelas['kelas_id']; ?>"><?php echo $data_kelas['kelas_nama']; ?></option>
+								 <?php } ?>
+								</select>
+							  </div>
+						  </div>
+						 </div>
+						</div>
+						<div class="form-group row text-left">
+                  <div class="col-lg-12">
                      <button class="btn btn-xs btn-primary" name="cari"/><i class="fa fa-search"></i> Tampilkan </button>
-                     <button class="btn btn-xs btn-light" name="reset"/><a href="lap_pendaftar.php"><i class="fa fa-delete"></i> Reset Filter </a></button>
+                     <button class="btn btn-xs btn-light" name="reset"/><a href="lap_jadwal.php"><i class="fa fa-delete"></i> Reset Filter </a></button>
                     
                   </div>
             </div>
-        </form>
-            
-              <br> 
+			</form>
+		</div>
+  </div>
               <div class="">
                 <div class="card">
                   <div class="table-responsive">
