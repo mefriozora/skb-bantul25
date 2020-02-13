@@ -13,7 +13,7 @@
     <?php 
 	  $no=1;
 	  $sql1=mysqli_query($connect, "SELECT a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f on c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='".$_GET['id']."'");
-	  $cek1= mysqli_num_rows($sql1);
+    $cek1= mysqli_num_rows($sql1);
 	  if($cek1>0){
 	  while ($data1= mysqli_fetch_array($sql1)) {                 
 	?>
@@ -59,7 +59,14 @@
               <tbody>
              <?php 
                 $no=1;
-                $sql=mysqli_query($connect, "SELECT a.jadwal_id,b.mapel_nama,a.jadwal_hari,a.jadwal_jammulai,a.jadwal_jamselesai FROM tb_jadwal a JOIN tb_mapel b ON a.mapel_id=b.mapel_id WHERE a.rombel_id='".$_GET['id']."'");
+                // $sql=mysqli_query($connect, "SELECT a.jadwal_id,b.mapel_nama,a.jadwal_hari,a.jadwal_jammulai,a.jadwal_jamselesai FROM tb_jadwal a JOIN tb_mapel b ON a.mapel_id=b.mapel_id WHERE a.rombel_id='".$_GET['id']."'");
+                $sql = mysqli_query($connect, "SELECT COUNT(a.nis) AS jumlahsiswa, b.mapel_id, b.mapel_nama FROM `tb_rombel_siswa` AS a
+                                              JOIN `tb_rombel` AS c ON c.`rombel_id` = a.`rombel_id` 
+                                              JOIN `tb_kelas` AS d ON d.`kelas_id`=c.`kelas_id`
+                                              JOIN `tb_paket` AS e ON e.`paket_id`=d.`paket_id`
+                                              JOIN `tb_mapel` AS b ON b.`paket_id`=d.`paket_id`
+                                              JOIN `tb_tahunajaran` AS f ON f.`ta_id`=c.`ta_id`
+                                              WHERE a.rombel_id='".$_GET['id']."' AND f.semester_id=(SELECT semester_id FROM tb_semester WHERE semester_status='Aktif') GROUP BY b.mapel_id ");
                 $cek= mysqli_num_rows($sql);
                     if($cek>0){
                        while ($data= mysqli_fetch_assoc($sql)) {                 
