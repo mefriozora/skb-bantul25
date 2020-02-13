@@ -1,4 +1,4 @@
-<?php include_once "views/main.php";?>
+<?php include_once "cek_session.php"; include_once "views/main.php";?>
 
 <div class="my-3 my-md-1">
   <div class="container">
@@ -8,57 +8,127 @@
             </li>
             <li class="breadcrumb-item active"> Laporan Jadwal</li>
           </ol>
-    <div class="page-header">
-      <h4 class="">
-        Jadwal 
-      </h4>
-    </div>
       <div class="">
         <div class="card">
         <div class="card-header">
-                    <h3 class="card-title">Jadwal Kelas</h3>
+			<h3 class="card-title">Filter Laporan Jadwal</h3>
+		</div>
+		<div class="card-body">
+			<form method="POST">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="form-group" >
+						<label>Pilih Tahun Ajaran</label>
+						  <div class="input-group">
+							<div class="input-group-addon">
+							  <i class="fa fa-user-o"></i>
+							</div>
+							<select class="form-control" name="ta" id="filter">
+								<option value="">-Pilih Tahun Ajaran-</option>
+							 <?php
+							 $ta = mysqli_query($connect, "SELECT * FROM tb_tahunajaran ORDER BY ta_id ASC");
+							 while($data_ta=mysqli_fetch_array($ta)){
+							 ?>
+							  <option value="<?php echo $data_ta['ta_id']; ?>"><?php echo $data_ta['ta_nama']; ?></option>
+							 <?php } ?>
+							</select>
+						  </div>
+					  </div>
+					 </div>
+					 <div class="col-lg-6">
+						<div class="form-group" >
+							<label>Pilih Kelas</label>
+							  <div class="input-group">
+								<div class="input-group-addon">
+								  <i class="fa fa-user-o"></i>
+								</div>
+								<select class="form-control" name="kelas" id="filter">
+									<option value="">-Pilih Kelas-</option>
+								 <?php
+								 $kelas = mysqli_query($connect, "SELECT * FROM tb_kelas ORDER BY kelas_id ASC");
+								 while($data_kelas=mysqli_fetch_array($kelas)){
+								 ?>
+								  <option value="<?php echo $data_kelas['kelas_id']; ?>"><?php echo $data_kelas['kelas_nama']; ?></option>
+								 <?php } ?>
+								</select>
+							  </div>
+						  </div>
+						 </div>
+						</div>
+						<div class="form-group row text-left">
+                  <div class="col-lg-12">
+                     <button class="btn btn-xs btn-primary" name="cari"/><i class="fa fa-search"></i> Tampilkan </button>
+                     <button class="btn btn-xs btn-light" name="reset"/><a href="lap_jadwal.php"><i class="fa fa-delete"></i> Reset Filter </a></button>
+                    
+                  </div>
+            </div>
+			</form>
+		</div>
+  </div>
+		<?php
+	    if(isset($_REQUEST['cari'])){
+		?>
+		<div class="card">
+        <div class="card-header">
+                    <h3 class="card-title">Jadwal Per Mata Pelajaran</h3>
           </div>
           <div class="table-responsive">
-            <table class="table card-table table-vcenter text-nowrap datatable">
+			<a class="btn btn-primary" href="cetak_lap_jadwal.php?kelas=<?php echo $_POST['kelas']; ?>&ta=<?php echo $_POST['ta']; ?>" style="margin-left: 20px; margin-top:10px;">Cetak</a>
+            <table border="0px" style="border-collapse: collapse;" class="table card-table table-vcenter text-nowrap datatable" >
               <thead>
                 <tr>
-                  <th class="w-2">No.</th>
-                  <th>Kelas</th>
-                  <th>Paket</th>
-                  <th>Tahun Ajaran</th>
-                  <th>Nama Pamong Belajar</th>
-                  <th class="w-2">Aksi</th>
-                </tr>
+                    <th rowspan="2"><center>No</center></th>
+                    <th rowspan="2"><center>Mata Pelajaran</center></th>
+                    <th rowspan="2"><center>Hari</center></th>
+                    <th colspan="2"><center>Jam Belajar</center></th>
+                 </tr>
+                 <tr>
+                    <th><center>Mulai</center></th>
+                    <th><center>Selesai</center></th>
+                  </tr>
+
               </thead>
               <tbody>
-                <?php
-             
-              $no=1;
-              $sql = mysqli_query($connect, "SELECT a.rombel_id, c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif')");
-              $cek= mysqli_num_rows($sql);
-              if($cek>0){
-              while ($data= mysqli_fetch_array($sql)) {                 
+             <?php 
+                $no=1;
+                $kelas = @$_POST['kelas'];
+			$ta = @$_POST['ta'];
+			$jadwal = mysqli_query($connect, "SELECT m.mapel_nama, j.* FROM tb_jadwal j JOIN tb_rombel r ON j.rombel_id=r.rombel_id JOIN tb_mapel m ON j.mapel_id=m.mapel_id WHERE r.kelas_id='$kelas' AND r.ta_id='$ta' ");
+			while($data_jadwal = mysqli_fetch_array($jadwal)){
               ?>
                 <tr>
-                  <td><span class="text-muted"><?php echo $no;?></span></td>
-                  <td><?php echo $data['kelas_nama'];?></td>
-                  <td><?php echo $data['paket_nama'];?></td>
-                  <td><?php echo $data['ta_nama'];?></td>
-                  <td><?php echo $data['pamong_nama'];?></td>
-                  <td class="text-right">
-                  <a href="laporanjadwal_permapel.php?id=<?php echo $data['rombel_id'] ?>" class="btn btn-info" role="button">Lihat Jadwal</a>
+                  <td align="center"><span class="text-muted"><?php echo $no;?></span></td>
+                  <td align="center"><?php echo $data_jadwal['mapel_nama'] ?></td>
+                  <td align="center">
+                  	<select name="hari[]" disabled>
+                            <option value="<?php echo $data_jadwal['jadwal_hari'] ?>"><?php if(empty($data_jadwal['jadwal_hari'])){ echo "-"; }else{ echo $data_jadwal['jadwal_hari']; } ?></option>
+                          </select>
+                  </td>
+                  <td align="center">
+                    <select name="jamm[]" disabled>
+                            <option value="<?php echo $data_jadwal['jadwal_jammulai'] ?>"><?php if(empty($data_jadwal['jadwal_jammulai'])){ echo "-"; }else{ echo $data_jadwal['jadwal_jammulai']; } ?></option>
+                          </select>
+                  </td>
+                  <td align="center">
+                  	<select name="jams[]" disabled>
+                            <option value="<?php echo $data_jadwal['jadwal_jamselesai'] ?>"><?php if(empty($data_jadwal['jadwal_jamselesai'])){ echo "-"; }else{ echo $data_jadwal['jadwal_jamselesai']; } ?></option>
+                          </select>
                   </td>
                 </tr>
-              <?php $no++; }} ?>
+          <?php $no++;} ?>
               </tbody>
             </table>
+
             <script>
               require(['datatables', 'jquery'], function(datatable, $) {
                     $('.datatable').DataTable();
                   });
             </script>
           </div>
-        </div>
+        </div>		
+		<?php
+		}
+		?>
       </div>
     </div>
   </div>

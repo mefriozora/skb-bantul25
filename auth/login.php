@@ -1,6 +1,4 @@
 <?php include_once "../pendaftaran/views/main.php";?>
-
-
     <div>
       <div class="modal-dialog">
         <div class="modal-content">

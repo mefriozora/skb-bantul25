@@ -1,7 +1,5 @@
 <?php
-
  include '../config/connection.php';
-
  if (isset($_POST['login'])) {
 
  	$varUsername 	= $_POST['username'];
@@ -55,7 +53,6 @@
 	        $_SESSION['idrombel']		='0';
 		 	
 		 	if ($level =='Admin' ) {
-		 		@$_SESSION["admin"] = $varResult['pengguna_username'];
 		 		echo "<script>
 				alert('Login Berhasil Sebagai Admin');
 				window.location.href='../admin/index.php';
@@ -63,8 +60,15 @@
 		 		//exit();
 		 		//echo "Masuk admin";
 		 		
+		 	}else if ($level =='Pamong' ) {
+		 		echo "<script>
+				alert('Login Berhasil Sebagai Pamong');
+				window.location.href='../pamong/index.php';
+				</script>";
+		 		//exit();
+		 		//echo "Masuk pamong";
+		 		
 		 	}else if ($level == 'Siswa') {
-		 		@$_SESSION["Siswa"] = $varResult['pengguna_username'];
 		 		echo "<script>
 				alert('Login Berhasil Sebagai Siswa');
 				window.location.href='../siswa/index.php';

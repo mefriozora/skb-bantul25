@@ -19,7 +19,7 @@ include "../config/connection.php";
                   <i class="fe fe-user"></i>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default"></span>
-                      <strong class="text-muted d-block mt-1">Administrator</strong>
+                      <strong class="text-muted d-block mt-1"><?php echo $_SESSION['nama']; ?></strong>
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -68,6 +68,7 @@ include "../config/connection.php";
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="rombel_data.php" class="dropdown-item ">Data Rombel</a>
                       <a href="rombel_pembagian.php" class="dropdown-item ">Pembagian Rombel</a>
+                      <a href="naik_kelas_proses.php" class="dropdown-item ">Naik Kelas</a>
                     </div>
                   </li>
                   <li class="nav-item">
