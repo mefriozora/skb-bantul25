@@ -108,18 +108,21 @@
           </div>
         </div>
       </div>
+      <?php if(!mysqli_query($connect, "SELECT nilai_id, nilai_tugas, nilai_pts, nilai_pas_pat FROM tb_nilai WHERE nis='".$data['nis']."' AND rombel_id='".$_GET['idrombel']."' AND mapel_id='".$_GET['idmapel']."'")){?>
       <button type="submit" name="tambah" class="btn btn-primary" role="button">Simpan</button>
-      <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button>
+      <?php } else {?>
+      <button type="submit" name="ubah" class="btn btn-primary" role="button">Simpan</button>
+      <?php }?>
     </div>
 </form>
 	<?php
-        if(isset($_REQUEST['tambah']))
+        if(isset($_POST['tambah']))
         {                                  
           
           $nis = @$_POST['nis'];
           $nilaitugas = @$_POST['tugas'];
-          $nilaipts = @$_POST['pts'];
-          $nilaipas = @$_POST['pas'];
+          // $nilaipts = @$_POST['pts'];
+          // $nilaipas = @$_POST['pas'];
           $ta_id = @$_POST['ta_id'];
           $kelas_id = @$_POST['kelas_id'];
           $mapel_id = @$_POST['mapel_id'];
@@ -129,21 +132,21 @@
 
           $jml=count($nis);
             for ($i=0; $i<$jml; $i++) {
-                mysqli_query($connect,"INSERT into tb_nilai(nis,rombel_id,kelas_id,ta_id,semester_id,mapel_id,nilai_tugas,nilai_pts,nilai_pas_pat) 
-                values ('".$nis[$i]."','".$rombel_id."','".$kelas_id."','".$ta_id."','".$semester_id."','".$mapel_id."','".$nilaitugas[$i]."','".$nilaipts[$i]."','".$nilaipas[$i]."')");
+                mysqli_query($connect,"INSERT into tb_nilai(nis,rombel_id,kelas_id,ta_id,mapel_id,nilai_tugas) 
+                values ('".$nis[$i]."','".$rombel_id."','".$kelas_id."','".$ta_id."','".$mapel_id."','".$nilaitugas[$i]."')");
             }
 
+            
+
             echo "<script>alert('Data Berhasil Tersimpan')</script>";
-			echo "<script>window.location='daftar_nilaisiswa.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
+			echo "<script>window.location='nilai_tugas.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."'</script>";
          
         }
-		if(isset($_REQUEST['ubah']))
+		if(isset($_POST['ubah']))
         {                                  
           $nilai_id = @$_POST['nilai_id'];
           $nis = @$_POST['nis'];
           $nilaitugas = @$_POST['tugas'];
-          $nilaipts = @$_POST['pts'];
-          $nilaipas = @$_POST['pas'];
           $ta_id = @$_POST['ta_id'];
           $kelas_id = @$_POST['kelas_id'];
           $mapel_id = @$_POST['mapel_id'];
@@ -152,10 +155,10 @@
 
           $jml=count($nis);
             for ($i=0; $i<$jml; $i++) {
-                mysqli_query($connect,"UPDATE tb_nilai SET nilai_tugas = '$nilaitugas[$i]' ,nilai_pts = '$nilaipts[$i]', nilai_pas_pat = '$nilaipas[$i]' WHERE nilai_id='$nilai_id[$i]'");
+                mysqli_query($connect,"UPDATE tb_nilai SET nilai_tugas = '$nilaitugas[$i]' WHERE nilai_id='$nilai_id[$i]'");
             }
 
-            echo "<script>alert('Data Berhasil Diubah')</script><script>window.location='daftar_nilaisiswa.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
+            echo "<script>alert('Data Berhasil Diubah')</script><script>window.location='nilai_tugas.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
          
         }
   	?>

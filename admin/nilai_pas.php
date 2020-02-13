@@ -107,7 +107,7 @@
         </div>
       </div>
       <button type="submit" name="tambah" class="btn btn-primary" role="button">Simpan</button>
-      <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button>
+      <!-- <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button> -->
     </div>
 </form>
 	<?php
@@ -115,24 +115,24 @@
         {                                  
           
           $nis = @$_POST['nis'];
-          $nilaitugas = @$_POST['tugas'];
-          $nilaipts = @$_POST['pts'];
+          // $nilaitugas = @$_POST['tugas'];
+          // $nilaipts = @$_POST['pts'];
           $nilaipas = @$_POST['pas'];
           $ta_id = @$_POST['ta_id'];
           $kelas_id = @$_POST['kelas_id'];
           $mapel_id = @$_POST['mapel_id'];
           $rombel_id = @$_POST['rombel_id'];
           $semester_id = @$_POST['semester_id'];
+          $nilai_id = @$_POST['nilai_id'];
           
-
-          $jml=count($nis);
+     $jml=count($nis);
             for ($i=0; $i<$jml; $i++) {
-                mysqli_query($connect,"INSERT into tb_nilai(nis,rombel_id,kelas_id,ta_id,semester_id,mapel_id,nilai_tugas,nilai_pts,nilai_pas_pat) 
-                values ('".$nis[$i]."','".$rombel_id."','".$kelas_id."','".$ta_id."','".$semester_id."','".$mapel_id."','".$nilaitugas[$i]."','".$nilaipts[$i]."','".$nilaipas[$i]."')");
+                mysqli_query($connect,"UPDATE tb_nilai SET nilai_pas_pat = '$nilaipas[$i]' WHERE nilai_id='$nilai_id[$i]'");
             }
+         
 
             echo "<script>alert('Data Berhasil Tersimpan')</script>";
-			echo "<script>window.location='daftar_nilaisiswa.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
+			echo "<script>window.location='nilai_pas.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
          
         }
 		if(isset($_REQUEST['ubah']))
