@@ -88,9 +88,9 @@
 		    <td><?php echo $data['nis']; ?><input type="text" name="nis[]" style="width: 50px;" hidden value="<?= $data['nis']?>" onkeyPress=""></td>
 		    <td><?php echo $data['nama_siswa']; ?></td>
 		    <td><?php echo $data['mapel_kkm']; ?></td>
-		    <td><input type="number" min="0" name="tugas[]" style="width: 50px;" value="<?= $data_nilai['nilai_tugas']?>"  onkeyPress=""></td>
-		    <td><input type="number" min="0" name="pts[]"  style="width: 50px;" value="<?= $data_nilai['nilai_pts']?>" onKeyPress=""></td>
-		    <td><input type="number" min="0" name="pas[]"  style="width: 50px;" value="<?= $data_nilai['nilai_pas_pat']?>" onKeyPress=""></td>
+		    <td><?php echo $data_nilai['nilai_tugas']?></td>
+		    <td><?php echo $data_nilai['nilai_pts']?></td>
+		    <td><?php echo $data_nilai['nilai_pas_pat']?></td>
 			<td><?php echo number_format(($data_nilai['nilai_tugas'] + $data_nilai['nilai_pts'] + $data_nilai['nilai_pas_pat'] )/3, 2); ?></td>
 		   
         <td><?php echo $data['nilaiak'] ?></td>
