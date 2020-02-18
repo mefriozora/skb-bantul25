@@ -1,7 +1,16 @@
 <?php include "../config/connection.php"; ?>
 		<div class="card">
         <div class="card-header">
-                    <h3 class="card-title"><center>Jadwal Per Mata Pelajaran</center></h3>
+        <h2 align="center">
+      SANGGAR KEGIATAN BELAJAR (SKB) BANTUL
+      <br>
+      <small>Jl. Imogiri Barat KM 7, Semail,Bangunharjo,Kec.Sewon,Bantul,Yogyakarta</small>
+      <br>
+      <small>Kode Pos : 55188, Telepon : (0274) 4396012</small>
+      </h2>
+      <hr style="color: #000;">
+      <br>
+            <h3 class="card-title"><center>Jadwal Per Mata Pelajaran</center></h3>
           </div>
           <div class="table-responsive">
 			<table border="1px" width="100%" style="border-collapse: collapse;" class="table card-table table-vcenter text-nowrap datatable" >
