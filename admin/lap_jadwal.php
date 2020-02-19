@@ -100,19 +100,18 @@
                   <td align="center"><span class="text-muted"><?php echo $no;?></span></td>
                   <td align="center"><?php echo $data_jadwal['mapel_nama'] ?></td>
                   <td align="center">
-                  	<select name="hari[]" disabled>
+                  	
                             <option value="<?php echo $data_jadwal['jadwal_hari'] ?>"><?php if(empty($data_jadwal['jadwal_hari'])){ echo "-"; }else{ echo $data_jadwal['jadwal_hari']; } ?></option>
-                          </select>
+                        
                   </td>
                   <td align="center">
-                    <select name="jamm[]" disabled>
-                            <option value="<?php echo $data_jadwal['jadwal_jammulai'] ?>"><?php if(empty($data_jadwal['jadwal_jammulai'])){ echo "-"; }else{ echo $data_jadwal['jadwal_jammulai']; } ?></option>
-                          </select>
+                    
+                            <option value="<?php echo $data_jadwal['jadwal_jammulai'] ?>"><?php if(empty($data_jadwal['jadwal_jammulai'])){ echo "-"; }else{ echo $data_jadwal['jadwal_jammulai']; } ?></option>       
                   </td>
                   <td align="center">
-                  	<select name="jams[]" disabled>
+                  	
                             <option value="<?php echo $data_jadwal['jadwal_jamselesai'] ?>"><?php if(empty($data_jadwal['jadwal_jamselesai'])){ echo "-"; }else{ echo $data_jadwal['jadwal_jamselesai']; } ?></option>
-                          </select>
+                        
                   </td>
                 </tr>
           <?php $no++;} ?>
