@@ -16,6 +16,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/vendor/tabler-master/dist/favicon.ico" />
     <title>SKB Bantul</title>
     <script src="../assets/js/require.min.js"></script>
+    <script src="../assets/js/vendors/main.js"></script>
     <script>
       requirejs.config({
           baseUrl: '../'

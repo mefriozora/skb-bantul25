@@ -23,7 +23,7 @@ include "../config/connection.php";
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                  <a class="dropdown-item" href="./logout.php">
+                  <a class="dropdown-item" href="ubah_password.php">
                       <i class="dropdown-icon fe fe-lock"></i> Ganti Password
                     </a>
                     <a class="dropdown-item" href="./logout.php">

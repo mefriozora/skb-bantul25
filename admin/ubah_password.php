@@ -7,7 +7,7 @@ $idrombelee = $_SESSION['idrombel'];
       <li class="breadcrumb-item">
         <a href="../index.php">Dashboard</a>
       </li>
-      <li class="breadcrumb-item active">Naik Kelas</li>
+      <li class="breadcrumb-item active">Ganti Password
     </ol>
     <div class="my-3 my-md-5">
       <div class="container">

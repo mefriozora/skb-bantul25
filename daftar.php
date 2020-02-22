@@ -2,7 +2,18 @@
 <?php
   include "config/connection.php";
 ?>
-
+<style>
+    #file_error{color: #FF0000;}
+</style>
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
 <div class="my-3 my-md-1">
   <div class="container">
   <ol class="breadcrumb">
@@ -34,11 +45,8 @@
               </tr>
               </tbody>
             </table>
-            <script>
-              require(['datatables', 'jquery'], function(datatable, $) {
-                    $('.datatable').DataTable();
-                  });
-            </script>
+            <script src="assets/js/main.js"></script>
+            
             <script>
               function tampilkan(){
               var nama_paket=document.getElementById("form1").paket.value;
@@ -79,7 +87,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select id="paket" name="paket" onchange="tampilkan()" class="form-control">
+                    <select id="paket" name="paket" onchange="tampilkan()" onclick='validasi("paket","Paket")' required class="form-control">
                         <option value="">Pilih Paket</option>
                         <option value="A">Paket A</option>
                         <option value="B">Paket B</option>
@@ -93,7 +101,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select id="tampil" name="tampil" class="form-control">
+                    <select id="tampil" name="tampil"  class="form-control">
                     </select>
                   </div>
               </div>
@@ -113,7 +121,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama" type="text" class="form-control" onkeypress=""/>
+                    <input name="nama" id="nama" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('nama','Nama')" required minlength="3" title="inputan minimal 3 karakter" />
                   </div>
               </div>
               <div class="form-group">
@@ -122,7 +130,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" />
+                    <input name="tempat_lhr" id="tempat_lhr" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('tempat_lhr','Tempat Lahir')" required minlength="3" title="inputan minimal 3 karakter"/>
                   </div>
               </div>
               <div class="form-group">
@@ -131,7 +139,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress=""/>
+                    <input name="tanggal_lhr" id="tanggal_lhr" type="date" class="form-control" onclick="validasi('tanggal_lhr','Tanggal Lahir')" required/>
                   </div>
               </div>
               <div class="form-group">
@@ -140,7 +148,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="agama" class="form-control">
+                    <select name="agama" id="agama" class="form-control" onclick="validComboboxAgama();">
                       <option selected value="">-Pilih-</option>
                       <option value="ISLAM">ISLAM</option>
                       <option value="KRISTEN">KRISTEN</option>
@@ -156,7 +164,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="jenkel" class="form-control">
+                    <select name="jenkel" id="jenkel" class="form-control" onclick="validComboboxGender();" >
                       <option selected value="">-Pilih-</option>
                       <option value="Laki-Laki">Laki - Laki</option>
                       <option value="Perempuan">Perempuan</option>
@@ -169,7 +177,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <textarea name="alamat" class="form-control"></textarea>
+                    <textarea name="alamat" id="alamat" onclick="validasi('alamat','Alamat')" required  class="form-control"></textarea>
                   </div>
               </div>
               <div class="form-group">
@@ -178,7 +186,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" />
+                    <input name="no_hp" id="telepon"  pattern="^([0-9])+$" title="Inputan Harus Angka" onclick="validasi('telepon','Nomor HP')" required maxlength="12" title="inputan maximal 12 karakter" type="text" class="form-control" onkeypress="return isNumber(event)" />
                   </div>
               </div>
               <div>
@@ -198,7 +206,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="asal_sekolah" type="text" class="form-control" onkeypress=""/>
+                    <input name="asal_sekolah" id="asal_sekolah" onclick="validasi('asal_sekolah','Asal Sekolah')" required type="text" class="form-control"/>
                   </div>
               </div>
               <div class="form-group">
@@ -243,7 +251,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <textarea name="alamat_sekolah" class="form-control"></textarea>
+                    <textarea name="alamat_sekolah" id="alamat_sekolah" onclick="validasi('alamat_sekolah','Alamat Sekolah')" required class="form-control"></textarea>
                   </div>
               </div>
           </div>
@@ -278,7 +286,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_ayah" type="text" class="form-control" onkeypress="" />
+                    <input name="nama_ayah" id="nama_ayah" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('nama_ayah','Nama Ayah')" required minlength="3" title="inputan minimal 3 karakter"/>
                   </div>
               </div>
               <div class="form-group">
@@ -287,7 +295,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="pekerj_ayah" type="text" class="form-control" onkeypress="" />
+                    <input name="pekerj_ayah" id="pekerj_ayah" type="text" class="form-control" pattern="^([A-Za-z])+$" title="Inputan Harus Huruf" onclick="validasi('pekerj_ayah','Pekerjaan Ayah')" required minlength="3" title="inputan minimal 3 karakter" />
                   </div>
               </div>
               <div class="form-group">
@@ -296,7 +304,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_ibu" type="text" class="form-control" onkeypress="" />
+                    <input name="nama_ibu" id="nama_ibu" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('nama_ibu','Nama Ibu')" required minlength="3" title="inputan minimal 3 karakter"/>
                   </div>
               </div>
               <div class="form-group">
@@ -305,7 +313,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="pekerj_ibu" type="text" class="form-control" onkeypress="" />
+                    <input name="pekerj_ibu" id="pekerj_ibu" type="text" class="form-control" pattern="^([A-Za-z])+$" title="Inputan Harus Huruf" onclick="validasi('pekerj_ibu','Pekerjaan Ibu')" required minlength="3" title="inputan minimal 3 karakter"/>
                   </div>
               </div>
               <div class="form-group">
@@ -314,7 +322,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <textarea name="alamat_ortu" class="form-control"></textarea>
+                    <textarea name="alamat_ortu" id="alamat_ortu" class="form-control" onclick="validasi('alamat_ortu','Alamat Orangtua')" required></textarea>
                   </div>
               </div>
               <div class="form-group">
@@ -323,7 +331,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp_ortuwali" type="text" class="form-control" onkeypress="return isNumber(event)"/>
+                    <input name="no_hp_ortuwali" id="telepon_ortu"  pattern="^([0-9])+$" title="Inputan Harus Angka" onclick="validasi('telepon_ortu','Nomor HP Orangtua')" required maxlength="12" title="inputan maximal 12 karakter" type="text" type="text" class="form-control" onkeypress="return isNumber(event)"/>
                   </div>
               </div>
             </div>
@@ -342,6 +350,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="fileakta" id="upload" type="file" class="form-control" accept=".pdf">
+                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
                   </div>  
                   </div>
               </div>
@@ -351,6 +360,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="filekk" id="upload" type="file" class="form-control" accept=".pdf">
+                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
                   </div>  
                   </div>
               </div>
@@ -360,6 +370,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="fileijazah" id="upload" type="file" class="form-control" accept=".pdf">
+                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
                   </div>  
                   </div>
               </div>
@@ -369,6 +380,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="file_skpindah" id="upload" type="file" class="form-control" accept=".pdf">
+                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
                   </div>  
                   </div>
               </div>
@@ -378,6 +390,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="file_foto" id="upload" type="file" class="form-control" accept=".jpg">
+                    <p style="color: red;">*Anda dapat upload foto disini dengan ekstensi .jpg*</p>
                   </div>  
                   </div>
               </div>
@@ -394,3 +407,44 @@
     </td>
   </tr>
 </table>
+<script src="assets/js/vendors/main.js"></script>
+<script>
+    var form = document.querySelector("#form1");
+    function validasi(textbox, text) {
+        var input = document.getElementById(textbox);
+
+        var cek = form.checkValidity()
+        if (cek == false) {
+            input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " Wajib Diisi");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>
+<script type="text/javascript">
+  function validComboboxAgama()
+{
+ if (document.form1.agama.value == "") 
+ {
+  alert("Agama belum dipilih");
+ }
+}
+</script>
+<script type="text/javascript">
+  function validComboboxGender()
+{
+ if (document.form1.jenkel.value == "") 
+ {
+  alert("Jenis Kelamin belum dipilih");
+ }
+}
+</script>

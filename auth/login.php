@@ -1,4 +1,13 @@
 <?php include_once "../pendaftaran/views/main.php";?>
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
     <div>
       <div class="modal-dialog">
         <div class="modal-content">
@@ -9,14 +18,14 @@
           <label for="" align="center">Silahkan Login dengan menggunakan Username dan Password Anda !</label>
           </div>
           <div class="modal-body">
-            <form action="cek_login.php" enctype="multipart/form-data" method="post">
+            <form action="cek_login.php" id="formlogin" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>Username</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="username" type="text" class="form-control" onkeypress="" placeholder="Username"/>
+                    <input name="username" id="username" onclick='validasi("username","Username")' required type="text" class="form-control" placeholder="Username"/>
                   </div>
               </div>
               <div class="form-group">
@@ -25,7 +34,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="password" type="password" class="form-control" onkeypress="" placeholder="Password"/>
+                    <input name="password" id="sandi" type="password" class="form-control"  onclick="validasi('sandi','Password')" required minlength="5" title="Password minimal 5 karakter" placeholder="Password"/>
                   </div>
               </div> 
               <div class="modal-footer">
@@ -42,4 +51,36 @@
         </div>
       </div>
     </div>  
-  
+  <script src="assets/js/vendors/main.js"></script>
+<script type="text/javascript">
+  var input = document.getElementById('username');
+  input.oninvalid = function(event){
+    event.target.setCustomValidity('Username tidak boleh Kosong');
+  }
+  var input = document.getElementById('sandi');
+  input.oninvalid = function(event){
+    event.target.setCustomValidity('Password tidak boleh Kosong');
+  }
+</script>
+<script>
+    var form = document.querySelector("#formlogin");
+    function validasi(textbox, text) {
+        var input = document.getElementById(textbox);
+
+        var cek = form.checkValidity()
+        if (cek == false) {
+            input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " Wajib Diisi");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>

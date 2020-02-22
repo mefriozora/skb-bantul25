@@ -2,7 +2,15 @@
 <?php
   include "config/connection.php";
 ?>
-
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
 <div class="my-3 my-md-1">
   <div class="container">
   <ol class="breadcrumb">
@@ -34,6 +42,7 @@
               </tr>
               </tbody>
             </table>
+            
             <script>
               require(['datatables', 'jquery'], function(datatable, $) {
                     $('.datatable').DataTable();
@@ -53,11 +62,13 @@
                 }
             }
             </script>
+            
+
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 
 <div class="col-lg order-lg-first"><div class="container">
 <table border='0' width="100%">
@@ -71,7 +82,7 @@
             <h4 class="modal-title">Pendaftaran Siswa</h4>            
           </div>
           <div class="modal-body">
-          <form action="daftar_add.php"  method="POST" id="form1" name="form1" onsubmit="return true" enctype="multipart/form-data" >
+          <form action="daftar_add.php"  method="POST" id="form1"  name="form1" onsubmit="return true" enctype="multipart/form-data" >
           <div class="form-group" >
                 <label>Pendaftaran Siswa</label>
                   <div class="input-group">
@@ -118,14 +129,14 @@
             <h4 class="modal-title">Data Pendaftar</h4>            
           </div>
           <div class="modal-body">
-            
+            <form id="formdaftar">
               <div class="form-group">
                 <label>Nama</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama" type="text" class="form-control" onkeypress=""/>
+                    <input name="nama" id="nama" type="text" class="form-control" onclick="validasi('nama','NAMA')" required/>
                   </div>
               </div>
               <div class="form-group">
@@ -372,6 +383,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     <input name="file_foto" id="upload" type="file" class="form-control" accept=".jpg">
+                    
                   </div>  
                   </div>
               </div>
@@ -384,7 +396,43 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
     </td>
   </tr>
 </table>
+<script type="text/javascript">
+  var input = document.getElementById('nama');
+  input.oninvalid = function(event){
+    event.target.setCustomValidity('Nama tidak boleh Kosong');
+  }
+  var input = document.getElementById('sandi');
+  input.oninvalid = function(event){
+    event.target.setCustomValidity('Password tidak boleh Kosong');
+  }
+</script>
+<script src="assets/js/vendors/main.js"></script>
+<script>
+
+              var form = document.querySelector("#formdaftar");
+
+              function validasi(textbox, text) {
+              var input = document.getElementById(textbox);
+
+              var cek = form.checkValidity()
+                if (cek == false) {
+                  input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " WAJIB DIISI");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>

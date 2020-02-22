@@ -9,7 +9,7 @@ include "auth_user.php";
         <div class="header py-4">
           <div class="container">
             <label class="d-flex">
-              <a class="header-brand" href="">
+              <a class="header-brand" href="../index.php">
               <img src="../assets/image/bantul.png" class="header-brand-img" alt="tabler logo">
                <label for="">SKB Bantul</label>
               </a>
