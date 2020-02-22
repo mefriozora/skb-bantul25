@@ -5,6 +5,15 @@ switch ($_GET["act"]){
 default:
 //INDEX======================================================================================================
 ?>
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
 <div class="my-3 my-md-1">
   <div class="container">
           <ol class="breadcrumb">
@@ -22,14 +31,14 @@ default:
                     <h3 class="card-title">Tambah Mata Pelajaran</h3>
                   </div>
                   <div class="card-body">
-                  <form action="?&act=save" enctype="multipart/form-data" method="post">
+                  <form action="?&act=save" id="formtambahmapel" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>Kode Mata Pelajaran</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="kodemapel" type="text" class="form-control" onkeypress="" placeholder="Kode Mata pelajaran"/>
+                    <input name="kodemapel" id="kodemapel" type="text" class="form-control" onclick="validasi('kodemapel','Kode Matapelajaran')" required placeholder="Kode Mata pelajaran"/>
                   </div>
               </div>
               <div class="form-group">
@@ -38,7 +47,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="mapel" type="text" class="form-control" onkeypress="" placeholder="Mata pelajaran"/>
+                    <input name="mapel" id="mapel" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('mapel','Mata Pelajaran')" required minlength="3" title="inputan minimal 3 karakter"  placeholder="Nama Pamong Belajar" placeholder="Mata pelajaran"/>
                   </div>
               </div>
               
@@ -124,6 +133,28 @@ default:
       </div>
     </div>
   </div>
+  <script>
+    var form = document.querySelector("#formtambahmapel");
+    function validasi(textbox, text) {
+        var input = document.getElementById(textbox);
+
+        var cek = form.checkValidity()
+        if (cek == false) {
+            input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " Wajib Diisi");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>
  
 <?php
 break;

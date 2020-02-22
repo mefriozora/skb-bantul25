@@ -16,10 +16,6 @@
               </h1>
             </div>
             <?php
-              //perhitungan jumlah pendatar
-              $querypendaftar = mysqli_query($connect,"SELECT * from tb_pendaftar WHERE status_pendaftar='Belum Diterima'");
-              $countpendaftar = mysqli_num_rows($querypendaftar);
-
               //perhitungan jumlah siswa diterima
               $querysiswaditerima = mysqli_query($connect,"SELECT * from tb_pendaftar WHERE status_pendaftar='Diterima'");
               $countsiswaditerima = mysqli_num_rows($querysiswaditerima);
@@ -37,14 +33,6 @@
               $countnilai = mysqli_num_rows($querynilai);
             ?>
             <div class="row row-cards">
-              <div class="col-6 col-sm-4 col-lg-2">
-                <div class="card">
-                  <div class="card-body p-3 text-center">
-                    <div class="h1 m-0"><?php echo $countpendaftar ?></div>
-                    <div class="text-muted mb-4"><a href="pendaftaran.php">Pendaftar Masuk</a></div>
-                  </div>
-                </div>
-              </div>
               <div class="col-6 col-sm-4 col-lg-2">
                 <div class="card">
                   <div class="card-body p-3 text-center">

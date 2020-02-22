@@ -6,6 +6,15 @@ default:
 
 //INDEX======================================================================================================
 ?>
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
 <div class="my-3 my-md-1">
   <div class="container">
   <ol class="breadcrumb">
@@ -23,14 +32,14 @@ default:
                     <h3 class="card-title">Tambah Pamong Belajar/Tutor</h3>
                   </div>
                   <div class="card-body">
-                  <form action="?&act=save" enctype="multipart/form-data" method="post">
+                  <form action="?&act=save" id="formtambahpamong" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>NIK Pamong Belajar</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nik" type="text" class="form-control" onkeypress="" placeholder="NIK Pamong Belajar" />
+                    <input name="nik" id="nik" type="text" class="form-control" pattern="^([0-9])+$" title="Inputan Harus Angka" onclick="validasi('nik','NIK')" required maxlength="16" title="inputan maximal 16 karakter" placeholder="NIK Pamong Belajar" />
                   </div>
               </div>
               <div class="form-group">
@@ -39,7 +48,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama_pamong" type="text" class="form-control" onkeypress="" placeholder="Nama Pamong Belajar" />
+                    <input name="nama_pamong" id="nama_pamong" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('nama_pamong','Nama Pamong')" required minlength="3" title="inputan minimal 3 karakter"  placeholder="Nama Pamong Belajar" />
                   </div>
               </div>
               <div class="form-group">
@@ -48,7 +57,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tempat_lhr" type="text" class="form-control" onkeypress="" placeholder="Tempat lahir"/>
+                    <input name="tempat_lhr" id="tempat_lhr" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('tempat_lhr','Tempat Lahir')" required minlength="3" title="inputan minimal 3 karakter" placeholder="Tempat lahir"/>
                   </div>
               </div>
               <div class="form-group">
@@ -57,7 +66,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="tanggal_lhr" type="date" class="form-control" onkeypress="" placeholder="Tgl lahir"/>
+                    <input name="tanggal_lhr" id="tanggal_lhr" type="date" class="form-control" onclick="validasi('tanggal_lhr','Tanggal Lahir')" required placeholder="Tgl lahir"/>
                   </div>
               </div>
               <div class="form-group">
@@ -105,7 +114,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_hp" type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Telp"/>
+                    <input name="no_hp" id="telepon"  pattern="^([0-9])+$" title="Inputan Harus Angka" onclick="validasi('telepon','Nomor HP')" required maxlength="12" title="inputan maximal 12 karakter" type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Telp"/>
                   </div>
               </div>
              <div class="form-group">
@@ -191,6 +200,28 @@ default:
       </div>
     </div>
   </div>
+  <script>
+    var form = document.querySelector("#formtambahpamong");
+    function validasi(textbox, text) {
+        var input = document.getElementById(textbox);
+
+        var cek = form.checkValidity()
+        if (cek == false) {
+            input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " Wajib Diisi");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>
 <?php
 break;
 

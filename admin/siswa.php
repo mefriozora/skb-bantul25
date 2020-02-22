@@ -5,6 +5,15 @@ switch ($_GET["act"]){
 default:
 //INDEX======================================================================================================
 ?>
+<style type="text/css">
+  input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+</style>
 <div class="my-md-1">
           <div class="container">
         <ol class="breadcrumb">
@@ -28,7 +37,7 @@ default:
                 $Data  = mysqli_fetch_array($query);
             ?>
 
-            <form action="?&act=save" enctype="multipart/form-data" method="post">
+            <form action="?&act=save" id="formtambahsiswa" enctype="multipart/form-data" method="post">
               <div class="form-group">
                 <label>No. Pendaftar</label>
                   <div class="input-group">
@@ -44,7 +53,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="no_induk" type="text" class="form-control" onkeypress="" />
+                    <input name="no_induk" id="no_induk" type="text" class="form-control" pattern="^([0-9])+$" title="Inputan Harus Angka" onclick="validasi('no_induk','Nomor Induk Siswa')" required maxlength="12" title="inputan maximal 12 karakter"/>
                   </div>
               </div>
               <div class="form-group">
@@ -53,7 +62,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="nama" readonly type="text" class="form-control" onkeypress="" value="<?php echo $Data['nama'] ?>"/>
+                    <input name="nama" readonly type="text" class="form-control"  value="<?php echo $Data['nama'] ?>"/>
                   </div>
               </div>
               <div class="form-group">
@@ -129,7 +138,29 @@ default:
       </div>
   </body>
 </html>
+<script src="../assets/js/vendors/main.js"></script>
+<script>
+    var form = document.querySelector("#formtambahsiswa");
+    function validasi(textbox, text) {
+        var input = document.getElementById(textbox);
 
+        var cek = form.checkValidity()
+        if (cek == false) {
+            input.oninvalid = function(e) {
+                if (e.target.validity.valueMissing) {
+                    e.target.setCustomValidity(text + " Wajib Diisi");
+                    return;
+                }
+            }
+            input.oninput = function(e) {
+                e.target.setCustomValidity("")
+            }
+            form.reportValidity();
+            console.log(cek);
+        }
+
+    }
+  </script>
 <?php
 break;
 

@@ -23,7 +23,7 @@ include "../config/connection.php";
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                  <a class="dropdown-item" href="./logout.php">
+                  <a class="dropdown-item" href="ubah_password.php">
                       <i class="dropdown-icon fe fe-lock"></i> Ganti Password
                     </a>
                     <a class="dropdown-item" href="./logout.php">
@@ -47,22 +47,10 @@ include "../config/connection.php";
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-users"></i>Pendaftaran</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="pendaftaran.php" class="dropdown-item ">Pendaftar Masuk</a>
                       <a href="siswa_diterima.php" class="dropdown-item ">Pendaftar Diterima</a>
                     </div>
                   </li>
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i>Master Data</a>
-                    <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="siswa.php" class="dropdown-item ">Siswa</a>
-                      <a href="kelas.php" class="dropdown-item ">Kelas</a>
-                      <a href="paket_kesetaraan.php" class="dropdown-item ">Paket Kesetaraan</a>
-                      <a href="tutor.php" class="dropdown-item ">Pamong Belajar</a>
-                      <a href="mapel.php" class="dropdown-item ">Mata Pelajaran</a>
-                      <a href="ta.php" class="dropdown-item ">Tahun Ajaran</a>
-                      <a href="pengguna.php" class="dropdown-item ">Pengguna</a>
-                    </div>
-                  </li>
+                  
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-user-check"></i>Rombel</a>
                     <div class="dropdown-menu dropdown-menu-arrow">

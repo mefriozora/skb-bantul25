@@ -52,16 +52,7 @@ input:valid {
       </div>
     </div>  
   <script src="assets/js/vendors/main.js"></script>
-<script type="text/javascript">
-  var input = document.getElementById('username');
-  input.oninvalid = function(event){
-    event.target.setCustomValidity('Username tidak boleh Kosong');
-  }
-  var input = document.getElementById('sandi');
-  input.oninvalid = function(event){
-    event.target.setCustomValidity('Password tidak boleh Kosong');
-  }
-</script>
+
 <script>
     var form = document.querySelector("#formlogin");
     function validasi(textbox, text) {

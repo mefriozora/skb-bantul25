@@ -349,8 +349,9 @@ input:valid {
                 <div class="input-group" >
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
-                    <input name="fileakta" id="upload" type="file" class="form-control" accept=".pdf">
-                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
+                    <input name="fileakta" type="file" class="form-control" accept=".pdf" id="file" class="demoInputBox" onchange="return validasiFile()">&nbsp;&nbsp;<span id="file_error"></span>
+                    <br/><span style="color: red;">*Anda dapat upload file akta kelahiran disini dengan tipe file .pdf</span>
+                    <div id="pratinjauFIle"></div>
                   </div>  
                   </div>
               </div>
@@ -359,8 +360,10 @@ input:valid {
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
-                    <input name="filekk" id="upload" type="file" class="form-control" accept=".pdf">
-                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
+                    <input name="filekk" type="file" class="form-control" accept=".pdf" id="file" class="demoInputBox" onchange="return validasiFile()">&nbsp;&nbsp;<span id="file_error"></span>
+                    <br/><span style="color: red;">*Anda dapat upload file KK disini dengan tipe file .pdf</span>
+                    <div id="pratinjauFIle"></div>
+                    
                   </div>  
                   </div>
               </div>
@@ -369,8 +372,10 @@ input:valid {
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
-                    <input name="fileijazah" id="upload" type="file" class="form-control" accept=".pdf">
-                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
+                    <input name="fileijazah" type="file" class="form-control" accept=".pdf" id="file" class="demoInputBox" onchange="return validasiFile()">&nbsp;&nbsp;<span id="file_error"></span>
+                    <br/><span style="color: red;">*Anda dapat upload Ijazah / Raport disini dengan tipe file .pdf</span>
+                    <div id="pratinjauFIle"></div>
+                   
                   </div>  
                   </div>
               </div>
@@ -379,8 +384,9 @@ input:valid {
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
-                    <input name="file_skpindah" id="upload" type="file" class="form-control" accept=".pdf">
-                    <p style="color: red;">*Anda dapat upload file disini dengan ekstensi .pdf*</p>
+                    <input name="file_skpindah" type="file" class="form-control" accept=".pdf" id="file" class="demoInputBox" onchange="return validasiFile()">&nbsp;&nbsp;<span id="file_error"></span>
+                    <br/><span style="color: red;">*Anda dapat upload file SK Pindah Sekolah disini dengan tipe file .pdf</span>
+                    <div id="pratinjauFIle"></div>
                   </div>  
                   </div>
               </div>
@@ -389,8 +395,9 @@ input:valid {
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
-                    <input name="file_foto" id="upload" type="file" class="form-control" accept=".jpg">
+                    <input name="file_foto" id="foto" type="file" class="form-control" accept=".jpg" onchange="return validasiFile()">
                     <p style="color: red;">*Anda dapat upload foto disini dengan ekstensi .jpg*</p>
+                     <div id="pratinjauGambar" style="width: 10px;"></div>
                   </div>  
                   </div>
               </div>
@@ -446,5 +453,39 @@ input:valid {
  {
   alert("Jenis Kelamin belum dipilih");
  }
+}
+</script>
+<script>
+function validate() {
+  $("#file_error").html("");
+  $(".demoInputBox").css("border-color","#F0F0F0");
+  var file_size = $('#file')[0].files[0].size;
+  if(file_size>1024000) {
+    $("#file_error").html("File maksimal 1MB");
+    $(".demoInputBox").css("border-color","#FF0000");
+    return false;
+  } 
+  return true;
+}
+</script>
+<script>
+    function validasiFile(){
+    var inputFile = document.getElementById('foto');
+    var pathFile = inputFile.value;
+    var ekstensiOk = /(\.jpg)$/i;
+    if(!ekstensiOk.exec(pathFile)){
+        alert('Silakan upload file yang memiliki ekstensi .jpg');
+        inputFile.value = '';
+        return false;
+    }else{
+        //Pratinjau gambar
+        if (inputFile.files && inputFile.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('pratinjauGambar').innerHTML = '<img src="'+e.target.result+'"/>';
+            };
+            reader.readAsDataURL(inputFile.files[0]);
+        }
+    }
 }
 </script>
