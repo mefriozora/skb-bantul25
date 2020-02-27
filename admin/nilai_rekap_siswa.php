@@ -115,8 +115,8 @@
           </div>
         </div>
       </div>
-      <button type="submit" name="tambah" class="btn btn-primary" role="button">Simpan</button>
-      <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button>
+      <!-- <button type="submit" name="tambah" class="btn btn-primary" role="button">Simpan</button>
+      <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button> -->
     </div>
 </form>
 	<?php
