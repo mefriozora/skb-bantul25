@@ -20,11 +20,11 @@ if (isset($_GET['tambahkan']))
         {
           if($i==1)
           {
-            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','1')");
+            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','2')");
           }
           else
           {
-            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','2')");
+            mysqli_query($connect, "INSERT INTO tb_tahunajaran(ta_nama,semester_id) VALUES ('$nextID','1')");
           }
         }
                   
@@ -119,7 +119,7 @@ if (isset($_GET['aktifkan']))
                     <?php 
                       if($data['ta_status']=='Tidak Aktif'){
                     ?>
-                    <a href="?page=semester&action=lihat&aktifne=aktif&idthajaran=<?php echo $data['ta_id'] ?>"  onclick="return confirm('Yakin Merubah Status Semester?')" class="btn btn-info btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
+                    <a href="?page=semester&action=lihat&aktifne=aktif&idthajaran=<?php echo $data['ta_id'] ?>"  onclick="return confirm('Yakin Mengaktifkan Tahun Ajaran ini?')" class="btn btn-info btn-sm"><i class="fe fe-check-circle">Aktifkan</i></a>
                     <?php } ?> 
                   </td>
                 </tr>

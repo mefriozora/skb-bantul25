@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Feb 2020 pada 12.45
+-- Generation Time: 27 Feb 2020 pada 06.46
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -132,24 +132,8 @@ CREATE TABLE `tb_nilai` (
   `nilai_tugas` varchar(10) DEFAULT NULL,
   `nilai_pts` varchar(10) DEFAULT NULL,
   `nilai_pas_pat` varchar(10) DEFAULT NULL,
-  `naik_kelas` varchar(15) NOT NULL
+  `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `tb_nilai`
---
-
-INSERT INTO `tb_nilai` (`nilai_id`, `nis`, `rombel_id`, `kelas_id`, `ta_id`, `semester_id`, `mapel_id`, `nilai_tugas`, `nilai_pts`, `nilai_pas_pat`, `naik_kelas`) VALUES
-(61, '012002060001', 9, 3, 5, 1, 3, '70', '80', '80', 'Lulus'),
-(62, '012002060002', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(63, '012002060003', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(64, '012002060004', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(65, '012002060005', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(66, '012002060006', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(67, '012002060007', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(68, '012002060008', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(69, '012002060009', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus'),
-(70, '012002060010', 9, 3, 5, 1, 3, '', '', '', 'Tidak Lulus');
 
 -- --------------------------------------------------------
 
@@ -314,14 +298,15 @@ CREATE TABLE `tb_rombel` (
 --
 
 INSERT INTO `tb_rombel` (`rombel_id`, `ta_id`, `kelas_id`, `nik`) VALUES
-(1, 5, 1, '3402060302990001'),
-(2, 5, 2, '3402060302990001'),
-(3, 5, 4, '3402060109870001'),
-(4, 5, 5, '3402060109870001'),
-(6, 5, 7, '3402060102990001'),
-(7, 5, 8, '3402060102990001'),
-(8, 5, 9, '3402060102990001'),
-(9, 5, 3, '3402060302990001');
+(1, 2, 1, '3402060302990001'),
+(2, 2, 2, '3402060302990001'),
+(3, 2, 3, '3402060302990001'),
+(4, 2, 4, '3402060109870001'),
+(5, 2, 5, '3402060109870001'),
+(6, 2, 6, '3402060109870001'),
+(7, 2, 7, '3402060102990001'),
+(8, 2, 8, '3402060102990001'),
+(9, 2, 9, '3402060109870001');
 
 -- --------------------------------------------------------
 
@@ -340,16 +325,13 @@ CREATE TABLE `tb_rombel_siswa` (
 --
 
 INSERT INTO `tb_rombel_siswa` (`romsiswa_id`, `rombel_id`, `nis`) VALUES
-(4, 9, '012002060001'),
-(5, 9, '012002060002'),
-(6, 9, '012002060003'),
-(7, 9, '012002060004'),
-(8, 9, '012002060005'),
-(9, 9, '012002060006'),
-(10, 9, '012002060007'),
-(11, 9, '012002060008'),
-(12, 9, '012002060009'),
-(13, 9, '012002060010');
+(1, 2, '012002050005'),
+(2, 2, '012002050006'),
+(3, 3, '012002060001'),
+(4, 3, '012002060002'),
+(5, 3, '012002060003'),
+(6, 3, '012002060004'),
+(7, 3, '012002060007');
 
 -- --------------------------------------------------------
 
@@ -368,8 +350,8 @@ CREATE TABLE `tb_semester` (
 --
 
 INSERT INTO `tb_semester` (`semester_id`, `semester`, `semester_status`) VALUES
-(1, 'Ganjil', 'Aktif'),
-(2, 'Genap', 'Tidak Aktif');
+(1, 'Ganjil', 'Tidak Aktif'),
+(2, 'Genap', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -389,12 +371,12 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`nis`, `no_pendaftar`, `nama_siswa`, `siswa_status`) VALUES
+('012002050005', 'A202002050005', 'Fahmida', 'Aktif'),
+('012002050006', 'A202002050006', 'Ghoizatul Z ', 'Aktif'),
 ('012002060001', 'A202002050001', 'Tegar Arif Pratama', 'Aktif'),
 ('012002060002', 'A202002050002', 'Abdul Muiz', 'Aktif'),
 ('012002060003', 'A202002050003', 'Abdullah Hudzafah', 'Aktif'),
 ('012002060004', 'A202002050004', 'Azizah Qolbun S', 'Aktif'),
-('012002060005', 'A202002050005', 'Fahmida', 'Aktif'),
-('012002060006', 'A202002050006', 'Ghoizatul Z ', 'Aktif'),
 ('012002060007', 'A202002050007', 'Haidar Fatih', 'Aktif'),
 ('012002060008', 'A202002050008', 'Isnaini Nur A', 'Aktif'),
 ('012002060009', 'A202002050009', 'Syamil Umar A', 'Aktif'),
@@ -418,20 +400,10 @@ CREATE TABLE `tb_tahunajaran` (
 --
 
 INSERT INTO `tb_tahunajaran` (`ta_id`, `semester_id`, `ta_nama`, `ta_status`) VALUES
-(1, 1, '2016/2017', 'Tidak Aktif'),
-(2, 1, '2017/2018', 'Tidak Aktif'),
-(3, 1, '2018/2019', 'Tidak Aktif'),
-(4, 1, '2019/2020', 'Tidak Aktif'),
-(5, 1, '2020/2021', 'Aktif'),
-(6, 1, '2021/2022', 'Tidak Aktif'),
-(8, 1, '2022/2023', 'Tidak Aktif'),
-(9, 1, '2023/2024', 'Tidak Aktif'),
-(10, 1, '2024/2025', 'Tidak Aktif'),
-(11, 1, '2025/2026', 'Tidak Aktif'),
-(12, 2, '2026/2027', 'Tidak Aktif'),
-(13, 1, '2026/2027', 'Tidak Aktif'),
-(14, 2, '2027/2028', 'Tidak Aktif'),
-(15, 1, '2027/2028', 'Tidak Aktif');
+(1, 1, '2019/2020', 'Tidak Aktif'),
+(2, 2, '2019/2020', 'Aktif'),
+(3, 1, '2020/2021', 'Tidak Aktif'),
+(4, 2, '2020/2021', 'Tidak Aktif');
 
 --
 -- Indexes for dumped tables
@@ -554,7 +526,7 @@ ALTER TABLE `tb_mapel`
 -- AUTO_INCREMENT for table `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
@@ -574,7 +546,7 @@ ALTER TABLE `tb_rombel`
 -- AUTO_INCREMENT for table `tb_rombel_siswa`
 --
 ALTER TABLE `tb_rombel_siswa`
-  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_semester`
 --
@@ -584,7 +556,7 @@ ALTER TABLE `tb_semester`
 -- AUTO_INCREMENT for table `tb_tahunajaran`
 --
 ALTER TABLE `tb_tahunajaran`
-  MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
