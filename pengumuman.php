@@ -31,23 +31,21 @@
                           <th>Nama</th>
                           <th>Paket Kesetaraan</th>
                           <th>Kelas Kesetaraan</th>
-                          
-              
+                         
                         </tr>
                       </thead>
                       <tbody>
                         <?php
-                      $sql=mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'");
+                      $sql=mysqli_query($connect,"SELECT * FROM tb_pendaftar  WHERE status_pendaftar='Diterima'");
                       $no=1;
                       while($h=mysqli_fetch_array($sql)){ ?>
                         <tr>
                           <td><?php echo $no;?></td>
                           <td><?php echo $h['status_pendaftar'];?></td>
-                          <td><?php echo $h['no_pendaftar'];?></td>S
+                          <td><?php echo $h['no_pendaftar'];?></td>
                           <td><?php echo $h['nama'];?></td>
                           <td><?php echo $h['paket_kesetaraan'];?></td>
                           <td><?php echo $h['kelas_kesetaraan'];?></td>
-                          
                         </tr>
                         <?php $no++; } ?>
                       </tbody>
@@ -67,4 +65,3 @@
         </div>
     </div>
 </div>
-
