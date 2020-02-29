@@ -91,9 +91,12 @@
         <input type="text" name="rombel_id" style="width: 50px;" hidden value="<?= $data['rombel_id']?>" onkeyPress="">
         <input type="text" name="kelas_id" style="width: 50px;" hidden value="<?= $data['kelas_id']?>" onkeyPress="">
         <input type="text" name="mapel_id" style="width: 50px;" hidden value="<?= $data['mapel_id']?>" onkeyPress="">
+		<input type="text" name="kkm" style="width: 50px;" hidden value="<?= $data['mapel_kkm']?>" onkeyPress="">
 		    
 		  </tr>
-		  <?php $no++;}} ?>
+		  <?php
+			$id_semester = $data['semester_id'];
+			$no++;}} ?>
           </tbody>
           </table>
 
@@ -106,8 +109,17 @@
           </div>
         </div>
       </div>
+      <?php 
+	  $q_nilai = mysqli_query($connect, "SELECT * FROM tb_nilai WHERE 
+	  semester_id = '$id_semester' and 
+	  rombel_id='".$_GET['idrombel']."' AND mapel_id='".$_GET['idmapel']."'");
+	  $cek_nilai = mysqli_num_rows($q_nilai);
+	  
+	  if($cek_nilai > 0){?>
+      <button type="submit" name="ubah" class="btn btn-primary" role="button">Update</button>
+      <?php } else {?>
       <button type="submit" name="tambah" class="btn btn-primary" role="button">Simpan</button>
-      <!-- <button type="submit" name="ubah" class="btn btn-warning" role="button">Update</button> -->
+      <?php }?>
     </div>
 </form>
 	<?php
@@ -125,12 +137,11 @@
           $semester_id = @$_POST['semester_id'];
           $nilai_id = @$_POST['nilai_id'];
           
-     $jml=count($nis);
+			$jml=count($nis);
             for ($i=0; $i<$jml; $i++) {
-                mysqli_query($connect,"UPDATE tb_nilai SET nilai_pas_pat = '$nilaipas[$i]' WHERE nilai_id='$nilai_id[$i]'");
+                mysqli_query($connect,"INSERT into tb_nilai(nis,rombel_id,kelas_id,ta_id,semester_id,mapel_id,nilai_pas_pat) 
+                values ('".$nis[$i]."','".$rombel_id."','".$kelas_id."','".$ta_id."','".$semester_id."','".$mapel_id."','".$nilaipas[$i]."')");
             }
-         
-
             echo "<script>alert('Data Berhasil Tersimpan')</script>";
 			echo "<script>window.location='nilai_pas.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
          
@@ -146,14 +157,42 @@
           $kelas_id = @$_POST['kelas_id'];
           $mapel_id = @$_POST['mapel_id'];
           $rombel_id = @$_POST['rombel_id'];
+		  $kkm = @$_POST['kkm'];
           
-
-          $jml=count($nis);
+			$jml=count($nis);
             for ($i=0; $i<$jml; $i++) {
-                mysqli_query($connect,"UPDATE tb_nilai SET nilai_tugas = '$nilaitugas[$i]' ,nilai_pts = '$nilaipts[$i]', nilai_pas_pat = '$nilaipas[$i]' WHERE nilai_id='$nilai_id[$i]'");
+			$q_cek_kelas = mysqli_query($connect, "select * from tb_kelas where kelas_id = '$kelas_id'");
+			$cek_kelas = mysqli_fetch_array($q_cek_kelas);
+			$status_kelas = $cek_kelas['status'];
+			
+			$q_nilai 	= mysqli_query($connect, "select * from tb_nilai where nilai_id = '$nilai_id[$i]'");
+			$nilai 		= mysqli_fetch_assoc($q_nilai);
+			
+			$n_tugas 	= $nilai['nilai_tugas'];
+			$n_pts 		= $nilai['nilai_pts'];
+			$n_pas 		= $nilaipas[$i];
+			
+			$hitung_nilai_akhir = ( $n_tugas + $n_pts + $n_pas ) / 3;
+			
+				if($status_kelas == 'Lulus'){
+						if( $hitung_nilai_akhir < $kkm){
+							$status_nilai = 'Tidak Lulus';
+						}else{
+							$status_nilai = 'Lulus';
+						}
+				}
+				if($status_kelas == 'Naik Kelas'){
+						if( $hitung_nilai_akhir < $kkm){
+							$status_nilai = 'Tidak Naik';
+						}else{
+							$status_nilai = 'Naik Kelas';
+						}
+				}
+                mysqli_query($connect,"UPDATE tb_nilai SET nilai_pas_pat = '$nilaipas[$i]', status = '$status_nilai' WHERE nilai_id='$nilai_id[$i]'");
             }
 
-            echo "<script>alert('Data Berhasil Diubah')</script><script>window.location='daftar_nilaisiswa.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
+            echo "<script>alert('Data Berhasil Diubah')</script>
+			<script>window.location='nilai_pas.php?idmapel=".$_GET['idmapel']."&idrombel=".$_GET['idrombel']."';</script>";
          
         }
   	?>
