@@ -8,9 +8,6 @@
       <li class="breadcrumb-item">
         <a href="../admin/nilai.php">Nilai</a>
       </li>
-      <li class="breadcrumb-item">
-        <a href="../admin/nilai_permapel.php">Nilai Siswa</a>
-      </li>
         <li class="breadcrumb-item active">Nilai Siswa Tugas</li>
   </ol>
   <?php 

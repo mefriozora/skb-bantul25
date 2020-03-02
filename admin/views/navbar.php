@@ -68,7 +68,15 @@ include "../config/connection.php";
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="rombel_data.php" class="dropdown-item ">Data Rombel</a>
                       <a href="rombel_pembagian.php" class="dropdown-item ">Pembagian Rombel</a>
-                      <a href="naik_kelas.php?cari=cari" class="dropdown-item ">Kenaikan Kelas</a>
+					  
+					  <?php 
+					  //cek semester 
+					  $q_semester = mysqli_query($connect, "select * from tb_tahunajaran where semester_id = '2' and ta_status = 'Aktif'");
+					  $semester = mysqli_num_rows($q_semester);
+					  if($semester > 0){
+						echo "<a href='naik_kelas.php?cari=cari' class='dropdown-item'>Kenaikan Kelas</a>";
+					  }
+					  ?>
                     </div>
                   </li>
                   <li class="nav-item">

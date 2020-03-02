@@ -2,10 +2,13 @@
 <div class="my-3 my-md-1">
   <div class="container">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item">
+  <li class="breadcrumb-item">
         <a href="../index.php">Dashboard</a>
       </li>
-        <li class="breadcrumb-item active">Nilai Siswa Warga Belajar</li>
+      <li class="breadcrumb-item">
+        <a href="../admin/nilai.php">Nilai</a>
+      </li>
+        <li class="breadcrumb-item active">Nilai Siswa PAS</li>
   </ol>
   <?php 
       $no=1;

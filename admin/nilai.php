@@ -8,14 +8,10 @@
             </li>
             <li class="breadcrumb-item active">Nilai</li>
           </ol>
-    <div class="page-header">
-      <h4 class="">
-        Nilai Siswa Warga Belajar
-      </h4>
-    </div>
       <div class="">
         <div class="card">
-          <div class="card-header">
+        <div class="card-header">
+            <h3 class="card-title">Daftar Rombongan Belajar</h3>
           </div>
           <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap datatable">

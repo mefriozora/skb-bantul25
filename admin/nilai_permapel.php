@@ -9,7 +9,7 @@
       <li class="breadcrumb-item">
         <a href="../admin/nilai.php">Nilai</a>
       </li>
-      <li class="breadcrumb-item active">Nilai Siswa</li>
+      <li class="breadcrumb-item active">Nilai Permapel</li>
     </ol>
     <?php
     $no = 1;
