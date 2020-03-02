@@ -16,14 +16,6 @@
               </h1>
             </div>
             <?php
-              //perhitungan jumlah siswa diterima
-              $querysiswaditerima = mysqli_query($connect,"SELECT * from tb_pendaftar WHERE status_pendaftar='Diterima'");
-              $countsiswaditerima = mysqli_num_rows($querysiswaditerima);
-
-              //perhitungan jumlah tutor
-              $querytutor = mysqli_query($connect,"SELECT * from tb_pamong_belajar order by nik asc");
-              $counttutor = mysqli_num_rows($querytutor);
-
               //perhitungan jadwal
               $queryjadwal = mysqli_query($connect,"SELECT *  FROM tb_rombel");
               $countjadwal = mysqli_num_rows($queryjadwal);
@@ -33,24 +25,6 @@
               $countnilai = mysqli_num_rows($querynilai);
             ?>
             <div class="row row-cards">
-              <div class="col-6 col-sm-4 col-lg-2">
-                <div class="card">
-                  <div class="card-body p-3 text-center">
-                    
-                    <div class="h1 m-0"><?php echo $countsiswaditerima ?></div>
-                    <div class="text-muted mb-4"><a href="siswa.php">Pendaftar Diterima</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-sm-4 col-lg-2">
-                <div class="card">
-                  <div class="card-body p-3 text-center">
-                    
-                    <div class="h1 m-0"><?php echo $counttutor ?></div>
-                    <div class="text-muted mb-4"><a href="tutor.php">Pamong Belajar</a></div>
-                  </div>
-                </div>
-              </div>
               <div class="col-6 col-sm-4 col-lg-2">
                 <div class="card">
                   <div class="card-body p-3 text-center">
