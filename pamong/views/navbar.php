@@ -45,20 +45,6 @@ include "../config/connection.php";
                     <a href="./index.php" class="nav-link"><i class="fe fe-home"></i> Dashboard</a>
                   </li>
                   <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-users"></i>Pendaftaran</a>
-                    <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="siswa_diterima.php" class="dropdown-item ">Pendaftar Diterima</a>
-                    </div>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-user-check"></i>Rombel</a>
-                    <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="rombel_data.php" class="dropdown-item ">Data Rombel</a>
-                      <a href="rombel_pembagian.php" class="dropdown-item ">Pembagian Rombel</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
                     <a href="jadwal.php" class="nav-link"><i class="fe fe-calendar"></i>Jadwal</a>
                   </li>
                   <li class="nav-item">
