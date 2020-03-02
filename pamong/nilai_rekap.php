@@ -6,10 +6,7 @@
       <li class="breadcrumb-item">
         <a href="../index.php">Dashboard</a>
       </li>
-      <li class="breadcrumb-item">
-        <a href="../admin/nilai.php">Nilai</a>
-      </li>
-      <li class="breadcrumb-item active">Nilai Siswa</li>
+      <li class="breadcrumb-item active">Nilai Siswa Warga Belajar</li>
     </ol>
     <?php
     $no = 1;
@@ -54,8 +51,8 @@
                 <tr>
                   <th>No</th>
                   <th>Mata Pelajaran</th>
-                  <th colspan=""><center>Jumlah Siswa</center></th>
-                  <th colspan="2"><center>Aksi</center></th>
+                  <th>Jumlah Siswa</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,11 +73,9 @@
                     <tr>
                       <td><?php echo $no; ?></td>
                       <td><?php echo $data['mapel_nama'] ?></td>
-                      <td align="center"><?php echo $data['jumlahsiswa'] ?></td>
-                      <td align="center">
-                        <a href="nilai_tugas.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-secondary"><i class="fe fe-edit-2"></i></i>&nbspNilai Tugas</a>
-                        <a href="nilai_pts.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-secondary"><i class="fe fe-edit-2"></i></i>&nbspNilai PTS</a>
-                        <a href="nilai_pas.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-secondary"><i class="fe fe-edit-2"></i></i>&nbspNilai PAS</a>
+                      <td><?php echo $data['jumlahsiswa'] ?></td>
+                      <td>
+                        <a href="nilai_rekap_siswa.php?idmapel=<?php echo $data['mapel_id']; ?>&idrombel=<?php echo $_GET['id'] ?>" class="btn btn-xs btn-info"><i class="fe fe-eye"></i></i>&nbspLihat Nilai</a>
                       </td>
                     </tr>
                 <?php $no++;

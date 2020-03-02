@@ -53,7 +53,6 @@ include "../config/connection.php";
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-file-text"></i>Laporan</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="lap_pendaftar.php" class="dropdown-item ">Laporan Pendaftaran</a>
                       <a href="lap_jadwal.php" class="dropdown-item ">Laporan Jadwal</a>
                       <a href="lap_nilai.php" class="dropdown-item ">Laporan Nilai Siswa</a>
                     </div>
