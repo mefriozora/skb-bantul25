@@ -47,7 +47,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <input name="mapel" id="mapel" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('mapel','Mata Pelajaran')" required minlength="3" title="inputan minimal 3 karakter"  placeholder="Nama Pamong Belajar" placeholder="Mata pelajaran"/>
+                    <input name="mapel" id="mapel" type="text" class="form-control" pattern="^([A-Za-z . '])+$" title="Inputan Harus Huruf" onclick="validasi('mapel','Mata Pelajaran')" required minlength="3" title="inputan minimal 3 karakter" placeholder="Mata pelajaran"/>
                   </div>
               </div>
               
