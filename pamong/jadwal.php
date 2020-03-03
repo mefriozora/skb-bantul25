@@ -34,10 +34,7 @@
                 <?php
              
               $no=1;
-              $nik_pamong = $_SESSION['username'];
-              $get_pengguna = mysqli_query($connect, "SELECT r.rombel_id FROM tb_pamong_belajar p JOIN tb_rombel r ON p.nik=r.nik WHERE p.nik='$nik_pamong'");
-              $data_pengguna = mysqli_fetch_array($get_pengguna);
-              $sql = mysqli_query($connect, "SELECT a.rombel_id, c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='".$data_pengguna['rombel_id']."'");
+              $sql = mysqli_query($connect, "SELECT a.rombel_id, c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif')");
               $cek= mysqli_num_rows($sql);
               if($cek>0){
               while ($data= mysqli_fetch_array($sql)) {                 
