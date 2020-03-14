@@ -3,7 +3,7 @@
 ?>
 <html>
 <head>
-	<title>Cetak PDF</title>
+	<title>Laporan Pendaftaran </title>
 	<style>
 		table {
 			border-collapse:collapse;
@@ -16,100 +16,90 @@
 	</style>
 </head>
 <body>
-
-            <h1 align="center">
-			SANGGAR KEGIATAN BELAJAR (SKB) BANTUL
-			<br>
-			<small>Jl. Imogiri Barat KM 7, Semail,Bangunharjo,Kec.Sewon,Bantul,Yogyakarta</small>
-			<br>
-			<small>Kode Pos : 55188, Telepon : (0274) 4396012</small>
-			</h1>
-			<hr style="color: #000;">
-			<br>
-			<h4 align="center">
-			Laporan Pendaftaran
-			</h4>
+            <h2 align="center">
+            SANGGAR KEGIATAN BELAJAR (SKB) BANTUL
+          	<br>
+          		<small>Jl. Imogiri Barat KM 7, Semail,Bangunharjo,Kec.Sewon,Bantul,Yogyakarta</small>
+          	<br>
+          		<small>Kode Pos : 55188, Telepon : (0274) 4396012</small>
+          	</h2>
+          	<hr style="color: #000;">
+          <br>
 			<?php
 				$no=1;
-    			if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
-      				$filter = $_GET['filter']; // Ambil data filder yang dipilih user
+                if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
+                  $filter = $_GET['filter']; // Ambil data filder yang dipilih user
 
-      			if($filter == '1'){ // Jika filter nya 1 (per tanggal)
-          			$tahun = $_GET['tahun'];
-          			echo '<b align=center>Laporan Pendaftaran Tahun '.$_GET['tahun'].'</b><br /><br />';        
-          			$VarResult = mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE YEAR(tgl_pendaftaran)='".$_GET['tahun']."' AND status_pendaftar='Diterima'");// Tampilkan data transaksi sesuai th ajaran yang diinput oleh user pada filter
-  				}
+                if($filter == '1'){ // Jika filter nya 1 (per tanggal)
+                  $thn = $_GET['tahun'];
+                    echo '<h2 style="text-align:center;">LAPORAN PENDAFTARAN '.$_GET['tahun'].'</h2> <br /><br />';
 
-  				}else{ // Jika user tidak mengklik tombol tampilkan
-      				echo '<b align=center>Semua Laporan Pendaftaran</b><br /><br />';
-      				$VarResult = mysqli_query($connect,"SELECT * FROM tb_pendaftar  WHERE status_pendaftar='Diterima'"); // Tampilkan semua data
- 				 }
+                  $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE YEAR(tgl_pendaftaran)='".$_GET['tahun']."' AND status_pendaftar='Diterima'");
+                }else if($filter == '2'){
+                  $paket = $_GET['paket'];
+                  $kelas = $_GET['kelas'];
+                   echo '<h2 style="text-align:center;"> LAPORAN PENDAFTARAN PAKET '.$_GET['paket'].' '.$_GET['kelas'].'</h2>';
+                   $pendaftaran = mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima' AND paket_kesetaraan='$paket' AND kelas_kesetaraan='$kelas'");
+                }
+                }else{ // Jika user tidak mengklik tombol tampilkan
+                  echo '<h2 style="text-align:center;">LAPORAN PENDAFTARAN</h2>';
+                  $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'");
+                }
 
             ?>
             <table border="1">					  					  
 					<tr>
-						  <th align="center" style="width: 50px;">Status Pendaftar</th>
-						  <th align="center" style="width: 50px;">No. Pendaftaran</th>
-						  <th align="center" style="width: 50px;">Tanggal Pendaftaran</th>
-                          <th align="center" style="width: 50px;">Nama</th>
-                          <th align="center" style="width: 50px;">Tempat, Tanggal Lahir</th>
-                          <th align="center" style="width: 50px;">Agama</th>
-                          <th align="center" style="width: 50px;">Jenis Kelamin</th>
-                          <th align="center" style="width: 50px;">Alamat Pendaftar</th>
-                          <th align="center" style="width: 50px;">Nomor HP</th>
-						  <th align="center" style="width: 50px;">Asal Sekolah</th>
-						  <th align="center" style="width: 50px;">Paket Kesetaraan</th>
-						  <th align="center" style="width: 50px;">Kelas Kesetaraan</th>
-						  <th align="center" style="width: 50px;">Putus Sekolah Kelas</th>
-						  <th align="center" style="width: 50px;">Putus Sekolah Semester</th>
-						  <th align="center" style="width: 50px;">Alamat Sekolah</th>
-						  <th align="center" style="width: 50px;">Bertempat Tinggal</th>
-						  <th align="center" style="width: 50px;">Nama Ayah</th>
-						  <th align="center" style="width: 50px;">Nama Ibu</th>
-						  <th align="center" style="width: 50px;">Pekerjaan Ayah</th>
-						  <th align="center" style="width: 50px;">Pekerjaan Ibu</th>
-						  <th align="center" style="width: 50px;">Alamat Ortu</th>
-						  <th align="center" style="width: 50px;">No. HP Ortu/Wali</th>
-						  
-						  <th></th>
+						<td style="width: 50px;" align="center">Status Pendaftar</td>
+					    <td style="width: 50px;" align="center">No. Pendaftaran</td>
+					    <td align="center">Tanggal Pendaftaran</td>
+                  		<td align="center">Nama</td>
+                  		<td align="center">Tempat, Tanggal Lahir</td>
+                  		<td style="width: 70px;" align="center">Agama</td>
+                  		<td style="width: 70px;" align="center">Jenis Kelamin</td>
+                  		<td align="center">Alamat Pendaftar</td>
+                  		<td style="width: 50px;" align="center">Nomor HP</td>
+					    <td align="center">Asal Sekolah</td>
+					    <td style="width: 50px;" align="center">Paket</td>
+					    <td style="width: 50px;" align="center">Kelas</td>
+					    <td style="width: 50px;" align="center">Nama Ortu</td>
+					  	<td style="width: 70px;" align="center">Pekerjaan Ortu</td>
+					    <td align="center">Alamat Ortu</td>
+					    <td style="width: 50px;" align="center">No. HP Ortu/Wali</td>
+
                         </tr>
 					<?php
-						$cek= mysqli_num_rows($VarResult );
+						$cek= mysqli_num_rows($pendaftaran);
                     if($cek>0){
-                       while ($h= mysqli_fetch_assoc($VarResult )) { 
+                       while ($data_pendaftar= mysqli_fetch_array($pendaftaran)) { 
 					?>
 
 						<tr>
-                          <td align="center" style="width: 70px;"><?php echo $h['status_pendaftar'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['no_pendaftar'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo date("d F Y", strtotime($h['tgl_pendaftaran'])); ?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['nama'];?></td>
-						  <td align="center" style="width: 120px;"><?php echo $h['tempat_lhr'] ?> , <?php echo date("d F Y", strtotime($h['tanggal_lhr'])); ?> </td>
-						  <td align="center" style="width: 70px;"><?php echo $h['agama'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['jenkel'];?></td>
-						  <td align="center" style="width: 120px;"><?php echo $h['alamat_domisili'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['no_hp'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['asal_sekolah'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['paket_kesetaraan'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['kelas_kesetaraan'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['putus_sekolah_kelas'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['putus_sekolah_semester'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['alamat_sekolah'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['bertempat_tinggal'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['nama_ayah'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['nama_ibu'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['pekerjaan_ayah'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['pekerjaan_ibu'];?></td>
-						  <td align="center" style="width: 70px;"><?php echo $h['alamat_ortu'];?></td>
-						  <td align="center" style="width: 100px;"><?php echo $h['no_hp_ortuwali'];?></td>
+                        
+                  			<td style="width: 70px;" align="center"><?php echo $data_pendaftar['status_pendaftar'] ?></td>
+                  			<td style="width: 100px;" align="center"><?php echo $data_pendaftar['no_pendaftar'] ?></td>
+                  			<td align="center"><?php echo date("d F Y", strtotime($data_pendaftar['tgl_pendaftaran'])); ?></td>
+                  			<td align="justify"><?php echo $data_pendaftar['nama'] ?></td>
+                  			<td align="justify"><?php echo $data_pendaftar['tempat_lhr']?>,<?php echo date("d F Y", strtotime($data_pendaftar['tanggal_lhr'])); ?></td>
+                  			<td style="width: 70px;" align="center"><?php echo $data_pendaftar['agama'] ?></td>
+                  			<td style="width: 70px;" align="justify"><?php echo $data_pendaftar['jenkel'] ?></td>
+                  			<td align="justify"><?php echo $data_pendaftar['alamat_domisili'] ?></td>
+                  			<td style="width: 95px;" align="justify"><?php echo $data_pendaftar['no_hp'] ?></td>
+                  			<td align="justify"><?php echo $data_pendaftar['asal_sekolah'] ?></td>
+                  			<td style="width: 30px;" align="center"><?php echo $data_pendaftar['paket_kesetaraan'] ?></td>
+                  			<td style="width: 30px;" align="center"><?php echo $data_pendaftar['kelas_kesetaraan'] ?></td>
+                  			<td style="width: 50px;" align="justify"><?php echo $data_pendaftar['nama_ayah'] ?></td>
+                  			<td style="width: 50px;" align="justify"><?php echo $data_pendaftar['pekerjaan_ayah'] ?></td>
+                  			<td align="justify"><?php echo $data_pendaftar['alamat_ortu'] ?></td>
+                  			<td style="width: 95px;" align="justify"><?php echo $data_pendaftar['no_hp_ortuwali'] ?></td>
+                  
                         </tr>
-										  <?php
-										}
-									}else{ // Jika data tidak ada
-										echo "<tr><td colspan='23'>Data tidak ada</td></tr>";
-									}			 
-				?>
-	</table>
+						<?php
+							}
+							}else{ // Jika data tidak ada
+							echo "<tr><td colspan='20'>Data tidak ada</td></tr>";
+							}			 
+						?>
+					</table>
 <br>&nbsp;
 <br>&nbsp;
 <?php
