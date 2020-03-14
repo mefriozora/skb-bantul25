@@ -87,11 +87,11 @@
 						  <td><?php echo $h['pekerjaan_ibu'];?></td>
 						  <td><?php echo $h['alamat_ortu'];?></td>
 						  <td><?php echo $h['no_hp_ortuwali'];?></td>
-						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['foto'];?>" target="_blank"><?php echo $h['foto'];?></a></td>
-						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['akte'];?>" target="_blank"><?php echo $h['akte'];?></a></td>
-						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['kk'];?>" target="_blank"><?php echo $h['kk'];?></a></td>
-						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['ijazah_raport'];?>" target="_blank"><?php echo $h['ijazah_raport'];?></a></td>
-						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['sk_pindah_sekolah'];?>" target="_blank"><?php echo $h['sk_pindah_sekolah'];?></a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['foto'];?>" target="_blank">Lihat Data</a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['akte'];?>" target="_blank">Lihat Data</a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['kk'];?>" target="_blank">Lihat Data</a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['ijazah_raport'];?>" target="_blank">Lihat Data</a></td>
+						  <td><a href="../pendaftaran/file_pendaftar/<?php echo $h['sk_pindah_sekolah'];?>" target="_blank">Lihat Data</a></td>
                         </tr>
                         <?php $no++; } ?>
                       </tbody>
