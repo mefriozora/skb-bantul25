@@ -11,12 +11,12 @@
             <li class="breadcrumb-item active">Jadwal Per Matapelajaran</li>
           </ol>
     <?php 
-	  $no=1;
-	  $sql1=mysqli_query($connect, "SELECT a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,b.ta_id,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f on c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='".$_GET['id']."'");
-	  $cek1= mysqli_num_rows($sql1);
-	  if($cek1>0){
-	  while ($data1= mysqli_fetch_array($sql1)) {                 
-	?>
+    $no=1;
+    $sql1=mysqli_query($connect, "SELECT a.rombel_id,c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='" . $_GET['id'] . "'");
+    $cek1= mysqli_num_rows($sql1);
+    if($cek1>0){
+    while ($data1= mysqli_fetch_array($sql1)) {                 
+  ?>
    <div class="alert alert-info" role="alert">
     <table>
         <tr>
@@ -24,12 +24,15 @@
             <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['paket_nama'] ?></th>
             <th style="text-align:left;" width="120px">Tahun Ajaran</th>
             <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['ta_nama'] ?></th>
+            
         </tr>
+
         <tr>
             <th style="text-align:left;" width="100px">Kelas </th>
             <th style="text-align:left;" width="200px">: &nbsp&nbsp<?php echo $data1['kelas_nama'] ?></th>
             <th style="text-align:left;" width="150px"> Pamong Belajar </th>
             <th style="text-align:left;" width="300px">: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></th>
+            
         </tr>
     </table>
     </div>
