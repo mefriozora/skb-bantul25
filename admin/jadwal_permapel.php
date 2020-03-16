@@ -24,8 +24,6 @@
             <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['paket_nama'] ?></th>
             <th style="text-align:left;" width="120px">Tahun Ajaran</th>
             <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['ta_nama'] ?></th>
-            <th style="text-align:left;" width="150px"> Pamong Belajar </th>
-            <th style="text-align:left;" width="300px">: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></th>
         </tr>
 
         <tr>
@@ -33,8 +31,10 @@
             <th style="text-align:left;" width="200px">: &nbsp&nbsp<?php echo $data1['kelas_nama'] ?></th>
             <th style="text-align:left;" width="100px">Semester</th>
             <th style="text-align:left;" width="120px">: &nbsp&nbsp<?php echo $data1['semester'] ?></th>
-            
-
+        </tr>
+        <tr>
+            <td style="text-align:left;" width="150px"><b>Pamong Belajar </b></td>
+            <td><b>: &nbsp&nbsp<?php echo $data1['pamong_nama'] ?></b></td>
         </tr>
     </table>
     </div>
