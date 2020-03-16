@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28 Feb 2020 pada 15.59
--- Versi Server: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: 05 Mar 2020 pada 14.06
+-- Versi Server: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -135,6 +135,24 @@ CREATE TABLE `tb_nilai` (
   `nilai_pas_pat` varchar(10) DEFAULT NULL,
   `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_nilai`
+--
+
+INSERT INTO `tb_nilai` (`nilai_id`, `nis`, `rombel_id`, `kelas_id`, `ta_id`, `semester_id`, `mapel_id`, `nilai_tugas`, `nilai_pts`, `nilai_pas_pat`, `status`) VALUES
+(16, '012002060001', 3, 3, 2, 2, 3, '67', '78', '70', 'Lulus'),
+(17, '012002060002', 3, 3, 2, 2, 3, '70', '98', '80', 'Lulus'),
+(18, '012002060003', 3, 3, 2, 2, 3, '80', '79', '78', 'Lulus'),
+(19, '012002060004', 3, 3, 2, 2, 3, '98', '67', '76', 'Lulus'),
+(20, '012002060007', 3, 3, 2, 2, 3, '76', '80', '56', 'Lulus'),
+(21, '012002060001', 3, 3, 2, 2, 6, '89', '89', '89', 'Lulus'),
+(22, '012002060002', 3, 3, 2, 2, 6, '78', '89', '87', 'Lulus'),
+(23, '012002060003', 3, 3, 2, 2, 6, '89', '78', '67', 'Lulus'),
+(24, '012002060004', 3, 3, 2, 2, 6, '78', '79', '67', 'Lulus'),
+(25, '012002060007', 3, 3, 2, 2, 6, '79', '79', '80', 'Lulus'),
+(26, '012002050005', 2, 2, 2, 2, 3, '78', '76', '87', 'Naik Kelas'),
+(27, '012002050006', 2, 2, 2, 2, 3, '80', '66', '78', 'Naik Kelas');
 
 -- --------------------------------------------------------
 
@@ -307,7 +325,8 @@ INSERT INTO `tb_rombel` (`rombel_id`, `ta_id`, `kelas_id`, `nik`) VALUES
 (6, 2, 6, '3402060109870001'),
 (7, 2, 7, '3402060102990001'),
 (8, 2, 8, '3402060102990001'),
-(9, 2, 9, '3402060102990001');
+(9, 2, 9, '3402060102990001'),
+(20, 3, 3, '3402060302990001');
 
 -- --------------------------------------------------------
 
@@ -513,61 +532,51 @@ ALTER TABLE `tb_tahunajaran`
 --
 ALTER TABLE `tb_jadwal`
   MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
   MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
 ALTER TABLE `tb_mapel`
   MODIFY `mapel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
 --
 -- AUTO_INCREMENT for table `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
 ALTER TABLE `tb_paket`
   MODIFY `paket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `tb_pengguna`
 --
 ALTER TABLE `tb_pengguna`
   MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT for table `tb_rombel`
 --
 ALTER TABLE `tb_rombel`
-  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
+  MODIFY `rombel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_rombel_siswa`
 --
 ALTER TABLE `tb_rombel_siswa`
-  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
+  MODIFY `romsiswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_semester`
 --
 ALTER TABLE `tb_semester`
   MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `tb_tahunajaran`
 --
 ALTER TABLE `tb_tahunajaran`
   MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
