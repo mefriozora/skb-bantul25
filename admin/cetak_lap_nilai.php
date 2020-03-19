@@ -1,65 +1,148 @@
-<?php include "../config/connection.php"; ?>
-<div class="card">
-        <div class="card-header">
-          <h2 align="center">
-      SANGGAR KEGIATAN BELAJAR (SKB) BANTUL
-      <br>
-      <small>Jl. Imogiri Barat KM 7, Semail,Bangunharjo,Kec.Sewon,Bantul,Yogyakarta</small>
-      <br>
-      <small>Kode Pos : 55188, Telepon : (0274) 4396012</small>
-      </h2>
-      <hr style="color: #000;">
-      <br>
-            <h3 class="card-title"><center>Nilai Per Mata Pelajaran</center></h3>
-          </div>
-          <div class="table-responsive">
-            <table border="1px" width="100%" style="border-collapse: collapse;" class="table card-table table-vcenter text-nowrap datatable" >
-              <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIS</th>
-                    <th>Nama Siswa</th>
-                    <th>KKM</th>
-                    <th>Nilai Tugas</th>
-                    <th>Nilai PTS</th>
-                    <?php if ($_GET['semester']=="1") {?>
-                    <th>Nilai PAS</th>
-                    <?php } else {?>
-                      <th>Nilai PAT</th>
-                    <?php }?>
-                    <th>Nilai Akhir</th>
-                 </tr>
-
-              </thead>
-              <tbody>
-             <?php 
+s<?php ob_start(); 
+    include "../config/connection.php";
+?>
+<html>
+<head>
+  <title>Laporan Nilai Hasil Belajar Mengajar </title>
+  <style>
+    table {
+      border-collapse:collapse;
+      table-layout:fixed;width: 630px;
+    }
+    table td {
+      word-wrap:break-word;
+      width: 20%;
+    }
+  </style>
+</head>
+<body>
+            <h2 align="center">
+            SANGGAR KEGIATAN BELAJAR (SKB) BANTUL
+            <br>
+              <small>Jl. Imogiri Barat KM 7, Semail,Bangunharjo,Kec.Sewon,Bantul,Yogyakarta</small>
+            <br>
+              <small>Kode Pos : 55188, Telepon : (0274) 4396012</small>
+            </h2>
+            <hr style="color: #000;">
+          <br>
+      <?php 
                 $no=1;
-                $kelas = @$_GET['kelas'];
-                $semester = @$_GET['semester'];
-			$ta = @$_GET['ta'];
-			$mapel = @$_GET['mapel'];
-			$nilai = mysqli_query($connect, "SELECT n.*, s.nama_siswa, m.mapel_nama, m.mapel_kkm FROM tb_nilai n JOIN tb_siswa s ON n.nis=s.nis JOIN tb_mapel m ON n.mapel_id=m.mapel_id WHERE n.kelas_id='$kelas' AND n.ta_id='$ta' AND n.semester_id='$semester' AND n.mapel_id='$mapel' ");
-			while($data_nilai = mysqli_fetch_array($nilai)){
-				if(empty($data_nilai['nilai_tugas'])){ $n_tugas = 0; }else{ $n_tugas = $data_nilai['nilai_tugas']; }
-				if(empty($data_nilai['nilai_pts'])){ $n_pts = 0; }else{ $n_pts = $data_nilai['nilai_pts']; }
-				if(empty($data_nilai['nilai_pas_pat'])){ $n_pas = 0; }else{ $n_pas = $data_nilai['nilai_pas_pat']; }
+                if (isset($_GET['cari'])) {
+                $kelas    = $_GET['kelas'];
+                $semester = $_GET['semester'];
+                $ta       = $_GET['ta'];
+                $mapel    = $_GET['mapel'];
+              echo '<h4 style="text-align:center;">LAPORAN HASIL BELAJAR</h4>';
+              echo '<h4 style="text-align:center;">Daftar Nilai '.$_GET['kelas'].'<br> Semester '.$_GET['semester'].' Tahun Ajaran '.$_GET['ta'].'</h4>';
+              echo '<h5 style="text-align:left;">Mata Pelajaran : '.$_GET['mapel'].'<br><br> KKM : 70 </h5>';
+          $nilai = mysqli_query($connect, "SELECT tb_nilai.nilai_id, tb_nilai.nis, tb_siswa.nama_siswa, tb_nilai.kelas_id, tb_kelas.kelas_nama, tb_nilai.ta_id, tb_tahunajaran.ta_nama, tb_nilai.semester_id, tb_semester.semester, tb_nilai.mapel_id, tb_mapel.mapel_nama, tb_mapel.mapel_kkm, tb_nilai.nilai_tugas, tb_nilai.nilai_pts, tb_nilai.nilai_pas_pat, tb_nilai.status FROM tb_nilai JOIN tb_siswa ON tb_siswa.nis=tb_nilai.nis JOIN tb_kelas ON tb_kelas.kelas_id=tb_nilai.kelas_id JOIN tb_tahunajaran ON tb_tahunajaran.ta_id=tb_nilai.ta_id JOIN tb_semester ON tb_semester.semester_id=tb_nilai.semester_id JOIN tb_mapel ON tb_mapel.mapel_id=tb_nilai.mapel_id WHERE tb_kelas.kelas_nama='$kelas' AND tb_tahunajaran.ta_nama='$ta' AND tb_semester.semester='$semester' AND tb_mapel.mapel_nama='$mapel'");
+        
+          }else{
+            echo '<h4 style="text-align:center;">LAPORAN HASIL BELAJAR</h4>';
+            echo '<h4 style="text-align:center;">Semua Daftar Nilai </h4>';
+            
+          $nilai = mysqli_query($connect, "SELECT tb_nilai.nilai_id, tb_nilai.nis, tb_siswa.nama_siswa, tb_nilai.kelas_id, tb_kelas.kelas_nama, tb_nilai.ta_id, tb_tahunajaran.ta_nama, tb_nilai.semester_id, tb_semester.semester, tb_nilai.mapel_id, tb_mapel.mapel_nama, tb_mapel.mapel_kkm, tb_nilai.nilai_tugas, tb_nilai.nilai_pts, tb_nilai.nilai_pas_pat, tb_nilai.status FROM tb_nilai JOIN tb_siswa ON tb_siswa.nis=tb_nilai.nis JOIN tb_kelas ON tb_kelas.kelas_id=tb_nilai.kelas_id JOIN tb_tahunajaran ON tb_tahunajaran.ta_id=tb_nilai.ta_id JOIN tb_semester ON tb_semester.semester_id=tb_nilai.semester_id JOIN tb_mapel ON tb_mapel.mapel_id=tb_nilai.mapel_id");
+         }
+
               ?>
-                <tr>
-		    <td><?php echo $no; ?></td>
-		    <td><?php echo $data_nilai['nis']; ?></td>
-		    <td><?php echo $data_nilai['nama_siswa']; ?></td>
-		    <td><?php echo $data_nilai['mapel_kkm']; ?></td>
-		    <td><input disabled type="number" min="0" name="tugas[]" style="width: 50px;" value="<?= $data_nilai['nilai_tugas']?>"  onkeyPress=""></td>
-		    <td><input disabled type="number" min="0" name="pts[]"  style="width: 50px;" value="<?= $data_nilai['nilai_pts']?>" onKeyPress=""></td>
-		    <td><input disabled type="number" min="0" name="pas[]"  style="width: 50px;" value="<?= $data_nilai['nilai_pas_pat']?>" onKeyPress=""></td>
-			<td><?php echo number_format(($n_tugas + $n_pts + $n_pas )/3, 2); ?></td>
-          <?php $no++;} ?>
-              </tbody>
-            </table>           
-          </div>
-        </div>
+            <table border="1">                        
+            <tr>
+                    <td style="width: 50px;" align="center">No</td>
+                    <td style="width: 150px;" align="center">NIS</td>
+                    <td style="width: 225px;" align="center">Nama Siswa</td>
+                    <td style="width: 150px;" align="center">Matapelajaran</td>
+                    <td style="width: 80px;" align="center">KKM</td>
+                    <td style="width: 80px;" align="center">Nilai Tugas</td>
+                    <td style="width: 80px;" align="center">Nilai PTS</td>
+                    <?php if ($_GET['semester']=="Ganjil") {?>
+                    <td style="width: 80px;" align="center">Nilai PAS</td>
+                    <?php } else {?>
+                      <td style="width: 80px;" align="center">Nilai PAT</td>
+                    <?php }?>
+                    <td style="width: 80px;" align="center">Nilai Akhir</td>
+          </tr>
+          <?php
+            $varTotal = mysqli_num_rows($nilai);
+                  // jika data kurang dari 1
+                if ($varTotal>0) { 
+                while($data_nilai = mysqli_fetch_array($nilai)){
+          ?>
+
+            <tr>
+              <td  style="width: 50px;" align="center"><?php echo $no++; ?></td>
+              <td  style="width: 150px;" align="center"><?php echo $data_nilai['nis']; ?></td>
+              <td  style="width: 225px;" align="center"><?php echo $data_nilai['nama_siswa']; ?></td>
+              <td  style="width: 150px;" align="center"><?php echo $data_nilai['mapel_nama']; ?></td>
+              <td  style="width: 80px;" align="center"><?php echo $data_nilai['mapel_kkm']; ?></td>
+              <td  style="width: 80px;" align="center"><?php echo $data_nilai['nilai_tugas']?></td>
+              <td  style="width: 80px;" align="center"><?php echo $data_nilai['nilai_pts']?></td>
+              <td  style="width: 80px;" align="center"><?php echo $data_nilai['nilai_pas_pat']?></td>
+              <td  style="width: 80px;" align="center"><?php echo number_format(($data_nilai['nilai_tugas'] + $data_nilai['nilai_pts'] + $data_nilai['nilai_pas_pat'] )/3, 2); ?></td>
+            </tr>
+            <?php
+              }
+              }else{ // Jika data tidak ada
+              echo "<tr><td colspan='9'>Data tidak ditemukan</td></tr>";
+              }      
+            ?>
+          </table>
+<br>&nbsp;
+<br>&nbsp;
+<?php
+$tglcetak = date('Y-m-d');
+echo '<p>Bantul,'. tanggal_indo($tglcetak).'</p>';
+?>
+<p align='left'>Mengetahui, 
+<br>Kepala SKB Bantul, 
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br><ins>Rumini,S.Pd</ins>
+<br>(NIP : 195908251982032005)</p>
 
 
-<script>
-	window.print();
-</script>
+</body>
+</html>
+
+<?php
+$html = ob_get_clean();
+ob_end_clean();
+
+require_once('../plugin/html2pdf/html2pdf.class.php');
+try
+{
+  $pdf = new HTML2PDF('L','A4','en', false, 'ISO-8859-15', array(10, 10, 10, 10));
+  $pdf->pdf->SetDisplayMode('fullpage');
+  $pdf->setDefaultFont('Arial');
+  $pdf->WriteHTML($html, false);
+  $pdf->Output('Laporan Nilai Siswa.pdf', 'D');
+}
+catch(HTML2PDF_exception $e) {
+    echo $e;
+    exit;
+}
+?>
+<?php
+function tanggal_indo($tanggal)
+{
+  $bulan = array (1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+      );
+  $split = explode('-', $tanggal);
+  return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+}
+
+
+?>
