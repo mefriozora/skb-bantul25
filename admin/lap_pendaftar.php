@@ -17,36 +17,8 @@
     </div>
     <div class="card-body">
       <form method="GET">
-        <div class="row">
-        <div class="col-lg-2">
-          <div class="form-group" >
-              <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user-o"></i>
-              </div>
-              <select class="form-control" name="filter" id="filter">
-                <option>Filter Berdasarkan</option>
-                      <?php if ($_GET['filter'] == 1) {
-                      ?>
-                      <option value="1" selected="true">Tahun</option>
-                      <?php
-                      } else {?>
-                      <option value="1">Tahun</option>
-                      <?php }?>
-                      <?php if ($_GET['filter'] == 2) {
-                      ?>
-                      <option value="2" selected="true">Paket dan Kelas</option>
-                      <?php
-                      } else {?>
-                      <option value="2">Paket dan Kelas</option>
-                      <?php }?>
-              </select>
-              </div>
-            </div>
-           </div>
-
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
           <div class="form-group" >
               <div class="input-group">
               <div class="input-group-addon">
@@ -78,7 +50,7 @@
             </div>
            </div>
 
-          <div class="col-lg-6">
+          <div class="col-lg-4">
           <div class="form-group" >
               <div class="input-group">
               <div class="input-group-addon">
@@ -94,7 +66,7 @@
             </div>
            </div>
 
-           <div class="col-lg-6">
+           <div class="col-lg-4">
             <div class="form-group" >
                 <div class="input-group">
                 <div class="input-group-addon">
@@ -154,27 +126,22 @@
                <tbody>
              <?php 
                 $no=1;
-                if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
-                  $filter = $_GET['filter']; // Ambil data filder yang dipilih user
+                if (isset($_GET['cari'])) {
+                $kelas        = $_GET['kelas'];
+                $paket        = $_GET['paket'];
+                $tahun        = $_GET['tahun'];
+   
+              echo '<h4 style="text-align:center;">Laporan Pendaftaran Diterima <br> ' .$_GET['kelas'].' Paket '.$_GET['paket'].' Tahun '.$_GET['tahun'].'</h4><hr>';       
+      
+             echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="cetak_lap_pendaftaran.php?cari=&tahun='.$_GET[tahun].'&paket='.$_GET[paket].'&kelas='.$_GET[kelas].'">Cetak</a><left>';
+             $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE YEAR(tgl_pendaftaran)='$tahun'AND paket_kesetaraan='$paket' AND kelas_kesetaraan='$kelas' AND status_pendaftar='Diterima'");
+           }else{
+              echo '<h4 style="text-align:center;"> Semua Laporan Pendaftaran Diterima </h4><hr>'; 
+              echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="cetak_lap_pendaftaran.php">Cetak</a><left>';
+              $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'");
 
-                if($filter == '1'){ // Jika filter nya 1 (per tanggal)
-                  $thn = $_GET['tahun'];
-                    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left>Laporan Pendaftaran Diterima Tahun '.$_GET['tahun'].'</left><hr>';
-                    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="print_pendaftaran.php?filter=1&tahun='.$_GET['tahun'].'"">Cetak</a><left>'; 
-                  $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE YEAR(tgl_pendaftaran)='".$_GET['tahun']."' AND status_pendaftar='Diterima'");
-                }else if($filter == '2'){
-                  $paket = $_GET['paket'];
-                  $kelas = $_GET['kelas'];
-                   echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left>Laporan Pendaftaran Diterima Paket '.$_GET['paket'].' Kelas '.$_GET['kelas'].'</left><hr>';
-                   echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary"target="_blank" href="print_pendaftaran.php?filter=2&paket='.$_GET['paket'].'&kelas='.$_GET['kelas'].'""">Cetak</a></left>';
-                   $pendaftaran = mysqli_query($connect,"SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima' AND paket_kesetaraan='$paket' AND kelas_kesetaraan='$kelas'");
-                }
-                }else{ // Jika user tidak mengklik tombol tampilkan
-                  echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left>Laporan Pendaftaran Diterima</left><hr>';
-                  echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="print_pendaftaran.php">Cetak</a></left>';
-                  $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'");
-                }
-                $varTotal = mysqli_num_rows($pendaftaran);
+           }
+            $varTotal = mysqli_num_rows($pendaftaran);
                   // jika data kurang dari 1
                 if ($varTotal>0) { 
                 while($data_pendaftar = mysqli_fetch_array($pendaftaran)){
@@ -206,7 +173,7 @@
                     }else{
                      ?> 
                      <tr> <!--muncul peringatan bahwa data tidak di temukan-->
-                            <td colspan="21" align="center" style="padding:10px;"> Laporan Pendaftaran Tidak Ditemukan</td>
+                            <td colspan="17" align="center"> Laporan Pendaftaran Diterima Tidak Ditemukan</td>
                       </tr>
                       <?php
                      }
@@ -218,41 +185,7 @@
                   });
             </script>
 
-            <script>
-              $(document).ready(function(){ // Ketika halaman selesai di load
-
-              var filter = $("#filter option:selected").attr("value");
-                if (filter == 1) {
-                  $('#form-tahun').show();
-                } else {
-                  $('#form-tahun').hide(); // Sebagai default kita sembunyikan form filter tahun ajaran dan kelas
-                }
-                if (filter == 2) {
-                  $('#form-paket').show();
-                  $('#form-kelas').show();
-                }else{
-                  $('#form-paket').hide();
-                  $('#form-kelas').hide();
-                } 
-
-                $('#filter').change(function(){ // Ketika user memilih filter
-                  if($(this).val() == '1'){ // Jika filter nya 1 (per tanggal)
-                    $('#form-tahun').show();
-                    $('#form-paket').hide();
-                    $('#form-kelas').hide(); // Sembunyikan form bulan dan tahun
-                    // Tampilkan form tanggal
-                  }else if ($(this).val() == '2'){
-                    $('#form-paket').show(); // Sembunyikan form tanggal
-                    $('#form-kelas').show();
-                    $('#form-tahun').hide();
             
-                  }
-
-                  $('#form-paket select, #form-kelas select, #form-tahun select').val(''); 
-                })
-              })
-            </script> 
-
            
           </div>
         </div>
