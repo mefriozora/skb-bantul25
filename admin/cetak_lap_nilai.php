@@ -38,9 +38,7 @@ s<?php ob_start();
           $nilai = mysqli_query($connect, "SELECT tb_nilai.nilai_id, tb_nilai.nis, tb_siswa.nama_siswa, tb_nilai.kelas_id, tb_kelas.kelas_nama, tb_nilai.ta_id, tb_tahunajaran.ta_nama, tb_nilai.semester_id, tb_semester.semester, tb_nilai.mapel_id, tb_mapel.mapel_nama, tb_mapel.mapel_kkm, tb_nilai.nilai_tugas, tb_nilai.nilai_pts, tb_nilai.nilai_pas_pat, tb_nilai.status FROM tb_nilai JOIN tb_siswa ON tb_siswa.nis=tb_nilai.nis JOIN tb_kelas ON tb_kelas.kelas_id=tb_nilai.kelas_id JOIN tb_tahunajaran ON tb_tahunajaran.ta_id=tb_nilai.ta_id JOIN tb_semester ON tb_semester.semester_id=tb_nilai.semester_id JOIN tb_mapel ON tb_mapel.mapel_id=tb_nilai.mapel_id WHERE tb_kelas.kelas_nama='$kelas' AND tb_tahunajaran.ta_nama='$ta' AND tb_semester.semester='$semester' AND tb_mapel.mapel_nama='$mapel'");
         
           }else{
-            echo '<h4 style="text-align:center;">LAPORAN HASIL BELAJAR</h4>';
-            echo '<h4 style="text-align:center;">Semua Daftar Nilai </h4>';
-            
+          
           $nilai = mysqli_query($connect, "SELECT tb_nilai.nilai_id, tb_nilai.nis, tb_siswa.nama_siswa, tb_nilai.kelas_id, tb_kelas.kelas_nama, tb_nilai.ta_id, tb_tahunajaran.ta_nama, tb_nilai.semester_id, tb_semester.semester, tb_nilai.mapel_id, tb_mapel.mapel_nama, tb_mapel.mapel_kkm, tb_nilai.nilai_tugas, tb_nilai.nilai_pts, tb_nilai.nilai_pas_pat, tb_nilai.status FROM tb_nilai JOIN tb_siswa ON tb_siswa.nis=tb_nilai.nis JOIN tb_kelas ON tb_kelas.kelas_id=tb_nilai.kelas_id JOIN tb_tahunajaran ON tb_tahunajaran.ta_id=tb_nilai.ta_id JOIN tb_semester ON tb_semester.semester_id=tb_nilai.semester_id JOIN tb_mapel ON tb_mapel.mapel_id=tb_nilai.mapel_id");
          }
 

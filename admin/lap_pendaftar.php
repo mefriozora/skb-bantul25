@@ -136,8 +136,8 @@
              echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="cetak_lap_pendaftaran.php?cari=&tahun='.$_GET[tahun].'&paket='.$_GET[paket].'&kelas='.$_GET[kelas].'">Cetak</a><left>';
              $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE YEAR(tgl_pendaftaran)='$tahun'AND paket_kesetaraan='$paket' AND kelas_kesetaraan='$kelas' AND status_pendaftar='Diterima'");
            }else{
-              echo '<h4 style="text-align:center;"> Semua Laporan Pendaftaran Diterima </h4><hr>'; 
-              echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<left><a class="btn btn-primary" target="_blank" href="cetak_lap_pendaftaran.php">Cetak</a><left>';
+              echo '<h4 style="text-align:center;"><br> Semua Laporan Pendaftaran Diterima </h4><hr>'; 
+
               $pendaftaran = mysqli_query($connect, "SELECT * FROM tb_pendaftar WHERE status_pendaftar='Diterima'");
 
            }
