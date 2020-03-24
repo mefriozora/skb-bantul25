@@ -51,11 +51,18 @@ default:
               <div class="col-lg-3">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Tambah Jadwal Pelajaran</h3>
+                    <h3 class="card-title">Edit Jadwal Pelajaran</h3>
                   </div>
+                  <?php
+
+                    $id = $_GET['idjadwal'] ?: '0';
+                    $query=mysqli_query($connect,"SELECT * from tb_jadwal where jadwal_id='$id'");
+                    $jadwal=mysqli_fetch_array($query);
+                ?>
                   <div class="card-body">
-                  <form action="?&act=save&id=<?php echo $_GET['id'] ?>" id="formtambahjadwal" enctype="multipart/form-data" method="post">
-              <div class="form-group">
+                  <form action="?&act=update&id=<?php echo $_GET['id'] ?>" id="formtambahjadwal" enctype="multipart/form-data" method="post">
+                 <input type="hidden" name="id" value="<?php echo $_GET['idjadwal'];?>">
+                  <div class="form-group">
                 <label>Hari</label>
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -63,15 +70,15 @@ default:
                     </div>
                     <select name="hari" class="form-control">
                        <option value="">Pilih Hari</option>
-                       <option value="Senin">Senin</option>
-                       <option value="Selasa">Selasa</option>
-                       <option value="Rabu">Rabu</option>
-                       <option value="Kamis">Kamis</option>
-                       <option value="Jumat">Jumat</option>
+                       <option <?php if ($jadwal['jadwal_hari']=="Senin"){ echo "selected"; } ?> value="Senin">Senin</option>
+                       <option <?php if ($jadwal['jadwal_hari']=="Selasa"){ echo "selected"; } ?> value="Selasa">Selasa</option>
+                       <option <?php if ($jadwal['jadwal_hari']=="Rabu"){ echo "selected"; } ?> value="Rabu">Rabu</option>
+                       <option <?php if ($jadwal['jadwal_hari']=="Kamis"){ echo "selected"; } ?> value="Kamis">Kamis</option>
+                       <option <?php if ($jadwal['jadwal_hari']=="Jumat"){ echo "selected"; } ?> value="Jumat">Jumat</option>
+                      
                     </select>
                   </div>
               </div>
-
               <div class="form-group">
                 <label> Mata Pelajaran</label>
                   <div class="input-group">
@@ -83,7 +90,7 @@ default:
                           <?php 
                             $varTampil = mysqli_query($connect, "SELECT m.mapel_nama, m.mapel_id FROM tb_rombel r JOIN tb_kelas k ON r.kelas_id=k.kelas_id JOIN tb_paket p ON k.paket_id=p.paket_id JOIN tb_mapel m ON p.paket_id=m.paket_id WHERE r.rombel_id='".$_GET['id']."'");
                               while ($varDataCat = mysqli_fetch_array($varTampil)) {
-                                if ($varDataCat['mapel_id']== $varData['mapel_id']) {
+                                if ($varDataCat['mapel_id']== $jadwal['mapel_id']) {
                                   echo "<option selected value=$varDataCat[mapel_id]>$varDataCat[mapel_nama]</option>";
                                 } else {
                                   echo "<option value=$varDataCat[mapel_id]>$varDataCat[mapel_nama]</option>";
@@ -94,7 +101,6 @@ default:
                     </select>
                   </div>
               </div>
-              
               <div class="form-group">
                 <label>Jam Mulai</label>
                   <div class="input-group">
@@ -103,15 +109,15 @@ default:
                     </div>
                     <select name="jamm" class="form-control">
                             <option value="">Pilih Jam Mulai</option>
-                            <option value="07.00">07.00</option>
-                            <option value="08.00">08.00</option>
-                            <option value="09.00">09.00</option>
-                            <option value="09.30">09.30</option>
-                            <option value="10.30">10.30</option>
-                            <option value="11.30">11.30</option>
-                            <option value="12.00">12.00</option>
-                            <option value="13.00">13.00</option>
-                            <option value="13.30">13.30</option>
+                            <option value="07.00" <?php if($h['jadwal_jammulai']=="07.00") echo selected;?>>07.00</option>
+                            <option value="08.00" <?php if($h['jadwal_jammulai']=="08.00") echo selected;?>>08.00</option>
+                            <option value="09.00" <?php if($h['jadwal_jammulai']=="09.00") echo selected;?>>09.00</option>
+                            <option value="09.30" <?php if($h['jadwal_jammulai']=="09.30") echo selected;?>>09.30</option>
+                            <option value="10.30" <?php if($h['jadwal_jammulai']=="10.30") echo selected;?>>10.30</option>
+                            <option value="11.30" <?php if($h['jadwal_jammulai']=="11.30") echo selected;?>>11.30</option>
+                            <option value="12.00" <?php if($h['jadwal_jammulai']=="12.00") echo selected;?>>12.00</option>
+                            <option value="13.00" <?php if($h['jadwal_jammulai']=="13.00") echo selected;?>>13.00</option>
+                            <option value="13.30" <?php if($h['jadwal_jammulai']=="13.30") echo selected;?>>13.30</option>
                        </select>
                   </div>
               </div>
@@ -123,17 +129,17 @@ default:
                     </div>
                     <select name="jams" class="form-control">
                             <option value="">Pilih Jam Selesai</option>
-                            <option value="07.00">07.00</option>
-                            <option value="08.00">08.00</option>
-                            <option value="09.00">09.00</option>
-                            <option value="09.30">09.30</option>
-                            <option value="10.30">10.30</option>
-                            <option value="11.30">11.30</option>
-                            <option value="12.00">12.00</option>
-                            <option value="13.00">13.00</option>
-                            <option value="13.30">13.30</option>
-                            <option value="14.30">14.30</option>
-                            <option value="15.00">15.00</option>
+                            <option value="07.00" <?php if($h['jadwal_jamselesai']=="07.00") echo selected;?>>07.00</option>
+                            <option value="08.00" <?php if($h['jadwal_jamselesai']=="08.00") echo selected;?>>08.00</option>
+                            <option value="09.00" <?php if($h['jadwal_jamselesai']=="09.00") echo selected;?>>09.00</option>
+                            <option value="09.30" <?php if($h['jadwal_jamselesai']=="09.30") echo selected;?>>09.30</option>
+                            <option value="10.30" <?php if($h['jadwal_jamselesai']=="10.30") echo selected;?>>10.30</option>
+                            <option value="11.30" <?php if($h['jadwal_jamselesai']=="11.30") echo selected;?>>11.30</option>
+                            <option value="12.00" <?php if($h['jadwal_jamselesai']=="12.00") echo selected;?>>12.00</option>
+                            <option value="13.00" <?php if($h['jadwal_jamselesai']=="13.00") echo selected;?>>13.00</option>
+                            <option value="13.30" <?php if($h['jadwal_jamselesai']=="13.30") echo selected;?>>13.30</option>
+                            <option value="14.30" <?php if($h['jadwal_jamselesai']=="14.30") echo selected;?>>14.30</option>
+                            <option value="15.00" <?php if($h['jadwal_jamselesai']=="15.00") echo selected;?>>15.00</option>
                        </select>
                   </div>
               </div>
@@ -146,12 +152,12 @@ default:
                     <select name="pengampu" class="form-control">
                             <option value="">Pilih Pengampu</option>
                             <?php 
-                            $varTampil = mysqli_query($connect, "SELECT * FROM tb_pamong_belajar ORDER BY nik");
-                              while ($varDataCat = mysqli_fetch_array($varTampil)) {
-                                if ($varDataCat['nik']== $varData['nik']) {
-                                  echo "<option selected value=$varDataCat[nik]>$varDataCat[pamong_nama]</option>";
+                            $varpengampu = mysqli_query($connect, "SELECT * FROM tb_pamong_belajar ORDER BY nik");
+                              while ($varDatapengampu = mysqli_fetch_array($varpengampu)) {
+                                if ($varDatapengampu['nik']== $jadwal['nik']) {
+                                  echo "<option selected value=$varDatapengampu[nik]>$varDatapengampu[pamong_nama]</option>";
                                 } else {
-                                  echo "<option value=$varDataCat[nik]>$varDataCat[pamong_nama]</option>";
+                                  echo "<option value=$varDatapengampu[nik]>$varDatapengampu[pamong_nama]</option>";
                                 }
                     
                               }
@@ -173,10 +179,9 @@ default:
                     <input name="rombel" id="rombel" type="hidden" class="form-control" value="<?php echo $h['rombel_id'] ?>" />
                   </div>
               </div>
-              
               <div class="modal-footer">
                 <button class="btn btn-success" type="submit">
-                  Tambah
+                  Update
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='jadwal_permapel.php?id='".$_GET[id]."'">
                   Batal
@@ -186,7 +191,7 @@ default:
           </div>
         </div>
       </div>
-      <div class="col-lg-9">
+           <div class="col-lg-9">
                 <form class="card">
                 <div class="card-header">
                     <h3 class="card-title">Jadwal Pelajaran</h3>
@@ -240,41 +245,27 @@ default:
   <?php
 break;
 
-case "save";
+case "update";
 $mapel=$_POST['mapel'];
-//var_dump($mapel);
 $hari = $_POST['hari'];
 $jamm = $_POST['jamm'];
 $jams = $_POST['jams'];
 $pengampu = $_POST['pengampu'];
 $rombel = $_POST['rombel'];
+$id = $_POST['id'];
 
-   $input=mysqli_query($connect,"INSERT INTO `tb_jadwal`(`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`, `nik`) VALUES ('','$rombel','$hari','$mapel','$jamm','$jams','$pengampu')");
-   //var_dump($input); exit();
-      if ($input){
-        //$_SESSION[status]    = "sukses";
-        //echo "masuk";
+$update = mysqli_query($connect,"UPDATE `tb_jadwal` SET `jadwal_hari`='$hari',`jadwal_jammulai`='$jamm',`jadwal_jamselesai`='$jams',`nik`='$pengampu' WHERE jadwal_id='$id'");
+//var_dump($input); exit();
+      if ($update){
+       // echo "update";
       echo $main_view;
       }
       else {
         //echo "gagal";
-      echo "<script>alert('Proses Gagal');history.back(-1);</script>";  
+      echo"<script>alert('Proses Gagal');history.back(-1);</script>";  
       }
   //}
 //}
-
 break;
-
-case "delete";
-$id=$_GET['idjadwal'];
-$hapus=mysqli_query($connect,"DELETE FROM tb_jadwal WHERE jadwal_id='$id'");
-if ($hapus) {
-  echo "<script>alert('Data Berhasil dihapus')</script>
-      <script>window.location='jadwal_permapel.php?idjadwal=".$_GET['idjadwal']."&id=".$_GET['id']."';</script>";
-} else {
-  echo"<script>alert('Gagal hapus data');history.back(-1);</script>"; 
-}
-break;
-
 }
 ?>
