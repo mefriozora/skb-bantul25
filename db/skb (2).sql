@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2020 at 02:23 AM
+-- Generation Time: Mar 29, 2020 at 03:01 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `skb_backup`
+-- Database: `skb`
 --
 
 -- --------------------------------------------------------
@@ -31,11 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_jadwal` (
   `jadwal_id` int(11) NOT NULL,
   `rombel_id` int(11) DEFAULT NULL,
-  `ta_id` int(11) NOT NULL,
-  `jadwal_hari` varchar(40) DEFAULT NULL,
-  `mapel_id` int(11) DEFAULT NULL,
-  `jadwal_jammulai` varchar(10) DEFAULT NULL,
-  `jadwal_jamselesai` varchar(10) DEFAULT NULL,
+  `jadwal_hari` varchar(40) NOT NULL DEFAULT '-',
+  `mapel_id` int(11) NOT NULL,
+  `jadwal_jammulai` varchar(10) NOT NULL DEFAULT '-',
+  `jadwal_jamselesai` varchar(10) DEFAULT '-',
   `nik` char(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,17 +42,10 @@ CREATE TABLE `tb_jadwal` (
 -- Dumping data for table `tb_jadwal`
 --
 
-INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `ta_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`, `nik`) VALUES
-(1, 1, 2, 'Senin', 3, '07.00', '08.00', '3402060102990001'),
-(2, 1, 2, '', 6, '', '', '3402060102990001'),
-(3, 1, 2, '', 7, '', '', '3402060102990001'),
-(4, 1, 2, '', 8, '', '', '3402060102990001'),
-(5, 1, 2, '', 9, '', '', '3402060102990001'),
-(6, 1, 2, '', 10, '', '', '3402060102990001'),
-(7, 1, 2, '', 11, '', '', '3402060102990001'),
-(8, 1, 2, '', 12, '', '', '3402060102990001'),
-(9, 1, 2, '', 13, '', '', '3402060102990001'),
-(10, 1, 2, '', 14, '', '', '3402060102990001');
+INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`, `nik`) VALUES
+(3, 1, 'Selasa', 6, '08.00', '09.00', '3402060102990001'),
+(13, 2, 'Jumat', 8, '07.00', '09.00', '3402060667890001'),
+(14, 1, 'Senin', 7, '07.00', '08.00', '3402060109870001');
 
 -- --------------------------------------------------------
 
@@ -167,7 +159,9 @@ INSERT INTO `tb_nilai` (`nilai_id`, `nis`, `rombel_id`, `kelas_id`, `ta_id`, `se
 (22, '012002060002', 3, 3, 2, 2, 6, '80', '67', NULL, 'Tidak Lulus'),
 (23, '012002060003', 3, 3, 2, 2, 6, '50', '77', NULL, 'Tidak Lulus'),
 (24, '012002060004', 3, 3, 2, 2, 6, '90', '78', NULL, 'Tidak Lulus'),
-(25, '012002060007', 3, 3, 2, 2, 6, '67', '60', NULL, 'Tidak Lulus');
+(25, '012002060007', 3, 3, 2, 2, 6, '67', '60', NULL, 'Tidak Lulus'),
+(26, '012002050005', 2, 2, 2, 2, 3, NULL, '78', NULL, ''),
+(27, '012002050006', 2, 2, 2, 2, 3, NULL, '', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -450,8 +444,7 @@ ALTER TABLE `tb_jadwal`
   ADD PRIMARY KEY (`jadwal_id`),
   ADD KEY `kode_ta` (`rombel_id`),
   ADD KEY `kode_mapel` (`mapel_id`),
-  ADD KEY `nik` (`nik`),
-  ADD KEY `ta_id` (`ta_id`);
+  ADD KEY `nik` (`nik`);
 
 --
 -- Indexes for table `tb_kelas`
@@ -547,7 +540,7 @@ ALTER TABLE `tb_tahunajaran`
 -- AUTO_INCREMENT for table `tb_jadwal`
 --
 ALTER TABLE `tb_jadwal`
-  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `jadwal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tb_kelas`
 --
@@ -562,7 +555,7 @@ ALTER TABLE `tb_mapel`
 -- AUTO_INCREMENT for table `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `nilai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
