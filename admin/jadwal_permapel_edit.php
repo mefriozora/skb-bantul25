@@ -62,8 +62,8 @@ default:
                 ?>
                   <div class="card-body">
                   <form action="?&act=update&idjadwal=<?php echo $jadwal['jadwal_id']; ?>&id=<?php echo $_GET['id'] ?>" id="formtambahjadwal" enctype="multipart/form-data" method="post">
-                 <input type="text" name="idjadwal" value="<?php echo $idjawal ?>">
-                 <input type="text" name="idrombel" value="<?php echo $id ?>">
+                 <input type="hidden" name="idjadwal" value="<?php echo $idjawal ?>">
+                 <input type="hidden" name="idrombel" value="<?php echo $id ?>">
                   <div class="form-group">
                 <label>Hari</label>
                   <div class="input-group">
