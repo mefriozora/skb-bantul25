@@ -37,154 +37,49 @@
     </table>
     </div>
    <br> 
-    <?php }} ?>
-    <form method="POST">
-     <div class="">
-        <div class="card">
-        <div class="card-header">
-                    <h3 class="card-title">Jadwal Per Mata Pelajaran</h3>
-          </div>
+   <?php }} ?>
+       <div class="col-lg-12">
+                <form class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Jadwal Pelajaran</h3>
+                  </div>
+                  <div class="card-body">
           <div class="table-responsive">
-            <table border="0px" style="border-collapse: collapse;" class="table card-table table-vcenter text-nowrap datatable" >
+            <table class="table card-table table-vcenter text-nowrap datatable">
               <thead>
                 <tr>
-                    <th rowspan="2"><center>No</center></th>
-                    <th rowspan="2"><center>Mata Pelajaran</center></th>
-                    <th rowspan="2"><center>Hari</center></th>
-                    <th colspan="2"><center>Jam Belajar</center></th>
-                    <th colspan="2"><center>Pengampu</center></th>
-                 </tr>
-                 <tr>
-                    <th><center>Mulai</center></th>
-                    <th><center>Selesai</center></th>
-                  </tr>
-
+                  <th class="w-2">No.</th>
+                  <th>Hari</th>
+                  <th>Matapelajaran</th>
+                  <th>Jam Mulai</th>
+                  <th>Jam Selesai</th>
+                  <th>Pengampu</th>
+                </tr>
               </thead>
               <tbody>
-             <?php 
-                $no=1;
-                $sql=mysqli_query($connect, "SELECT m.mapel_nama, m.mapel_id, ta.ta_id FROM tb_rombel r JOIN tb_kelas k ON r.kelas_id=k.kelas_id JOIN tb_paket p ON k.paket_id=p.paket_id JOIN tb_mapel m ON p.paket_id=m.paket_id JOIN `tb_tahunajaran` ta ON r.`ta_id`=ta.`ta_id` WHERE r.rombel_id='".$_GET['id']."'");
-                $cek= mysqli_num_rows($sql);
-                    if($cek>0){
-                       while ($data= mysqli_fetch_assoc($sql)) {
-          $jadwal = mysqli_query($connect, "SELECT * FROM tb_jadwal WHERE rombel_id='".$_GET['id']."' AND mapel_id='".$data['mapel_id']."'");
-          $cekjadwal= mysqli_num_rows($jadwal);
-          $data_jadwal = mysqli_fetch_array($jadwal);
-              ?>
+              <?php
+              $sql=mysqli_query($connect,"SELECT tb_jadwal.jadwal_id, tb_jadwal.rombel_id, tb_jadwal.jadwal_hari, tb_jadwal.mapel_id, tb_mapel.mapel_nama, tb_jadwal.jadwal_jammulai, tb_jadwal.jadwal_jamselesai, tb_pamong_belajar.pamong_nama FROM tb_jadwal JOIN tb_mapel ON tb_mapel.mapel_id=tb_jadwal.mapel_id JOIN tb_pamong_belajar ON tb_pamong_belajar.nik=tb_jadwal.nik WHERE tb_jadwal.rombel_id='".$_GET['id']."' ");
+              $no=1;
+              while($result=mysqli_fetch_array($sql)){ ?>
                 <tr>
-                  <td align="center"><span class="text-muted"><?php echo $no;?></span></td>
-                  <td align="center"><?php echo $data['mapel_nama'] ?><input type="hidden" name="ta_id" value="<?php echo $data['ta_id']; ?>"><input type="hidden" name="mapel[]" value="<?php echo $data['mapel_id'] ?>"><input type="hidden" name="idjadwal[]" value="<?php echo $data_jadwal['jadwal_id'] ?>"></td>
-                  <td align="center">
-                    <select name="hari[]">
-                            <option value="<?php echo $data_jadwal['jadwal_hari'] ?>" <?php if(empty($data_jadwal['jadwal_hari'])){ echo "selected hidden dissabled"; }else{ echo "selected hidden"; } ?>><?php if(empty($data_jadwal['jadwal_hari'])){ echo "- Pilih -"; }else{ echo $data_jadwal['jadwal_hari']; } ?></option>
-                            <option value="Senin">Senin</option>
-                            <option value="Selasa">Selasa</option>
-                            <option value="Rabu">Rabu</option>
-                            <option value="Kamis">Kamis</option>
-                            <option value="Jumat">Jumat</option>
-                          </select>
-                  </td>
-                  <td align="center">
-                    <select name="jamm[]">
-                            <option value="<?php echo $data_jadwal['jadwal_jammulai'] ?>" <?php if(empty($data_jadwal['jadwal_jammulai'])){ echo "selected hidden disabled"; }else{ echo "selected hidden"; } ?>><?php if(empty($data_jadwal['jadwal_jammulai'])){ echo "- Pilih -"; }else{ echo $data_jadwal['jadwal_jammulai']; } ?></option>
-                            <option value="07.00">07.00</option>
-                            <option value="08.00">08.00</option>
-                            <option value="09.00">09.00</option>
-                            <option value="09.30">09.30</option>
-                            <option value="10.30">10.30</option>
-                            <option value="11.30">11.30</option>
-                            <option value="12.00">12.00</option>
-                            <option value="13.00">13.00</option>
-                            <option value="13.30">13.30</option>
-                          </select>
-                  </td>
-                  <td align="center">
-                    <select name="jams[]">
-                            <option value="<?php echo $data_jadwal['jadwal_jamselesai'] ?>" <?php if(empty($data_jadwal['jadwal_jamselesai'])){ echo "selected hidden disabled"; }else{ echo "selected hidden"; } ?>><?php if(empty($data_jadwal['jadwal_jamselesai'])){ echo "- Pilih -"; }else{ echo $data_jadwal['jadwal_jamselesai']; } ?></option>
-                            <option value="07.00">07.00</option>
-                            <option value="08.00">08.00</option>
-                            <option value="09.00">09.00</option>
-                            <option value="09.30">09.30</option>
-                            <option value="10.30">10.30</option>
-                            <option value="11.30">11.30</option>
-                            <option value="12.00">12.00</option>
-                            <option value="13.00">13.00</option>
-                            <option value="13.30">13.30</option>
-                            <option value="14.30">14.00</option>
-                            <option value="15.00">15.00</option>
-                          </select>
-                  </td>
-                  <td align="center">
-                    <select name="pamong">
-                          <?php 
-                            $varTampil = mysqli_query($connect, "SELECT * FROM tb_pamong_belajar ORDER BY nik");
-                              while ($varDataCat = mysqli_fetch_array($varTampil)) {
-                                if ($varDataCat['nik']== $varData['nik']) {
-                                  echo "<option selected value=$varDataCat[nik]>$varDataCat[pamong_nama]</option>";
-                                } else {
-                                  echo "<option value=$varDataCat[nik]>$varDataCat[pamong_nama]</option>";
-                                }
-                    
-                              }
-                          ?>  
-                    </select>
-                  </td>
+                  <td><span class="text-muted"><?php echo $no;?></span></td>
+                  <td><?php echo $result['jadwal_hari'];?></td>
+                  <td><?php echo $result['mapel_nama'];?></td>
+                  <td><?php echo $result['jadwal_jammulai'];?></td>
+                  <td><?php echo $result['jadwal_jamselesai'];?></td>
+                  <td><?php echo $result['pamong_nama'];?></td>
                 </tr>
-          <?php $no++;}} ?>
+              <?php $no++; } ?>
               </tbody>
             </table>
-
+            
             <script>
               require(['datatables', 'jquery'], function(datatable, $) {
                     $('.datatable').DataTable();
                   });
             </script>
-           
           </div>
         </div>
       </div>
-    <button type='submit' name='tambah' class='btn btn-primary' role='button'>Simpan</button>   
-      <button type='submit' name='ubah' class='btn btn-warning' role='button'>Ubah</button>   
     </div>
-  </form>
-  <?php
-      if(isset($_REQUEST['tambah'])){
-        $idmapel=@$_POST['mapel'];
-        $ta=@$_POST['ta_id'];
-        $hari=@$_POST['hari'];
-        $jamm=@$_POST['jamm'];
-        $jams=@$_POST['jams'];
-        $pengampu = @$_POST['pamong'];
-        
-
-        $jml=count($idmapel);
-          for ($i=0; $i<$jml; $i++) {
-        mysqli_query($connect,"INSERT INTO `tb_jadwal`(`rombel_id`, `ta_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`,`nik`)
-        VALUES ('".$_GET['id']."', '".$ta."','".$hari[$i]."','".$idmapel[$i]."','".$jamm[$i]."','".$jams[$i]."','".$pengampu."')");
-          }
-
-          echo "<script>alert('Data Berhasil Tersimpan')</script>";
-          echo "<script>window.location='jadwal_permapel.php?id=".$_GET['id']."';</script>";
-       
-      }
-    if(isset($_REQUEST['ubah'])){                                  
-        
-        $idjadwal=@$_POST['idjadwal'];
-        $hari=@$_POST['hari'];
-        $jamm=@$_POST['jamm'];
-        $jams=@$_POST['jams'];
-        $pengampu = $_POST['pamong'];
-        
-
-        $jml=count($idjadwal);
-          for ($i=0; $i<$jml; $i++) {
-              mysqli_query($connect,"UPDATE `tb_jadwal` SET `jadwal_hari`='$hari[$i]',`jadwal_jammulai`='$jamm[$i]',`jadwal_jamselesai`='$jams[$i]',`nik`='$pengampu' WHERE jadwal_id='$idjadwal[$i]'");
-          }
-
-          echo "<script>alert('Data Berhasil Diubah')</script>";
-          echo "<script>window.location='jadwal_permapel.php?id=".$_GET['id']."';</script>";
-       
-      }
-  ?>
   </div>
-

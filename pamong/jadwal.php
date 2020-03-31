@@ -1,4 +1,8 @@
 <?php include_once "cek_session.php"; include_once "views/main.php";?>
+<?php
+  $query = mysqli_query($connect, "SELECT pengguna_username,nik FROM tb_pengguna JOIN tb_pamong_belajar ON tb_pamong_belajar.nik=tb_pengguna.pengguna_username WHERE pengguna_username='".$_SESSION['username']."'");
+  $Data = mysqli_fetch_array($query);
+?>
 
 <div class="my-3 my-md-1">
   <div class="container">
@@ -8,11 +12,6 @@
             </li>
             <li class="breadcrumb-item active">Jadwal</li>
           </ol>
-    <div class="page-header">
-      <h4 class="">
-        Jadwal 
-      </h4>
-    </div>
       <div class="">
         <div class="card">
         <div class="card-header">
@@ -34,15 +33,10 @@
                 <?php
              
               $no=1;
-              $nik_pamong = $_SESSION['username'];
-              $get_pengguna = mysqli_query($connect, "SELECT r.rombel_id FROM tb_rombel r JOIN tb_pamong_belajar p ON p.nik=r.nik WHERE p.nik='$nik_pamong'");
-              $data_pengguna = mysqli_fetch_array($get_pengguna);
-              $sql = mysqli_query($connect, "SELECT a.rombel_id, c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif') AND a.rombel_id='".$data_pengguna['rombel_id']."'");
+              $sql = mysqli_query($connect, "SELECT a.rombel_id, c.kelas_nama,f.paket_nama,b.ta_nama,e.pamong_nama FROM tb_rombel a JOIN tb_tahunajaran b ON a.ta_id=b.ta_id JOIN tb_kelas c ON a.kelas_id=c.kelas_id JOIN tb_pamong_belajar e ON a.nik=e.nik JOIN tb_paket f ON c.paket_id=f.paket_id WHERE a.ta_id=(SELECT ta_id FROM tb_tahunajaran WHERE ta_status='Aktif' AND e.nik='".$Data['nik']."')");
               $cek= mysqli_num_rows($sql);
               if($cek>0){
-              while ($data= mysqli_fetch_array($sql)) {             
-
-
+              while ($data= mysqli_fetch_array($sql)) {                 
               ?>
                 <tr>
                   <td><span class="text-muted"><?php echo $no;?></span></td>
