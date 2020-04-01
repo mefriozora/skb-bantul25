@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2020 at 03:01 PM
+-- Generation Time: Apr 01, 2020 at 09:54 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -45,7 +45,7 @@ CREATE TABLE `tb_jadwal` (
 INSERT INTO `tb_jadwal` (`jadwal_id`, `rombel_id`, `jadwal_hari`, `mapel_id`, `jadwal_jammulai`, `jadwal_jamselesai`, `nik`) VALUES
 (3, 1, 'Selasa', 6, '08.00', '09.00', '3402060102990001'),
 (13, 2, 'Jumat', 8, '07.00', '09.00', '3402060667890001'),
-(14, 1, 'Senin', 7, '07.00', '08.00', '3402060109870001');
+(14, 3, 'Kamis', 7, '07.00', '09.00', '3402060109870001');
 
 -- --------------------------------------------------------
 
