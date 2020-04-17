@@ -75,7 +75,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="jenkel" class="form-control">
+                    <select name="jenkel" id="jenkel" class="form-control">
                       <option selected value="">-Pilih-</option>
                       <option value="laki-laki">Laki - Laki</option>
                       <option value="perempuan">Perempuan</option>
@@ -88,7 +88,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="agama" class="form-control">
+                    <select name="agama" id="agama" class="form-control">
                       <option selected value="">-Pilih-</option>
                       <option value="ISLAM">ISLAM</option>
                       <option value="KRISTEN">KRISTEN</option>
@@ -123,7 +123,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="jabatan" class="form-control">
+                    <select name="jabatan" id="jabatan" class="form-control">
                       <option selected value="">-Pilih-</option>
                       <option value="Pamong Belajar">Pamong Belajar</option>
                       <option value="Tutor">Tutor</option>
@@ -131,7 +131,7 @@ input:valid {
                   </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit">
+                <button onclick="javascript:validate();" class="btn btn-success" type="submit">
                   Tambah
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='tutor.php';">
@@ -142,6 +142,36 @@ input:valid {
           </div>
           </div>
         </div>
+        <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("jenkel").selectedIndex == ""){
+          alert("Pilih Jenis Kelamin dahulu");
+        }
+        else {
+          alert(document.getElementById("jenkel").options[document.getElementById("jenkel").selectedIndex].value);
+        }
+      }
+      </script>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("agama").selectedIndex == ""){
+          alert("Pilih Agama dahulu");
+        }
+        else {
+          alert(document.getElementById("agama").options[document.getElementById("agama").selectedIndex].value);
+        }
+      }
+      </script>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("jabatan").selectedIndex == ""){
+          alert("Pilih Jabatan dahulu");
+        }
+        else {
+          alert(document.getElementById("jabatan").options[document.getElementById("jabatan").selectedIndex].value);
+        }
+      }
+      </script>
           <div class="col-lg-8">
                 <form class="card">
                 <div class="card-header">

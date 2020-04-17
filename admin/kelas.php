@@ -48,7 +48,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="paket_kesetaraan" class="form-control">
+                    <select name="paket_kesetaraan" id="paket_kesetaraan" class="form-control">
                       <option selected value="">-Pilih Paket Kesetaraan-</option>
                         <?php
                         //include "../config/connection.php"; 
@@ -64,7 +64,7 @@ input:valid {
               </div>
               
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit">
+                <button onclick="javascript:validate();" class="btn btn-success" type="submit">
                   Tambah
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='kelas.php';">
@@ -75,6 +75,16 @@ input:valid {
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("paket_kesetaraan").selectedIndex == ""){
+          alert("Pilih Paket Kesetaraan dahulu");
+        }
+        else {
+          alert(document.getElementById("paket_kesetaraan").options[document.getElementById("paket_kesetaraan").selectedIndex].value);
+        }
+      }
+      </script>
       <div class="col-lg-8">
                 <form class="card">
                 <div class="card-header">
