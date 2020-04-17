@@ -61,7 +61,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <select name="hari" class="form-control">
+                    <select name="hari" id="hari" class="form-control">
                        <option value="">Pilih Hari</option>
                        <option value="Senin">Senin</option>
                        <option value="Selasa">Selasa</option>
@@ -78,7 +78,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-id-card"></i>
                     </div>
-                    <select name="mapel" class="form-control">
+                    <select name="mapel" id="mapel" class="form-control">
                       <option value="">Pilih Matapelajaran</option>
                           <?php 
                             $varTampil = mysqli_query($connect, "SELECT m.mapel_nama, m.mapel_id FROM tb_rombel r JOIN tb_kelas k ON r.kelas_id=k.kelas_id JOIN tb_paket p ON k.paket_id=p.paket_id JOIN tb_mapel m ON p.paket_id=m.paket_id WHERE r.rombel_id='".$_GET['id']."'");
@@ -101,7 +101,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="jamm" class="form-control">
+                    <select name="jamm" id="jamm" class="form-control">
                             <option value="">Pilih Jam Mulai</option>
                             <option value="07.00">07.00</option>
                             <option value="08.00">08.00</option>
@@ -121,7 +121,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="jams" class="form-control">
+                    <select name="jams" id="jams" class="form-control">
                             <option value="">Pilih Jam Selesai</option>
                             <option value="07.00">07.00</option>
                             <option value="08.00">08.00</option>
@@ -143,7 +143,7 @@ default:
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="pengampu" class="form-control">
+                    <select name="pengampu" id="pengampu" class="form-control">
                             <option value="">Pilih Pengampu</option>
                             <?php 
                             $varTampil = mysqli_query($connect, "SELECT * FROM tb_pamong_belajar ORDER BY nik");
@@ -175,7 +175,7 @@ default:
               </div>
               
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit">
+                <button onclick="javascript:validate();"  class="btn btn-success" type="submit" >
                   Tambah
                 </button>
                 <button type="reset" class="btn btn-danger" onClick="window.location.href='jadwal_permapel.php?id='".$_GET[id]."'">
@@ -186,6 +186,37 @@ default:
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("hari").selectedIndex == ""){
+          alert("Pilih Hari dahulu");
+        }
+        else {
+          alert(document.getElementById("hari").options[document.getElementById("hari").selectedIndex].value);
+        }
+      }
+      </script>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("mapel").selectedIndex == ""){
+          alert("Pilih Matapelajaran dahulu");
+        }
+        else {
+          alert(document.getElementById("mapel").options[document.getElementById("mapel").selectedIndex].value);
+        }
+      }
+      </script>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("pengampu").selectedIndex == ""){
+          alert("Pilih Pengampu dahulu");
+        }
+        else {
+          alert(document.getElementById("pengampu").options[document.getElementById("pengampu").selectedIndex].value);
+        }
+      }
+      </script>
+     
       <div class="col-lg-9">
                 <form class="card">
                 <div class="card-header">

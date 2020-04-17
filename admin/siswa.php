@@ -71,7 +71,7 @@ input:valid {
                     <div class="input-group-addon">
                       <i class="fa fa-user-o"></i>
                     </div>
-                    <select name="statussiswa" class="form-control">
+                    <select name="statussiswa" id="statussiswa" class="form-control">
                       <option selected value="">-Pilih Status-</option>
                       <option value="Aktif">Aktif</option>
                       <option value="Tidak Aktif">Tidak Aktif</option>
@@ -79,7 +79,7 @@ input:valid {
                   </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit" name="btntambah" value="btntambah">
+                <button onclick="javascript:validate();" class="btn btn-success" type="submit" name="btntambah" value="btntambah">
                   Tambah
                 </button>
                 <a href="siswa.php" class="btn btn-danger">
@@ -90,6 +90,16 @@ input:valid {
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        function validate(){
+        if (document.getElementById("statussiswa").selectedIndex == ""){
+          alert("Pilih Status dahulu");
+        }
+        else {
+          alert(document.getElementById("statussiswa").options[document.getElementById("statussiswa").selectedIndex].value);
+        }
+      }
+      </script>
       <div class="col-lg-8">
         <form class="card">
           <div class="card-header">
